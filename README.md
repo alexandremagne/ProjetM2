@@ -15,3 +15,8 @@ Option : Banque et Finance
 
 Sujet : Risque de Contrepartie et Ajustement de la Valeur de Credit
 
+```
+x = 0
+x = 2 + 2
+what is x
+```
