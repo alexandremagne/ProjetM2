@@ -86,35 +86,40 @@
 <!-- pour les info -->
 				<div class="row">
 					<div class="col-md-12">
-						<form class="form-horizontal" role="form" method="post">
+						<form class="form-horizontal" role="form" >
 						  <div class="form-group">
 							<label for="input_borrowed_capital" class="col-sm-2 control-label">Borrowed Capital</label>
-							<div class="col-sm-5">
+							<div class="col-sm-5 input-group">
 							  <input  type="number" class="form-control" id="input_borrowed_capital" placeholder="Please enter a number" required>
+							  <span class="input-group-addon">$</span>
 							</div>
 						  </div>
 						  <div class="form-group">
 							<label for="input_age" class="col-sm-2 control-label">Age of the borrower</label>
-							<div class="col-sm-5">
+							<div class="col-sm-5 input-group">
 							  <input type="number" class="form-control" id="input_age" placeholder="Please enter your age" required>
+							  <span class="input-group-addon">years old</span>
 							</div>
 						  </div>
 						  <div class="form-group">
 							<label for="input_incomes" class="col-sm-2 control-label">Net annual incomes of the borrower</label>
-							<div class="col-sm-5">
+							<div class="col-sm-5 input-group">
 							  <input type="number" class="form-control" id="input_incomes" placeholder="Please enter your net annual incomes" required>
+							  <span class="input-group-addon">$</span>
 							</div>
 						  </div>
 						  <div class="form-group">
 							<label for="input_duration_loan" class="col-sm-2 control-label">Loan duration (max 25)</label>
-							<div class="col-sm-5">
+							<div class="col-sm-5 input-group">
 							  <input type="number" class="form-control" id="input_duration_loan" placeholder="Please a loan duration" required>
+							  <span class="input-group-addon">months</span>
 							</div>
 						  </div>
 						  
 						  <div class="form-group">
 							<div class="col-sm-offset-0 col-sm-2">
-							  <input class="btn btn-primary btn-block btn-lg" type="submit" value="check"/>
+							  <input class="btn btn-primary btn-block btn-lg" type="submit" value="check" 
+							  onclick="return"/>
 							</div>
 						  </div>
 						</form>
