@@ -98,8 +98,14 @@ go_post:
 	function (b) {
 		b = JSON.parse(b);
 		this.b = b;
-		if (b.ac == "login") {
-			db.login(b.login, b.password, this.resp);
+		if (b.ac == "check_login_process_") {
+			//db.login(b.login, b.password, this.resp);
+			console.log("ENVOIE D'UNE DEMANDE DE LOGIN");
+			data = {message:"ok_login_"};
+			this.resp.writeHead(200,{"Content-Type": "application/json" });
+			this.resp.write(JSON.stringify(data));
+			this.resp.end();
+
 		} 
 		else if (b.ac == "register"){
 			this.resp.writeHead(200,{"Content -Type": "application/json"});
@@ -114,7 +120,7 @@ go_post:
 		else if (b.ac == "check_loan_info_action_") {
 			//data = fs.readFileSync("./data.js");			
 			console.log("ENVOIE D'UNE DEMANDE DE PRET");
-			data = {message:"ok"};
+			data = {message:"ok_loan_demande_"};
 			this.resp.writeHead(200,{"Content-Type": "application/json" });
 			this.resp.write(JSON.stringify(data));
 			this.resp.end();
