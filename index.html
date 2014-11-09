@@ -1,209 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<script  type="text/javascript"  src="js/jquery.js"></script>
-	 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-	 <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+	 
+		 <!-- BOOTSTRAP -->
+		<script  type="text/javascript"  src="dist/js/jquery.js"></script>
+		<script  type="text/javascript"  src="dist/js/bootstrap.min.js"> </script>
+		<link rel="stylesheet" type="text/css" href="dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="dist/css/bootstrap-theme.min.css" />
 	
-	 
-	 <script  type="text/javascript"  src="js/bootstrap.min.js"> </script>
-	 
-
-	   	
-	 
-	 
-	 
-
-    <title>Welcome to Gold Trading</title>
-    
+		<title>Risque de contrepartie et modélisation de la CVA</title>
   </head>
   
- <body style="padding-top: 0px;">
-  
- 
-
-		
-						
+ 	<body style="padding-top: 0px;">
+ 	
+  	<div class="container">
+  		
 				<!-- barre de menu horizontale tout en haut -->
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-					   <div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+						<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 							<div class="navbar-header">
-								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-								 <span class="sr-only">Toggle navigation</span>
-								 <span class="icon-bar"></span>
-								 <span class="icon-bar"></span>
-								 <span class="icon-bar"></span>
+								<a class="navbar-brand active" href="index.html">
+									<p style="font:15px verdana; color:#000;">
+										Risque de contrepartie et modélisation de la CVA
+									</p>
+								</a>
+								 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+									 <span class="sr-only">Toggle navigation</span>
+									 <span class="icon-bar"></span>
+									 <span class="icon-bar"></span>
+									 <span class="icon-bar"></span>
 								 </button>
-								<a class="navbar-brand active" href="index.html"><p style="font:15px verdana; color:#000;">GOLD TRADING</p></a>
 							</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
-							<div class=" collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-top:10px;">
+							<div class=" collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-top:10px">
 								
-								<form class="col-md-offset-6	 form-inline" role="form" >
-								<div class="form-group  has-feedback" ;" >
-									<span id="statut-du-compte"></span>
-								</div>
-								<div class="form-group  has-feedback" ;" >
-									 <label class="sr-only" for="exampleInputEmail2">Login</label>
-									 <input  type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter LOGIN" autofocus>
+								<form class="col-md-offset-6 form-inline" role="form" >
+									<div class="form-group  has-feedback">
+										<span id="statut-du-compte"></span>
+									</div>
+									<div class="form-group has-feedback" ;" >
+										<label class="sr-only" for="exampleInputEmail2">Login</label>
+										<input  type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter LOGIN" autofocus>
 										<span class="glyphicon"></span>
-								</div>
-								<div class="form-group has-feedback">
-									 <label class="sr-only" for="exampleInputPassword2">Password</label>
-									 <input  type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+									</div>
+									<div class="form-group has-feedback">
+										<label class="sr-only" for="exampleInputPassword2">Password</label>
+										<input  type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
 										<span class="glyphicon"></span>
-								</div>
-								<div class="btn btn-default sign-in">Sign in
-								</div>
+									</div>
+									<div class="btn btn-default sign-in">
+										Sign in
+									</div>
 								</form>
 								
-  
-    
-
-
-								
 							</div><!-- /.navbar-collapse -->
-						</div><!-- /.container-fluid -->
-					</div>
-			<!-- FIN barre de menu horizontale tout en haut -->
+						</div>
+					</div><!-- /.container-fluid -->
+				</div><!-- /.col-md-12 -->
+			</div><!-- /.row -->
+				<!-- FIN barre de menu horizontale tout en haut -->
 			
 		
 			
-			<!-- MODAL + GRAPHE -->
-<div class="container-fluid" style="margin:5px">
-				<div class="row">
-					<div class="col-md-12" style=""> <!-- MODAL -->
-						<div class="img-rounded jumbotron" style="background: #fff;">
-						<h1>Hello, trader</h1>
-						<p>You can connect directly, or if you do not have any account, register you now for FREE !</p>
-						<p>Take a look on all functionalities you can access when you are connected !</p>
-						<p><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-reg"> Register Here</button></p>
+			
+				<div class="row" style="margin-top:70px">
+					<div class="col-md-10 img-thumbnail jumbotron">
+						<div>
+							<h1>Hello and welcome.</h1>
+							<p>You want	to get a loan ?</p>
+							<p>Nothing is easier !</p>
+							<p>Please complete the fields below and confirm to see if you are eligible or not.
 						</div>
-					</div> <!-- FIN MODAL -->
-				</div><!-- pour le register !!!!!!!!!!!!!!!!!!!-->
-				
-				<div class="row">	
-					<div class="col-md-6"><!-- POUR LE GRAPHE !!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-						<div class="table img-rounded">		
-							<td>
-								<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-								<body>
-								<script src="./graphique/highstock.js"></script>
-								<script src="./graphique/exporting.js"></script>
-								<div id="container"></div>
-								</body>
-							</td>      		 
-					 	</div>
-					 </div> <!-- GRAPHE FINI !!!!!!!!!!!!!!!!!!!-->
-					<div class="col-md-6">
-						<div class="img-rounded jumbotron" style="background: #fff;">
-							<h3 class="text-warning">We Collect Data from stock market daily</h3>
-							<p>Choose your range of watching, let's take some pleasure with easily use and dynamic graphic.</p>
-							<p>Two types of charts are proposed when registered : intraday (updated every 15 mins) and global (values day per day since 1970)</p>
-							<p>We also provide other tools to analyse the charts and make you richer than ever ! Let's register to see them !</p>
-						</div>
-					</div> 
-				</div> <!-- FIN modal + Graphe -->
-					
-					
-				<div class="row">
-					<div class="col-md-6">
-						<div class="img-rounded jumbotron" style="background: #fff;">
-							<h3 class="text-info">You can simulate your financial mouvement</h3>
-							<p>Buy and Sell gold at any time, whenever you want. You play simulation, not real monney !</p>
-							<p>It really easy, you don't require any knowledge about trading, everything is simple !</p>
-							
-						</div>
-					</div> 
-					<div class="col-md-6">
-						<div id="examplewallet" style="min-width: 310px; height: 400px; margin: 0 auto"></div><!-- example wallet !!!!!!!!!!!!!!!!!!!-->
-						<script>
-							$(function () {
-        $('#examplewallet').highcharts({
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Your Wallet'
-            },
-            subtitle: {
-                text: 'Exemple'
-            },
-            xAxis: {
-                categories: [
-                    'Type of Account'
-                  
-                ]
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: '$'
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} $</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'Stocks',
-                data: [9000.9]
-    
-            }, {
-                name: 'Wallet',
-                data: [2000.6]
-    
-            }
-              ]
-        });
-    });
-    
-
-						</script>
 					</div>
-				</div>	
-				
-				<div class="row">
-					<div class="col-md-6">
-						<img src="http://getbootstrap.com/2.3.2/assets/img/bs-docs-responsive-illustrations.png" alt=""/>
+					<div class="col-md-2" >
+						<button class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#modal-reg">Register</button>
 					</div>
-					<div class="col-md-6">
-						<div class="img-rounded jumbotron" style="background: #fff;">
-							<h3 class="text-danger">Connect with all your devices</h3>
-							<p>None installation or redirection will be required, all the website is optimized to make it easy to use with all your devices !</p>	
-						</div>
-					</div> 
-					
 				</div>
+				
 				<div class="row">
-					<div class="col-md-6">
-							<div class="img-rounded jumbotron" style="background: #fff; margin-top:30px">
-								<h3 class="text-success">Let's talk with all other traders, they can give you advices !</h3>
-								<p>The chatroom allow you to speak to each others, on whatever you want. But notice that you are here to win money !</p>	
+					<div class="col-md-12">
+						<form class="form-horizontal" role="form">
+						  <div class="form-group">
+							<label for="input_borrowed_capital" class="col-sm-2 control-label">Borrowed Capital</label>
+							<div class="col-sm-10">
+							  <input type="text" class="form-control" id="input_borrowed_capital" placeholder="Please enter a number">
 							</div>
-					</div> 
-					<div class="col-md-6" style="margin-top:100px">
-						<span class="glyphicon glyphicon-user text-danger" style="font-size:100px"></span>
-						<span class="glyphicon glyphicon-comment text-info" style="font-size:100px"></span>
-						<span class="glyphicon glyphicon-user text-success" style="font-size:100px"></span>
-						
+						  </div>
+						  <div class="form-group">
+							<label for="input_age" class="col-sm-2 control-label">Age of the borrower</label>
+							<div class="col-sm-10">
+							  <input type="text" class="form-control" id="input_age" placeholder="Please enter your age">
+							</div>
+						  </div>
+						  <div class="form-group">
+							<label for="input_incomes" class="col-sm-2 control-label">Net annual incomes of the borrower</label>
+							<div class="col-sm-10">
+							  <input type="text" class="form-control" id="input_incomes" placeholder="Please enter your net annual incomes">
+							</div>
+						  </div>
+						  <div class="form-group">
+							<label for="input_duration_loan" class="col-sm-2 control-label">Loan duration (max 25)</label>
+							<div class="col-sm-10">
+							  <input type="text" class="form-control" id="input_duration_loan" placeholder="Please a loan duration">
+							</div>
+						  </div>
+						  
+						  <div class="form-group">
+							<div class="col-sm-offset-10 col-sm-2">
+							  <button class="btn btn-primary btn-block btn-lg" type="submit">Check</button>
+							</div>
+						  </div>
+						</form>
 					</div>
 				</div>
-					<!-- Modal -->
+					
+			
+			
+					<!-- Modal pour le register-->
 					<div class="modal fade" id="modal-reg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   						<div class="modal-dialog">
   						  <div class="modal-content">
@@ -243,13 +161,11 @@
     					</div>
   					</div>
 				</div>
-		<!-- fin du modal -->   	
+					<!-- fin du modal -->   	
 		
-		
+	</div>
 
-</div>
-<script  type="text/javascript"  src="js/js.js"></script>
-</body>
+<!-- <script  type="text/javascript"  src="js/js.js"></script> -->
+	</body>
 </html>
-		<script  type="text/javascript"  src="js/js.js"></script>
 		
