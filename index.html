@@ -82,37 +82,39 @@
 					</div>
 				</div>
 <!-- pour les informations à rentrer -->
+
+<!-- pour les info -->
 				<div class="row">
 					<div class="col-md-12">
-						<form class="form-horizontal" role="form">
+						<form class="form-horizontal" role="form" method="post">
 						  <div class="form-group">
 							<label for="input_borrowed_capital" class="col-sm-2 control-label">Borrowed Capital</label>
-							<div class="col-sm-10">
-							  <input type="text" class="form-control" id="input_borrowed_capital" placeholder="Please enter a number">
+							<div class="col-sm-5">
+							  <input  type="number" class="form-control" id="input_borrowed_capital" placeholder="Please enter a number" required>
 							</div>
 						  </div>
 						  <div class="form-group">
 							<label for="input_age" class="col-sm-2 control-label">Age of the borrower</label>
-							<div class="col-sm-10">
-							  <input type="text" class="form-control" id="input_age" placeholder="Please enter your age">
+							<div class="col-sm-5">
+							  <input type="number" class="form-control" id="input_age" placeholder="Please enter your age" required>
 							</div>
 						  </div>
 						  <div class="form-group">
 							<label for="input_incomes" class="col-sm-2 control-label">Net annual incomes of the borrower</label>
-							<div class="col-sm-10">
-							  <input type="text" class="form-control" id="input_incomes" placeholder="Please enter your net annual incomes">
+							<div class="col-sm-5">
+							  <input type="number" class="form-control" id="input_incomes" placeholder="Please enter your net annual incomes" required>
 							</div>
 						  </div>
 						  <div class="form-group">
 							<label for="input_duration_loan" class="col-sm-2 control-label">Loan duration (max 25)</label>
-							<div class="col-sm-10">
-							  <input type="text" class="form-control" id="input_duration_loan" placeholder="Please a loan duration">
+							<div class="col-sm-5">
+							  <input type="number" class="form-control" id="input_duration_loan" placeholder="Please a loan duration" required>
 							</div>
 						  </div>
 						  
 						  <div class="form-group">
-							<div class="col-sm-offset-10 col-sm-2">
-							  <div class="btn btn-primary btn-block btn-lg" type="submit">Check</div>
+							<div class="col-sm-offset-0 col-sm-2">
+							  <input class="btn btn-primary btn-block btn-lg" type="submit" value="check"/>
 							</div>
 						  </div>
 						</form>
