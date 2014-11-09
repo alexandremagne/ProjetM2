@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient
     , format = require('util').format;
 
-afficher_toute_la_base = function(){
+exports.afficher_toute_la_base = function(){
 MongoClient.connect('mongodb://alexandre:magne@dogen.mongohq.com:10036/ProjetEsme', function(err, db) {
     if(err) throw err;//si erreur de connections
 	
@@ -16,5 +16,3 @@ MongoClient.connect('mongodb://alexandre:magne@dogen.mongohq.com:10036/ProjetEsm
 
 });
 };
-
-afficher_toute_la_base();
