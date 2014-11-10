@@ -76,7 +76,6 @@ function printValue(sliderID, textbox) {
 	myVar= setInterval(function(){
 	 		var x = document.getElementById(textbox);
             var y = document.getElementById(sliderID);
-            console.log(y.value)          ;
             x.innerHTML = ""+y.value;
         }, 100); 
 

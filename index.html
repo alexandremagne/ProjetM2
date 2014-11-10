@@ -116,13 +116,11 @@
 						<form id="check_formulaire_" class="form-horizontal" action="" >
 						  <div class="form-group">
 							<label for="input_borrowed_capital" class="col-sm-2 control-label">Borrowed Capital</label>
-							
-							 <div class="col-md-2">
-							  <input  type="range" id="input_borrowed_capital_" min="O" max="50" step="1" onmouseover="printValue('input_borrowed_capital_','show_borrowed_capital_')" onmouseout="clearInterval(myVar);">
-							 </div>
-							  <div class="col-sm-1">
-							  	<span id="show_borrowed_capital_" class="form-control"  type="number" size=""></span>
-							 </div>
+								<div class="col-sm-5 input-group">
+									<input  type="number" class="form-control" id="input_borrowed_capital_" placeholder="Please enter a number" required>
+									<span class="input-group-addon">$</span>
+								</div>
+
 							
 
 						  </div>
