@@ -1,3 +1,7 @@
+/* 
+SERVER TOURNE SUR LE PORT 5000
+*/
+
 var http = require("http");
 var util = require("util");
 
