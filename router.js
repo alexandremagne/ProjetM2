@@ -59,8 +59,7 @@ get_method:
 		this.filetype = this.filetype[this.filetype.length - 1];
 		this.path = "." + u.path; //the website is one directory upper than the node server
 		if (u.path == "/html/admin.html")//pour voir dans quel page on va
-			{
-				//console.log("==============+++++++==========");
+			{				
 				db.valid_admin(this.req.headers.cookie, this, "check_user");//on verifie si c un user
 			}
 		else{
@@ -71,11 +70,9 @@ get_method:
 check_user:
 	function (ret) {
 
-		if (ret) {
-			//console.log("ADDDDDDDDDMIIIIINNNNNNNN");
+		if (ret) {			
 			this.read_file();
-		}else{
-			//console.log("PAS ADDDDDDDMIIIINNN");
+		}else{			 
 			this.path = "."+"/html/accueil.html";
 			this.read_file();
 			
@@ -266,9 +263,9 @@ cb_cookie:
 		
 read_file:
 function () {
-	console.log(util.inspect(this.pathname));
-	if (!this.pathname[0] || this.pathname[0] == "nodejs") {
-		//util.log("ALERT - Hack attempt, resquest on : " + util.inspect(this.pathname)
+	//console.log(util.inspect(this.pathname));
+	if (!this.pathname[0] || this.pathname[0] == "router.js" || this.pathname[0] == "server.js" || this.pathname[0] == "db.js") {
+		util.log("ALERT - Hack attempt, resquest on : " + util.inspect(this.pathname));
 		this.pathname = "./index.html";
 		this.path = "./index.html";
 		this.filetype = "html";
@@ -288,7 +285,7 @@ load_file:
 						util.log("ERROR - Problem reading file : " + e);
 					} else {
 						_this.file = d;
-						util.puts("GET on path : " + util.inspect(_this.path));
+						//util.puts("GET on path : " + util.inspect(_this.path));
 						_this.file_processing();
 			} });
 			} else {

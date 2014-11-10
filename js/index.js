@@ -70,6 +70,20 @@ index.callback = function () {
 		}
 	}
 };
+var myVar;//variable pour l'intervalle
+function printValue(sliderID, textbox) {
+	
+	myVar= setInterval(function(){
+	 		var x = document.getElementById(textbox);
+            var y = document.getElementById(sliderID);
+            console.log(y.value)          ;
+            x.innerHTML = ""+y.value;
+        }, 100); 
+
+        };
+
+
+
 
 window.onload = function(){
 		setTimeout(index.start, 1);
