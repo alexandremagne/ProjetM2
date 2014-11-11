@@ -79,11 +79,13 @@ check_user:
 		if (ret) {			
 			console.log("cookie ok");
 			this.read_file();
-		}else{		
-		console.log("1")	 ;
+		}else{
+			res.writeHead(302, {'Location': 'http://localhost:5000/index.html'});
+			res.end();
+		/*console.log("1")	 ;
 		this.pathname[0] = "index.html";
 		this.path = "./index.html";		
-		this.read_file();			
+		this.read_file();	*/		
 		}
 	},
 
