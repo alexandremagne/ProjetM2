@@ -31,7 +31,7 @@ srouter = function (req, resp) {
 srouter.prototype = {
 run:
 	function () { 
-		this.rest_method	();
+		this.rest_method();
 	},
 
 rest_method:
@@ -53,6 +53,7 @@ rest_method:
 get_method:
 	function () {
 		var u = url.parse(this.req.url, true, true);
+		console.log(u.path);
 		var regexp = new RegExp("[/]+", "g");
 		this.pathname = u.pathname.split(regexp);
 		this.pathname = this.pathname.splice(1, this.pathname.length - 1); this.filetype = this.pathname[this.pathname.length - 1].split(".");
@@ -85,6 +86,7 @@ post_method:
         var buff = "";
         this.req.on("data", function (c) {
             buff += c;
+            console.log("Le buffffer ! :" + buff); // il contient le contenu de data, envoyé par le fichier js associé au fichier html (il appel la méthode post)
         });
         this.req.on("end", function () {
             _this.go_post(buff);
@@ -93,15 +95,18 @@ post_method:
     
 go_post:
 	function (b) {
+		console.log("Buffer envoyé à la méthode go_post :" + b);
 		b = JSON.parse(b);
 		this.b = b;
+		
 		if (b.ac == "check_login_process_") {
-			//db.login(b.login, b.password, this.resp);
-			console.log("ENVOIE D'UNE DEMANDE DE LOGIN");
-			data = {message:"ok_login_"};
 			this.resp.writeHead(200,{"Content-Type": "application/json" });
-			this.resp.write(JSON.stringify(data));
-			this.resp.end();
+			db.login(b.userName, b.password, this.resp);
+			console.log("ENVOIE D'UNE DEMANDE DE LOGIN");
+			
+			//data = {message:"ok_login_"};
+			//this.resp.write(JSON.stringify(data));
+			//this.resp.end();
 
 		} 
 		else if (b.ac == "register"){
@@ -109,8 +114,7 @@ go_post:
 			if (b.login.length >= 3 && b.login.length < 15){
 			db.insert(b.login, b.password, b.email, this.resp);
 			}else {
-			
-			this.resp.end(JSON.stringify({message: "short"}));
+				this.resp.end(JSON.stringify({message: "short"}));
 			}
 			
 		}
