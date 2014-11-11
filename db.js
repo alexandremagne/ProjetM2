@@ -40,6 +40,13 @@ MongoClient.connect('mongodb://alexandre:magne@dogen.mongohq.com:10036/ProjetEsm
 		
 		results.forEach( function(infos){			
 			if(infos.username==username && infos.pwd == pwd){//connecion autorisée
+				var cookie = {};//mon objet cookie
+				cookie.value = ""+username.substring(0,3)+Math.floor(Math.random() * 100000000);//valeur du cookie
+				cookie.expire = new Date(new Date().getTime()+900000).toUTCString();//expire au bout de 1 heure
+				collection.update({username: username},{username: username, pwd: pwd, cookie:cookie}, { upsert: true }, function(err, docs){
+					if(err) throw err;
+				});
+				res.writeHead(200, {"Content-Type": "'text/plain'", "Set-Cookie" : 'cookieName='+cookie.value+';expires='+cookie.expire});
 				infos.message="login_connexion_autorised"; // ajout d'un attribut message a l'objet pour gérer les cas dans index.js
 				res.end(JSON.stringify(infos)); // conversion de l'objet JSON en string
 			}else {//non autorisée
