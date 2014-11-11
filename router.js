@@ -53,14 +53,16 @@ rest_method:
 get_method:
 	function () {
 		var u = url.parse(this.req.url, true, true);
-		console.log(u.path);
+		//console.log(u.path);
 		var regexp = new RegExp("[/]+", "g");
 		this.pathname = u.pathname.split(regexp);
 		this.pathname = this.pathname.splice(1, this.pathname.length - 1); this.filetype = this.pathname[this.pathname.length - 1].split(".");
 		this.filetype = this.filetype[this.filetype.length - 1];
 		this.path = "." + u.path; //the website is one directory upper than the node server
-		console.log("path "+this.path);
-		if (u.path == "test")//pour voir dans quel page on va
+		
+		console.log("path "+this.pathname);//besoin aprés pour autoriser l'accés aux différentes pages
+
+		if (u.path == "/test")//pour voir dans quel page on va
 			{				
 				db.valid_cookie(this.req.headers.cookie, this, "check_user");//on verifie si c un user
 			}
@@ -77,9 +79,10 @@ check_user:
 			this.read_file();
 		}else{			 
 			console.log("cookie KO");
-			this.path = "."+"/index.html";
-			this.read_file();
-			
+		    this.pathname = "./index.html";
+		    this.path = "./index.html";
+		    this.filetype = "html";
+			this.read_file();			
 		}
 	},
 
@@ -269,9 +272,7 @@ function () {
 		this.pathname = "./index.html";
 		this.path = "./index.html";
 		this.filetype = "html";
-	}
-	
-	if (this.pathname[0] == "data.json") console.log(util.log("========== bonjour"));
+	}	
 	this.load_file();	
 },
 	

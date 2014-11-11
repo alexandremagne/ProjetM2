@@ -83,16 +83,19 @@ exports.valid_cookie = function(c,obj,fct){
 					 collection.find({"cookie.value": c[1]}).toArray(function(err, results) {
 					 if (err){
 					 	console.log(err);
-					 	obj[fct](false);	 
+					 	obj[fct](false);
+					 	db.close(); // on referme la db	 
 					 }else if (results[0]){	 	
 					 	obj[fct](true);	 
+					 	db.close(); // on referme la db
 					 }else if (!results[0]){	 	
 					 	obj[fct](false);	 
+					 	db.close(); // on referme la db
 					 }	 
 					 });	
 				});
 }else{
-					obj[fct](false);	 
+					obj[fct](false);
 }
 };
 
