@@ -6,6 +6,7 @@
 
 var index = {}; // objet contenant toutes nos fonctions
 var data = {}; //objet : transmettre au routeur
+var contenuHTML = {};//objet qui va contenir temporairement le code html (du bouton login par exemple)
 
 // fonction appelée au chargement de la page (voir window.onload au bas de la page)
 index.start = function () {
@@ -26,7 +27,8 @@ index.btn_check_login_formular_ = function(){
 	//ce quil se passe quand on appuie sur le bouton login
 	$( "#log_in_formular_" ).submit( function(event){
 	 index.fill_data_login(); //action pour remplir data
-	 index.post(data, index.callback);
+	 index.replace_content_by_animation_GIF_loader("button_login");//pour remplacer le bouton par un chargement
+	 index.post(data, index.callback);//passage au router des données
 	 event.preventDefault();//à laisser
 	} );
 };
@@ -61,9 +63,10 @@ index.callback = function () {
 	if (this.readyState == 4 && this.status == 200) {
 		console.log("this.responsetext :" + this.responseText);
 		var r = JSON.parse(this.responseText); // conversion string en Objet JSON
-		if (r.message=="connexion_autorised"){
+		if (r.message=="login_connexion_autorised"){
 			alert("Connexion autorisée");
-		}else if (r.message=="connexion_refused"){
+		}else if (r.message=="login_connexion_refused"){
+			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel
 			alert("Erreur de connexion");
 		}else if(r.message == "ok_loan_demande_") {
 			alert("demande de pret envoyée !");
@@ -75,20 +78,11 @@ index.callback = function () {
 	}
 };
 
-
-/*
-// code pour la slider bar (non utilisé)
-var myVar;
-function printValue(sliderID, textbox) {
-	myVar= setInterval(function(){
-	 		var x = document.getElementById(textbox);
-            var y = document.getElementById(sliderID);
-            x.innerHTML = ""+y.value;
-        }, 100); 
-        };
-*/
-
-
+index.replace_content_by_animation_GIF_loader = function(id){
+	contenuHTML.string = document.getElementById(id).innerHTML;
+	contenuHTML.id = id;
+	document.getElementById(id).innerHTML = '<img src="./images/gif_loader/ajax_loader_blue_48.gif" style="height:40px" >';
+};
 
 window.onload = function(){
 		setTimeout(index.start, 1);

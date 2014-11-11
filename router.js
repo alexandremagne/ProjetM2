@@ -86,7 +86,6 @@ post_method:
         var buff = "";
         this.req.on("data", function (c) {
             buff += c;
-            console.log("Le buffffer ! :" + buff); // il contient le contenu de data, envoyé par le fichier js associé au fichier html (il appel la méthode post)
         });
         this.req.on("end", function () {
             _this.go_post(buff);
@@ -95,7 +94,6 @@ post_method:
     
 go_post:
 	function (b) {
-		console.log("Buffer envoyé à la méthode go_post :" + b);
 		b = JSON.parse(b);
 		this.b = b;
 		
@@ -103,11 +101,6 @@ go_post:
 			this.resp.writeHead(200,{"Content-Type": "application/json" });
 			db.login(b.userName, b.password, this.resp);
 			console.log("ENVOIE D'UNE DEMANDE DE LOGIN");
-			
-			//data = {message:"ok_login_"};
-			//this.resp.write(JSON.stringify(data));
-			//this.resp.end();
-
 		} 
 		else if (b.ac == "register"){
 			this.resp.writeHead(200,{"Content -Type": "application/json"});
