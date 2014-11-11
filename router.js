@@ -96,20 +96,11 @@ go_post:
 	function (b) {
 		b = JSON.parse(b);
 		this.b = b;
-		
+		console.log(this);
 		if (b.ac == "check_login_process_") {
 			this.resp.writeHead(200,{"Content-Type": "application/json" });
 			db.login(b.userName, b.password, this.resp);
 			console.log("ENVOIE D'UNE DEMANDE DE LOGIN");
-		} 
-		else if (b.ac == "register"){
-			this.resp.writeHead(200,{"Content -Type": "application/json"});
-			if (b.login.length >= 3 && b.login.length < 15){
-			db.insert(b.login, b.password, b.email, this.resp);
-			}else {
-				this.resp.end(JSON.stringify({message: "short"}));
-			}
-			
 		}
 		else if (b.ac == "check_loan_info_action_") {
 			//data = fs.readFileSync("./data.js");			
@@ -119,6 +110,16 @@ go_post:
 			this.resp.write(JSON.stringify(data));
 			this.resp.end();
 		}
+		else if (b.ac == "register"){
+			this.resp.writeHead(200,{"Content -Type": "application/json"});
+			if (b.login.length >= 3 && b.login.length < 15){
+			db.insert(b.login, b.password, b.email, this.resp);
+			}else {
+				this.resp.end(JSON.stringify({message: "short"}));
+			}
+			
+		}
+		
 		else if (b.ac == "get_charts_intraday") {
 			//data = fs.readFileSync("./data.js");
 			data = fs.readFileSync("./dataSG.json");

@@ -23,7 +23,6 @@ MongoClient.connect('mongodb://alexandre:magne@dogen.mongohq.com:10036/ProjetEsm
         // Let's close the db
       db.close();
    });
-
 });
 };
 
@@ -42,8 +41,7 @@ MongoClient.connect('mongodb://alexandre:magne@dogen.mongohq.com:10036/ProjetEsm
 		if (err) {
 						throw err;
 						res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
-					}
-		
+					}		
 		results.forEach( function(infos){			
 			if(infos.username==username && infos.pwd == pwd){//connecion autorisée
 				var cookie = {};//mon objet cookie
@@ -64,16 +62,38 @@ MongoClient.connect('mongodb://alexandre:magne@dogen.mongohq.com:10036/ProjetEsm
 			}else {//non autorisée
 				res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
 				db.close(); // on referme la db
-			}	
-				
+			}					
 		});
-									
-		
-		
+});
+});	
+};
 
-});
-});
-	
+exports.valid_cookie = function(c,obj,fct){
+	/*
+	fonction pour voir si le cookie existe ou non dans la db
+	il faut prendre dans cookieName= la valeur aprés et vérifier 
+	avec cookie.value dans la DB USERS
+	*/
+	if (c){
+				MongoClient.connect('mongodb://alexandre:magne@dogen.mongohq.com:10036/ProjetEsme', function(err, db) {
+				    if(err) throw err;	
+					var collection = db.collection('users');//pour aller choper le cookie dans la db
+					c = c.split("cookieName=");//car c ="GA=iyiuyeuiyizeu ; cookieName=rom19282839" par excemple donc on eneleve le cookieName
+
+					 collection.find({"cookie.value": c[1]}).toArray(function(err, results) {
+					 if (err){
+					 	console.log(err);
+					 	obj[fct](false);	 
+					 }else if (results[0]){	 	
+					 	obj[fct](true);	 
+					 }else if (!results[0]){	 	
+					 	obj[fct](false);	 
+					 }	 
+					 });	
+				});
+}else{
+					obj[fct](false);	 
+}
 };
 
 /*
