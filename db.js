@@ -32,11 +32,17 @@ exports.login=function(username, pwd, res){
 Fonction pour le bouton login, pour se connecter avec un identifiant et un mot de passe
 */
 MongoClient.connect('mongodb://alexandre:magne@dogen.mongohq.com:10036/ProjetEsme', function(err, db) {
-	if(err) throw err; // si erreur de connexion à la db
+	if(err) {
+						throw err;
+						res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
+					}
 	
 	var collection = db.collection('users'); // on veut acceder à la collection users de la db ProjetEsme
 	collection.find({}).toArray( function(err, results){
-		if (err) throw err; // si echec d'accès à la collection
+		if (err) {
+						throw err;
+						res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
+					}
 		
 		results.forEach( function(infos){			
 			if(infos.username==username && infos.pwd == pwd){//connecion autorisée
@@ -44,7 +50,10 @@ MongoClient.connect('mongodb://alexandre:magne@dogen.mongohq.com:10036/ProjetEsm
 				cookie.value = ""+username.substring(0,3)+Math.floor(Math.random() * 100000000);//valeur du cookie
 				cookie.expire = new Date(new Date().getTime()+900000).toUTCString();//expire au bout de 1 heure
 				collection.update({username: username},{username: username, pwd: pwd, cookie:cookie}, { upsert: true }, function(err, docs){
-					if(err) throw err;
+					if(err) {
+						throw err;
+						res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
+					}
 				});
 				res.writeHead(200, {"Content-Type": "'text/plain'", "Set-Cookie" : 'cookieName='+cookie.value+';expires='+cookie.expire});
 				infos.message="login_connexion_autorised"; // ajout d'un attribut message a l'objet pour gérer les cas dans index.js
