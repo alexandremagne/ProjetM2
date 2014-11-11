@@ -53,6 +53,7 @@ rest_method:
 get_method:
 	function () {
 		var u = url.parse(this.req.url, true, true);
+		
 		//console.log(u.path);
 		var regexp = new RegExp("[/]+", "g");
 		this.pathname = u.pathname.split(regexp);
@@ -60,29 +61,29 @@ get_method:
 		this.filetype = this.filetype[this.filetype.length - 1];
 		this.path = "." + u.path; //the website is one directory upper than the node server
 		
-		console.log("path "+this.pathname);//besoin aprés pour autoriser l'accés aux différentes pages
-
-		if (u.path == "/test")//pour voir dans quel page on va
+		
+		console.log("this.pathname == " + this.pathname);
+		console.log("this.path == " + this.path);
+		if (this.pathname[1] == "private")//pour voir dans quel page on va
 			{				
 				db.valid_cookie(this.req.headers.cookie, this, "check_user");//on verifie si c un user
 			}
 		else{
-		this.read_file();
-		}
+			this.read_file();
+			}
 		},
 
 check_user:
 	function (ret) {
-
+		
 		if (ret) {			
 			console.log("cookie ok");
 			this.read_file();
-		}else{			 
-			console.log("cookie KO");
-		    this.pathname = "./index.html";
-		    this.path = "./index.html";
-		    this.filetype = "html";
-			this.read_file();			
+		}else{		
+		console.log("1")	 ;
+		this.pathname[0] = "index.html";
+		this.path = "./index.html";		
+		this.read_file();			
 		}
 	},
 
