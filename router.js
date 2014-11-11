@@ -59,9 +59,10 @@ get_method:
 		this.pathname = this.pathname.splice(1, this.pathname.length - 1); this.filetype = this.pathname[this.pathname.length - 1].split(".");
 		this.filetype = this.filetype[this.filetype.length - 1];
 		this.path = "." + u.path; //the website is one directory upper than the node server
-		if (u.path == "/html/admin.html")//pour voir dans quel page on va
+		console.log("path "+this.path);
+		if (u.path == "test")//pour voir dans quel page on va
 			{				
-				db.valid_admin(this.req.headers.cookie, this, "check_user");//on verifie si c un user
+				db.valid_cookie(this.req.headers.cookie, this, "check_user");//on verifie si c un user
 			}
 		else{
 		this.read_file();
@@ -72,9 +73,11 @@ check_user:
 	function (ret) {
 
 		if (ret) {			
+			console.log("cookie ok");
 			this.read_file();
 		}else{			 
-			this.path = "."+"/html/accueil.html";
+			console.log("cookie KO");
+			this.path = "."+"/index.html";
 			this.read_file();
 			
 		}
@@ -96,7 +99,6 @@ go_post:
 	function (b) {
 		b = JSON.parse(b);
 		this.b = b;
-		console.log(this);
 		if (b.ac == "check_login_process_") {
 			this.resp.writeHead(200,{"Content-Type": "application/json" });
 			db.login(b.userName, b.password, this.resp);
