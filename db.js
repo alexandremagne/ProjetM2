@@ -53,22 +53,27 @@ MongoClient.connect('mongodb://alexandre:magne@dogen.mongohq.com:10036/ProjetEsm
 					if(err) {
 						throw err;
 						res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
+					}else{
+										res.writeHead(200, {"Content-Type": "'text/plain'", "Set-Cookie" : 'cookieName='+cookie.value+';expires='+cookie.expire});
+										infos.message="login_connexion_autorised"; // ajout d'un attribut message a l'objet pour gérer les cas dans index.js
+										res.end(JSON.stringify(infos)); // conversion de l'objet JSON en string
+										db.close(); // on referme la db
 					}
 				});
-				res.writeHead(200, {"Content-Type": "'text/plain'", "Set-Cookie" : 'cookieName='+cookie.value+';expires='+cookie.expire});
-				infos.message="login_connexion_autorised"; // ajout d'un attribut message a l'objet pour gérer les cas dans index.js
-				res.end(JSON.stringify(infos)); // conversion de l'objet JSON en string
+
 			}else {//non autorisée
 				res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
+				db.close(); // on referme la db
 			}	
 				
 		});
 									
 		
 		
-	db.close(); // on referme la db
+
 });
 });
+	
 };
 
 /*
