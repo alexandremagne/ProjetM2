@@ -41,18 +41,24 @@ MongoClient.connect('mongodb://alexandre:magne@dogen.mongohq.com:10036/ProjetEsm
 		if (err) {
 						throw err;
 						res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
-					}		
+					}	
+						
 		results.forEach( function(infos){			
-			if(infos.username==username && infos.pwd == pwd){//connecion autorisée
-				var cookie = {};//mon objet cookie
-				cookie.value = ""+username.substring(0,3)+Math.floor(Math.random() * 100000000);//valeur du cookie
-				cookie.expire = new Date(new Date().getTime()+900000).toUTCString();//expire au bout de 1 heure
+			if(infos.username==username && infos.pwd == pwd){ //connecion autorisée
+			
+			// création du cookie
+				var cookie = {}; //mon objet cookie
+				cookie.value = ""+username.substring(0,3)+Math.floor(Math.random() * 100000000); //valeur du cookie
+				cookie.expire = new Date(new Date().getTime()+900000).toUTCString(); //expire au bout de 1 heure
+				
+				// MAJ BDD
 				collection.update({username: username},{username: username, pwd: pwd, cookie:cookie}, { upsert: true }, function(err, docs){
 					if(err) {
 						throw err;
 						res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
 					}else{
-										res.writeHead(200, {"Content-Type": "'text/plain'", "Set-Cookie" : 'cookieName='+cookie.value+';expires='+cookie.expire});
+					
+										res.writeHead(200, {"Content-Type": "text/plain", "Set-Cookie" : 'cookieName='+cookie.value+' & expires='+cookie.expire});
 										infos.message="login_connexion_autorised"; // ajout d'un attribut message a l'objet pour gérer les cas dans index.js
 										res.end(JSON.stringify(infos)); // conversion de l'objet JSON en string
 										db.close(); // on referme la db
@@ -68,6 +74,7 @@ MongoClient.connect('mongodb://alexandre:magne@dogen.mongohq.com:10036/ProjetEsm
 });	
 };
 
+
 exports.valid_cookie = function(c,obj,fct){
 	/*
 	fonction pour voir si le cookie existe ou non dans la db
@@ -79,7 +86,14 @@ exports.valid_cookie = function(c,obj,fct){
 				    if(err) throw err;	
 					var collection = db.collection('users');//pour aller choper le cookie dans la db
 					c = c.split("cookieName=");//car c ="GA=iyiuyeuiyizeu ; cookieName=rom19282839" par excemple donc on eneleve le cookieName
+
 					 collection.find({"cookie.value": c[1]}).toArray(function(err, results) {
+
+					/*console.log("Valeur de c :" + c[1]);
+					var cookie_name=c[1].substr(0, 11); // on ne récupère que la valeur du cookie_name
+					console.log(cookie_name);
+					 collection.find({"cookie.value": cookie_name}).toArray(function(err, results) {*/
+
 					 if (err){
 					 	console.log(err);
 					 	obj[fct](false);
