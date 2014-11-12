@@ -87,12 +87,13 @@ exports.valid_cookie = function(c,obj,fct){
 					var collection = db.collection('users');//pour aller choper le cookie dans la db
 					c = c.split("cookieName=");//car c ="GA=iyiuyeuiyizeu ; cookieName=rom19282839" par excemple donc on eneleve le cookieName
 
-					 collection.find({"cookie.value": c[1]}).toArray(function(err, results) {
+					// collection.find({"cookie.value": c[1]}).toArray(function(err, results) {
 
-					/*console.log("Valeur de c :" + c[1]);
+					console.log("Valeur de c :" + c);
+					console.log("Valeur de c[1] :" + c[1]);
 					var cookie_name=c[1].substr(0, 11); // on ne récupère que la valeur du cookie_name
 					console.log(cookie_name);
-					 collection.find({"cookie.value": cookie_name}).toArray(function(err, results) {*/
+					collection.find({"cookie.value": cookie_name}).toArray(function(err, results) {
 
 					 if (err){
 					 	console.log(err);
