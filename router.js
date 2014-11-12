@@ -80,7 +80,7 @@ check_user:
 			console.log("cookie ok");
 			this.read_file();
 		}else{
-			this.resp.end("non connecté");
+			this.resp.end("<p>non connecté</p>");
 		}
 	},
 
