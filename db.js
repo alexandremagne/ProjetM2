@@ -79,7 +79,6 @@ exports.valid_cookie = function(c,obj,fct){
 				    if(err) throw err;	
 					var collection = db.collection('users');//pour aller choper le cookie dans la db
 					c = c.split("cookieName=");//car c ="GA=iyiuyeuiyizeu ; cookieName=rom19282839" par excemple donc on eneleve le cookieName
-
 					 collection.find({"cookie.value": c[1]}).toArray(function(err, results) {
 					 if (err){
 					 	console.log(err);
