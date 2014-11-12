@@ -80,12 +80,7 @@ check_user:
 			console.log("cookie ok");
 			this.read_file();
 		}else{
-			//res.writeHead(302, {'Location': 'http://localhost:5000/index.html'});
-			//res.end();
-		console.log("1");
-		this.pathname[0] = "@";
-		this.path = "";		
-		this.read_file();	
+			this.resp.end("non connecté");
 		}
 	},
 
