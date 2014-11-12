@@ -52,7 +52,7 @@ MongoClient.connect('mongodb://alexandre:magne@dogen.mongohq.com:10036/ProjetEsm
 				cookie.expire = new Date(new Date().getTime()+900000).toUTCString(); //expire au bout de 1 heure
 				
 				// MAJ BDD
-				collection.update({username: username},{username: username, pwd: pwd, cookie:cookie}, { upsert: true }, function(err, docs){
+				collection.update({username: username, pwd: pwd},{username: username, pwd: pwd, cookie:cookie}, { upsert: true }, function(err, docs){
 					if(err) {
 						throw err;
 						res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
@@ -84,6 +84,7 @@ exports.valid_cookie = function(c,obj,fct){
 				MongoClient.connect('mongodb://alexandre:magne@dogen.mongohq.com:10036/ProjetEsme', function(err, db) {
 				    if(err) throw err;	
 					var collection = db.collection('users');//pour aller choper le cookie dans la db
+					console.log("Valeur de c avant le split : " + c);
 					c = c.split("cookieName=");//car c ="GA=iyiuyeuiyizeu ; cookieName=rom19282839" par excemple donc on eneleve le cookieName
 
 					// collection.find({"cookie.value": c[1]}).toArray(function(err, results) {
