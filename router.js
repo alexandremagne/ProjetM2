@@ -64,7 +64,7 @@ get_method:
 		
 		console.log("this.pathname == " + this.pathname);
 		console.log("this.path == " + this.path);
-		if (this.pathname[1] == "private")//pour voir dans quel page on va
+		if (u.path == "/html/private/admin.html")//pour voir dans quel page on va
 			{				
 				db.valid_cookie(this.req.headers.cookie, this, "check_user");//on verifie si c un user
 			}
@@ -80,12 +80,12 @@ check_user:
 			console.log("cookie ok");
 			this.read_file();
 		}else{
-			res.writeHead(302, {'Location': 'http://localhost:5000/index.html'});
-			res.end();
-		/*console.log("1")	 ;
-		this.pathname[0] = "index.html";
-		this.path = "./index.html";		
-		this.read_file();	*/		
+			//res.writeHead(302, {'Location': 'http://localhost:5000/index.html'});
+			//res.end();
+		console.log("1");
+		this.pathname[0] = "@";
+		this.path = "";		
+		this.read_file();	
 		}
 	},
 
