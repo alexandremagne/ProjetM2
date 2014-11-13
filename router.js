@@ -62,8 +62,6 @@ get_method:
 		this.path = "." + u.path; //the website in the same directory than the node server
 		if (u.path == "/html/private/admin.html")//pour voir dans quel page on va
 			{				
-				console.log("appel de valid_cookie (on est dans le router)");
-				console.log("Valeur de this.req.headers.cookie :" + this.req.headers.cookie);
 				db.valid_cookie(this.req.headers.cookie, this, "check_user"); // on verifie si c un user (si oui il accede aux pages ou il faut être admin sinon on le redirige sur la page d'accueil)
 			}
 		else{
