@@ -318,6 +318,15 @@ function () {
 pour vérifier les données entrante
 */
 verification_data_entrantes.check_data_loan_demand_individual_client_ = function(data){
+	/*
+	Fonction qui prend l'objet transmis par le client
+	VERIFICATION : 
+	1) on regarde si les champs existent (HTML5 renvoi un champ vide si une lettre est transmise, par exemple sur iphone, 
+											qunant tu fais une erreur dans le formulaire, ca envoi quand meme, et si c un caractere autre que chiffre
+											ca envoie un champ vide)
+	2) on regarde si les champs sont composés que de chiffres
+	3) on retourne vrai si le regexp passe et faux sinon
+	*/
 	regex = new RegExp("^[0-9]+$");//regexp pour que des chiffre ET pas vide ou pas espace
 	if(data.input_duration_loan_in_years_ && data.input_monthly_incomes_ && data.input_age_of_demander_&& data.input_borrowed_capital_){
 		var stringAtester = ""+data.input_duration_loan_in_years_+data.input_monthly_incomes_+data.input_age_of_demander_+data.input_borrowed_capital_;
