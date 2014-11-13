@@ -111,7 +111,9 @@ go_post:
 			console.log("ENVOIE D'UNE DEMANDE DE PRET POUR INDIVIDUEL");
 			if(verification_data_entrantes.check_data_loan_demand_individual_client_(b)){
 				data = {message:"ok_demande_de_pret_individuelle_"};
-			}else{data = {message:"ko_demande_de_pret_individuelle_"};}
+			}else{
+				data = {message:"ko_demande_de_pret_individuelle_"};
+			}
 			this.resp.writeHead(200,{"Content-Type": "application/json" });
 			this.resp.write(JSON.stringify(data));
 			this.resp.end();
