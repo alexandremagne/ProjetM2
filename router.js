@@ -55,15 +55,11 @@ rest_method:
 get_method:
 	function () {
 		var u = url.parse(this.req.url, true, true);
-		console.log("get methode appelée");
-		console.log("u.path : " + u.path);
 		var regexp = new RegExp("[/]+", "g");
 		this.pathname = u.pathname.split(regexp);
 		this.pathname = this.pathname.splice(1, this.pathname.length - 1); this.filetype = this.pathname[this.pathname.length - 1].split(".");
 		this.filetype = this.filetype[this.filetype.length - 1];
 		this.path = "." + u.path; //the website in the same directory than the node server
-		console.log("this.pathname = " + this.pathname);
-		console.log("this.path = " + this.path);
 		if (u.path == "/html/private/admin.html")//pour voir dans quel page on va
 			{				
 				console.log("appel de valid_cookie (on est dans le router)");
