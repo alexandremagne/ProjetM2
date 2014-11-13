@@ -1,4 +1,3 @@
-//essai BRANCHE
 var util = require("util"); 
 var url = require("url"); 
 var fs = require("fs");
@@ -315,5 +314,3 @@ function () {
 	}
 }
 
-/* 	TEST POUR VOIR L'UTILISATION d'UNE AUTRE BRANCHE SOUS GIT PUIS DE MERGER
-  	APRES MODIF DU MEME FICHIER */
