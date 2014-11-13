@@ -17,7 +17,7 @@ index.start = function () {
 index.btn_check_information_for_loan_demand_ = function(){
 	//ce quil se passe quand on appuie sur le bouton check
 	$( "#check_formulaire_" ).submit( function(event){
-		index.fill_data_loan_demand_();
+		index.fill_data_loan_demand_individual_client_();
 	 	index.post(data, index.callback);
 	 	event.preventDefault(); // On désactive le fonctionnement par défault du bouton. Ainsi en cliquant dessus, on ne recharge pas la page
 	});
@@ -40,7 +40,7 @@ index.fill_data_login = function(){
 	data.password = document.getElementById('input_password_').value;
 };
 
-index.fill_data_loan_demand_ = function(){
+index.fill_data_loan_demand_individual_client_ = function(){
 	data.ac="check_loan_info_action_";
 	data.input_borrowed_capital_ = document.getElementById('input_borrowed_capital_').value;
 	data.input_age_of_demander_ = document.getElementById('input_age_of_demander_').value;
@@ -49,6 +49,10 @@ index.fill_data_loan_demand_ = function(){
 };
 
 //fonction post
+index.check_data_loan_demand_individual_client_ = function(){
+
+};
+
 index.post = function (data, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/");
