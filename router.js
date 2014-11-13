@@ -2,6 +2,7 @@ var util = require("util");
 var url = require("url"); 
 var fs = require("fs");
 var db = require("./db.js");
+var verification_data_entrantes = {};
 
 /**
 * This method is used to process the request * @param req (Object) the request object
@@ -105,10 +106,12 @@ go_post:
 			db.login(b.userName, b.password, this.resp);
 			console.log("ENVOIE D'UNE DEMANDE DE LOGIN");
 		}
-		else if (b.ac == "check_loan_info_action_") {
+		else if (b.ac == "envoie_demande_de_pret_individuelle_") {
 			//data = fs.readFileSync("./data.js");			
-			console.log("ENVOIE D'UNE DEMANDE DE PRET");
-			data = {message:"ok_loan_demande_"};
+			console.log("ENVOIE D'UNE DEMANDE DE PRET POUR INDIVIDUEL");
+			if(verification_data_entrantes.check_data_loan_demand_individual_client_(b)){
+				data = {message:"ok_demande_de_pret_individuelle_"};
+			}else{data = {message:"ko_demande_de_pret_individuelle_"};}
 			this.resp.writeHead(200,{"Content-Type": "application/json" });
 			this.resp.write(JSON.stringify(data));
 			this.resp.end();
@@ -313,4 +316,12 @@ function () {
 	this.resp.end();
 	}
 }
+/*
+pour vérifier les données entrante
+*/
+verification_data_entrantes.check_data_loan_demand_individual_client_ = function(data){
+	regex = new Regex("^[0-9]+$");//regexp pour que des chiffre ET pas vide ou pas espace
+	var stringAtester = ""+data.input_duration_loan_in_years_+data.input_monthly_incomes_+data.input_age_of_demander_+data.input_borrowed_capital_;
+	return regex.test(stringAtester);	
+};
 

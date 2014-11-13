@@ -26,7 +26,7 @@ index.btn_check_information_for_loan_demand_ = function(){
 index.btn_check_login_formular_ = function(){
 	//ce quil se passe quand on appuie sur le bouton login
 	$( "#log_in_formular_" ).submit( function(event){
-	 index.fill_data_login(); //action pour remplir data
+	 index.fill_data_login(); //action pour remplir data	 
 	 index.replace_content_by_animation_GIF_loader("button_login");//pour remplacer le bouton par un chargement
 	 index.post(data, index.callback);//passage au router des données
 	 event.preventDefault();//à laisser
@@ -41,16 +41,11 @@ index.fill_data_login = function(){
 };
 
 index.fill_data_loan_demand_individual_client_ = function(){
-	data.ac="check_loan_info_action_";
+	data.ac="envoie_demande_de_pret_individuelle_";
 	data.input_borrowed_capital_ = document.getElementById('input_borrowed_capital_').value;
 	data.input_age_of_demander_ = document.getElementById('input_age_of_demander_').value;
 	data.input_monthly_incomes_ = document.getElementById('input_monthly_incomes_').value;
 	data.input_duration_loan_in_years_ = document.getElementById('input_duration_loan_in_years_').value;
-};
-
-//fonction post
-index.check_data_loan_demand_individual_client_ = function(){
-
 };
 
 index.post = function (data, callback) {
@@ -73,8 +68,10 @@ index.callback = function () {
 		}else if (r.message=="login_connexion_refused"){
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel
 			alert("Erreur de connexion");
-		}else if(r.message == "ok_loan_demande_") {
+		}else if(r.message == "ok_demande_de_pret_individuelle_") {
 			alert("demande de pret envoyée !");
+		}else if(r.message == "ko_demande_de_pret_individuelle_"){
+			alert("demande de pret échouée car erreur formulaire !");
 		}else if(r.message == "ok_login_"){			
 			alert("demande de login envoyée !");
 		}else{
