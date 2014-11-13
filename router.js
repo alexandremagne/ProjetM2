@@ -312,9 +312,7 @@ function () {
 	this.resp.write(this.file);
 	this.resp.end();
 	}
-};
+}
 
-
-
-
-var a = {a: "arg1" , b: 3 };
+/* 	TEST POUR VOIR L'UTILISATION d'UNE AUTRE BRANCHE SOUS GIT PUIS DE MERGER
+  	APRES MODIF DU MEME FICHIER */
