@@ -324,6 +324,7 @@ pour vérifier les données entrante
 verification_data_entrantes.check_data_loan_demand_individual_client_ = function(data){
 	regex = new RegExp("^[0-9]+$");//regexp pour que des chiffre ET pas vide ou pas espace
 	var stringAtester = ""+data.input_duration_loan_in_years_+data.input_monthly_incomes_+data.input_age_of_demander_+data.input_borrowed_capital_;
+	console.log(stringAtester);
 	return regex.test(stringAtester);	
 };
 
