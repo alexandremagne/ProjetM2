@@ -79,7 +79,7 @@ check_user:
 		if (ret) {			
 			this.read_file();
 		}else{
-			this.resp.end('<p>non connect&eacute</p><A HREF="../../index.html">Cliquer pour aller au menu principal</A>');
+			this.resp.end('<p>non connect&eacute</p><A HREF="../../index.html">Cliquer pour aller au menu principal</A><script>window.onload=function(){setTimeout(function(){window.location="../../index.html"},2000)}</script>');
 		}
 	},
 
