@@ -87,7 +87,10 @@ post_method:
             buff += c;
         });
         this.req.on("end", function () {
-            _this.go_post(buff);
+           if(buff) _this.go_post(buff);
+           else{
+           	util.log('hack attempt BRO');
+           }
         });
     },
     
