@@ -86,9 +86,14 @@ index.callback = function () {
 };
 
 index.replace_content_by_animation_GIF_loader = function(id){
-	contenuHTML.string = document.getElementById(id).innerHTML;
+	contenuHTML.string = document.getElementById(id).innerHTML; // objet contenuHTML créé en haut du doc
 	contenuHTML.id = id;
-	document.getElementById(id).innerHTML = '<img src="./images/gif_loader/ajax_loader_blue_48.gif" style="height:40px" >';
+	//document.getElementById(id).innerHTML = '<img src="./images/gif_loader/troll_loader.gif" style="height:1000px width:auto" >';
+	
+	// script qui simule l'evenement clique sur un bouton (ici celui qui lance le modal dans le fichier index.html
+	var evt = document.createEvent("MouseEvents");
+	evt.initMouseEvent("click", true, true, window,0, 0, 0, 0, 0, false, false, false, false, 0, null);
+	document.getElementById("bt1").dispatchEvent(evt);
 };
 
 index.mettre_les_cases_en_rouges_du_formulaire = function(classname){
