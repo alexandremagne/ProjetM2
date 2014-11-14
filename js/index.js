@@ -88,6 +88,10 @@ index.replace_content_by_animation_GIF_loader = function(id){
 };
 
 index.mettre_les_cases_en_rouges_du_formulaire = function(classname){
+	/*
+	prend en paramettre le classname
+	et ajoute has error a la classe pour dire que c pas bon et entoure la case en rouge
+	*/
 	var arr =document.getElementsByClassName(classname);
 	if(arr.length>0){
 		for(i=0;i<arr.length;i++){
