@@ -44,7 +44,7 @@ index.fill_data_loan_demand_individual_client_ = function(){
 	data.ac="envoie_demande_de_pret_individuelle_";
 	data.input_borrowed_capital_ = document.getElementById('input_borrowed_capital_').value;
 	data.input_age_of_demander_ = document.getElementById('input_age_of_demander_').value;
-	data.input_monthly_incomes_ = document.getElementById('input_monthly_incomes_').value;
+	data.input_annual_incomes_ = document.getElementById('input_annual_incomes_').value;
 	data.input_duration_loan_in_years_ = document.getElementById('input_duration_loan_in_years_').value;
 };
 
@@ -97,7 +97,7 @@ index.mettre_les_cases_en_rouges_du_formulaire = function(classname){
 		for(i=0;i<arr.length;i++){
 			arr[i].className=arr[i].className+" has-error";
 		}
-	}	
+	}
 	return;
 };
 
