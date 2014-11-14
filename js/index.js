@@ -97,7 +97,8 @@ index.mettre_les_cases_en_rouges_du_formulaire = function(classname){
 		for(i=0;i<arr.length;i++){
 			arr[i].className=arr[i].className+" has-error";
 		}
-	}
+	}	
+	return;
 };
 
 window.onload = function(){
