@@ -63,7 +63,7 @@ index.callback = function () {
 		console.log("this.responsetext :" + this.responseText);
 		var r = JSON.parse(this.responseText); // conversion string en Objet JSON
 		if (r.message=="login_connexion_autorised"){
-			alert("Connexion autorisée");
+			//alert("Connexion autorisée");
 			window.location = "./html/private/admin.html";
 		}else if (r.message=="login_connexion_refused"){
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel
