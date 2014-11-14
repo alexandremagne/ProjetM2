@@ -67,6 +67,7 @@ index.callback = function () {
 			window.location = "./html/private/admin.html";
 		}else if (r.message=="login_connexion_refused"){
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel
+			index.mettre_les_cases_en_rouges_du_formulaire("boites_pour_entrer_les_login_");
 			alert("Erreur de connexion");
 		}else if(r.message == "ok_demande_de_pret_individuelle_") {
 			alert("demande de pret envoyée !");
@@ -84,6 +85,15 @@ index.replace_content_by_animation_GIF_loader = function(id){
 	contenuHTML.string = document.getElementById(id).innerHTML;
 	contenuHTML.id = id;
 	document.getElementById(id).innerHTML = '<img src="./images/gif_loader/ajax_loader_blue_48.gif" style="height:40px" >';
+};
+
+index.mettre_les_cases_en_rouges_du_formulaire = function(classname){
+	var arr =document.getElementsByClassName(classname);
+	if(arr.length>0){
+		for(i=0;i<arr.length;i++){
+			arr[i].className=arr[i].className+" has-error";
+		}
+	}
 };
 
 window.onload = function(){
