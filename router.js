@@ -329,8 +329,8 @@ verification_data_entrantes.check_data_loan_demand_individual_client_ = function
 	3) on retourne vrai si le regexp passe et faux sinon
 	*/
 	regex = new RegExp("^[0-9]+$");//regexp pour que des chiffre ET pas vide ou pas espace
-	if(data.input_duration_loan_in_years_ && data.input_monthly_incomes_ && data.input_age_of_demander_&& data.input_borrowed_capital_){
-		var stringAtester = ""+data.input_duration_loan_in_years_+data.input_monthly_incomes_+data.input_age_of_demander_+data.input_borrowed_capital_;
+	if(data.input_duration_loan_in_years_ && data.input_annual_incomes_ && data.input_age_of_demander_&& data.input_borrowed_capital_){
+		var stringAtester = ""+data.input_duration_loan_in_years_+data.input_annual_incomes_+data.input_age_of_demander_+data.input_borrowed_capital_;
 		return regex.test(stringAtester);	
 	}else return false;	
 };
