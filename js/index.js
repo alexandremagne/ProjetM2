@@ -17,7 +17,7 @@ index.start = function () {
 index.btn_check_information_for_loan_demand_ = function(){
 	//ce quil se passe quand on appuie sur le bouton check
 	$( "#check_formulaire_" ).submit( function(event){
-		index.fill_data_loan_demand_individual_client_();
+		index.fill_data_loan_demand_individual_client_(); // voir fonction plus bas
 	 	index.post(data, index.callback);
 	 	event.preventDefault(); // On désactive le fonctionnement par défault du bouton. Ainsi en cliquant dessus, on ne recharge pas la page
 	});
@@ -62,23 +62,27 @@ index.callback = function () {
 	if (this.readyState == 4 && this.status == 200) {
 		console.log("this.responsetext :" + this.responseText);
 		var r = JSON.parse(this.responseText); // conversion string en Objet JSON
+		
 		if (r.message=="login_connexion_autorised"){
-			//alert("Connexion autorisée");
 			window.location = "./html/private/admin.html";
 		}else if (r.message=="login_connexion_refused"){
-			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel
+			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
 			index.mettre_les_cases_en_rouges_du_formulaire("boites_pour_entrer_les_login_");
 			alert("Erreur de connexion");
-		}else if(r.message == "ok_demande_de_pret_individuelle_") {
+		}else if(r.message == "ok_demande_de_pret_individuelle_") { // non utilisé
 			alert("demande de pret envoyée !");
-		}else if(r.message == "ko_demande_de_pret_individuelle_"){
+		}else if(r.message == "ko_demande_de_pret_individuelle_"){ 
 			alert("demande de pret échouée car erreur formulaire !");
-		}else if(r.message == "ok_login_"){			
+		}else if(r.message == "ok_login_"){
 			alert("demande de login envoyée !");
+		}else if(r.message == "pret_accepte"){ // utilisé avec algo.js
+			alert("Pret accepté ! :)");
+		}else if(r.message == "pret_refuse"){ // avec algo.js
+			alert("Pret refusé ! :/");
 		}else{
 			alert("demande  rejetée !");
 		}
-	}
+}
 };
 
 index.replace_content_by_animation_GIF_loader = function(id){

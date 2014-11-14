@@ -104,6 +104,19 @@ collection.find({"cookie.value": c[1]}).toArray(function(err, results) {
 }
 };
 
+
+exports.stock_autorisation = function(borrowed_capital, res){
+	console.log("Dans la db : stock_autorisation");
+	var infos={};
+	if(borrowed_capital<100000){
+		infos.autorisation=true;
+		infos.message="pret_accepte";
+		res.end(JSON.stringify(infos)); // conversion de l'objet JSON en string
+	} else {
+			res.end(JSON.stringify({message: "pret_refuse"})); // on convertit le string en objet
+	}
+};
+
 /*
 ####################################
 ####################################
