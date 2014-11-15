@@ -12,6 +12,7 @@ var contenuHTML = {};//objet qui va contenir temporairement le code html (du bou
 index.start = function () {
 	index.btn_check_login_formular_(); //action du bouton login
 	index.btn_check_information_for_loan_demand_(); //action du bouton check loan demand
+	index.btn_register_formular_();
 };
 
 index.btn_check_information_for_loan_demand_ = function(){
@@ -21,6 +22,13 @@ index.btn_check_information_for_loan_demand_ = function(){
 	 	index.post(data, index.callback);
 	 	event.preventDefault(); // On désactive le fonctionnement par défault du bouton. Ainsi en cliquant dessus, on ne recharge pas la page
 	});
+};
+
+index.btn_register_formular_ = function(){
+	$( "#register_formulaire_" ).submit( function(event){
+	alert('register envoyé');
+	 event.preventDefault();//à laisser
+	} );
 };
 
 index.btn_check_login_formular_ = function(){
