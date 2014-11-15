@@ -1,0 +1,6 @@
+Pour la règle des 5c
+
+Supposons que l'on ai 6 critère par "c", nous avons 6^5 combinaisons possibles, à savoir 7776 combinaisons possible. Nous ne sommes par encore proche du million de cas différents.
+Ceci peut être utile pour créer aléatoirement des clients dans une database bancaire.
+
+Info : nous pouvons également ajouter des infos comme revenus compris entre 20000 et 100 000 annuels => ce qui nous élève énormement le nombre de cliens différents.
