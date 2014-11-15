@@ -3,7 +3,7 @@
   <head>
 		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 	 
-		 <!-- BOOTSTRAP essai branche -->
+		<!-- BOOTSTRAP essai branche -->
 		<script  type="text/javascript"  src="../../dist/js/jquery.js"></script>
 		<script  type="text/javascript"  src="../../dist/js/bootstrap.min.js"> </script>
 		<link rel="stylesheet" type="text/css" href="../../dist/css/bootstrap.min.css" />
@@ -14,7 +14,11 @@
   
  	<body style="padding-top: 0px;">
  	
+ 	
+ 	
   	<div class="container">
+  	
+  	<!-- ///////// barre de menu horizontale tout en haut ////////// -->
 			<div class="row">
 				<div class="col-md-12">
 					<div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -37,6 +41,161 @@
 					</div><!-- /.container-fluid -->
 				</div><!-- /.col-md-12 -->
 			</div><!-- /.row -->		
+		<!-- ///////// FIN barre de menu horizontale tout en haut ////////// -->
+		
+		
+				<div class="row" style="margin-top:70px;">
+					<div class="col-md-10 img-thumbnail jumbotron" style="padding:8px;">
+						<div>
+							<h1>Restricted area employee.</h1>
+							<p>Please, select the tab for the type of customer and fill it.</p>
+							<p>Our server will respond if or not the bank customer is eligible.
+						</div>
+					</div>
+				</div>
+		
+	
+<!-- ////////////////// Choix du type de client (****** ACORDEON *****) /////////////////////// -->
+<div class="row">
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Individual Client
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+      
+      <!-- ////////////// INFOS FORMULAIRE CLIENT pour les info ////////////// -->
+				<div class="row">
+					<div class="col-md-12">
+						<form id="check_formulaire_" class="form-horizontal" action="" >
+						
+						
+						<div class="row">
+						
+						<div class="col-md-6"> <!-- formulaire 1 de gauche : CHARACTER -->
+	<!-- dans un premier temps, pour voir si dans la database on a pas déjà ce client ! -->
+	<!-- Si oui, la bdd nous transmet alors tout plein d'infos à savoir son age son adresse etc... -->
+	
+						 	<fieldset>
+							<legend>Character</legend>
+	
+	
+						  <div class="form-group">
+								<label for="input_firstname_borrower" class="col-sm-4 control-label">Firstname</label>
+								<div class="col-sm-6 input-group">
+									<input type="text" class="form-control" id="input_firstname_borrower" placeholder="Please ente the Firstname" required>
+								</div>
+						  </div>
+						   <div class="form-group">
+								<label for="input_surname_borrower" class="col-sm-4 control-label">Surname</label>
+								<div class="col-sm-6 input-group">
+						  		<input type="text" class="form-control" id="input_surname_borrower" placeholder="Please ente the Surname" required>
+								</div>
+						  </div>
+						 
+						  <div class="form-group">
+								<label for="input_annual_incomes_" class="col-sm-4 control-label">Net annual incomes ($)</label>
+								<div class="col-sm-6 input-group">
+									<input min="0" max="1000000000"  type="number" class="form-control" id="input_annual_incomes_" placeholder="Please enter the net annual incomes" required>
+									<span class="input-group-addon">$</span>
+								</div>
+						  </div>
+						  <div class="form-group">
+								<label for="input_duration_loan_in_years_" class="col-sm-4 control-label">Loan duration (max 25)</label>
+								<div class="col-sm-6 input-group">
+									<input min="0" max="25"  type="number" class="form-control" id="input_duration_loan_in_years_" placeholder="Please a loan duration" required>
+									<span class="input-group-addon">years</span>
+								</div>
+						  </div>
+						  
+						  </fieldset>
+						  
+						  </div> <!-- /.col-md-6-->
+						  
+							<div class="col-md-6">
+							
+								<fieldset>
+								<legend>Capacity</legend>
+							
+									<div class="form-group">
+										<label for="input_annual_incomes_" class="col-sm-4 control-label">Net annual incomes ($)</label>
+										<div class="col-sm-6 input-group">
+											<input min="0" max="1000000000"  type="number" class="form-control" id="input_annual_incomes_" placeholder="Please enter the net annual incomes" required>
+											<span class="input-group-addon">$</span>
+									</div>
+						 		</div>
+						  	<div class="form-group">
+									<label for="input_duration_loan_in_years_" class="col-sm-4 control-label">Loan duration (max 25)</label>
+									<div class="col-sm-6 input-group">
+										<input min="0" max="25"  type="number" class="form-control" id="input_duration_loan_in_years_" placeholder="Please a loan duration" required>
+										<span class="input-group-addon">years</span>
+									</div>
+						  	</div>
+						  	
+						  	</fieldset>
+						  	
+								</div> <!-- /.col-md-6-->
+								
+						  </div> <!-- /.row -->
+						  
+						  	
+						  
+						  	
+						   <div class="form-group">
+								<div class="col-sm-offset-0 col-sm-2">
+										<input class="btn btn-primary btn-block btn-lg" type="submit" value="check"/>
+								</div>
+						  </div>
+						  
+						</form>
+					</div>
+				</div>
+
+<!-- ////////////// fin des informations à entrer ////////////////////// -->
+
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          SMB
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Very big companies
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /.row -->
+<!-- /////////////////// Fin choix du type de client ////////////////////// -->
+
+			
 	</div><!-- /.container -->		
 
 	<script  type="text/javascript"  src="../../js/admin.js"></script>
