@@ -27,6 +27,7 @@ index.btn_check_information_for_loan_demand_ = function(){
 index.btn_register_formular_ = function(){
 	$( "#register_formulaire_" ).submit( function(event){
 	alert('register envoyé');
+	$('#modal-reg').modal('hide');
 	 event.preventDefault();//à laisser
 	} );
 };
