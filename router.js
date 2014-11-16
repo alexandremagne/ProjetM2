@@ -2,7 +2,7 @@ var util = require("util");
 var url = require("url"); 
 var fs = require("fs");
 var db = require("./db.js");
-var algo = require("./algo.js");
+var algo = require("./js/algo.js");
 
 var verification_data_entrantes = {};
 

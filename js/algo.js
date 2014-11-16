@@ -1,6 +1,6 @@
 // DOCUMENT PARTIE SERVEUR 
 
-var db = require("./db.js");
+var db = require("../db.js");
 
 // var data_algo = {};
 
