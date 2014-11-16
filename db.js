@@ -37,38 +37,36 @@ MongoClient.connect('mongodb://alexandre:magne@dogen.mongohq.com:10036/ProjetEsm
 					}
 	
 	var collection = db.collection('users'); // on veut acceder à la collection users de la db ProjetEsme
-	collection.find({}).toArray( function(err, results){
+	collection.find({username:username,pwd:pwd}).toArray( function(err, results){
 		if (err) {
 						throw err;
 						res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
-					}	
-						
-		results.forEach( function(infos){			
-			if(infos.username==username && infos.pwd == pwd){ //connecion autorisée
-			
+					}
+		else{
 			// création du cookie
 				var cookie = {}; //mon objet cookie
 				cookie.value = ""+username.substring(0,3)+Math.floor(Math.random() * 100000000); //valeur du cookie
 				cookie.expire = new Date(new Date().getTime()+900000).toUTCString(); //expire au bout de 1 heure
 				
 				// MAJ BDD
-				collection.update({username: username, pwd: pwd},{username: username, pwd: pwd, cookie:cookie}, { upsert: true }, function(err, docs){
+				collection.update({username: username, pwd: pwd},{ $set: {cookie:cookie}}, { upsert: true }, function(err, docs){
 					if(err) {
 						throw err;
 						res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
 					}else{
-										res.writeHead(200, {"Content-Type": "'text/plain'", "Set-Cookie" : 'cookieName='+cookie.value+';expires='+cookie.expire});										
-										infos.message="login_connexion_autorised"; // ajout d'un attribut message a l'objet pour gérer les cas dans index.js
+										infos={};
+										res.writeHead(200, {"Content-Type": "'text/plain'", "Set-Cookie" : 'cookieName='+cookie.value+';expires='+cookie.expire});
+										if(results[0].indice == 0){//si c'est un client
+												infos.message="login_connexion_autorised_client_"; // ajout d'un attribut message a l'objet pour gérer les cas dans index.js
+										}else if(results[0].indice == 1){//si c'est un admin
+												infos.message="login_connexion_autorised_admin_"; // ajout d'un attribut message a l'objet pour gérer les cas dans index.js
+										}										
 										res.end(JSON.stringify(infos)); // conversion de l'objet JSON en string
 										db.close(); // on referme la db
 					}
 				});
+					}						
 
-			}else {//non autorisée
-				res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
-				db.close(); // on referme la db
-			}					
-		});
 });
 });	
 };
@@ -91,7 +89,7 @@ collection.find({"cookie.value": c[1]}).toArray(function(err, results) {
 					 	obj[fct](false);
 					 	db.close(); // on referme la db	 
 					 }else if (results[0]){	 	
-					 	obj[fct](true);	 
+					 	obj[fct]({a:true,b:results[0].indice});	 
 					 	db.close(); // on referme la db
 					 }else if (!results[0]){	 	
 					 	obj[fct](false);	 

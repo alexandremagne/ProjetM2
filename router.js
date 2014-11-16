@@ -74,7 +74,8 @@ get_method:
 
 check_user:
 	function (ret) {
-		if (ret) {			
+		console.log(ret);
+		if (ret.a == true && ret.b == 1) {			
 			this.read_file();
 		}else{
 			this.resp.end('<p>Non connect&eacute</p><A HREF="../../index.html">Cliquer pour aller au menu principal</A><script>window.onload=function(){setTimeout(function(){window.location="../../index.html"},2000)}</script>');
@@ -118,7 +119,7 @@ go_post:
 				this.resp.writeHead(200,{"Content-Type": "application/json" });
 				this.resp.write(JSON.stringify(data));
 				this.resp.end();
-		}
+			}
 		}
 		else if (b.ac == "register"){
 			this.resp.writeHead(200,{"Content -Type": "application/json"});

@@ -72,9 +72,12 @@ index.callback = function () {
 		console.log("this.responsetext :" + this.responseText);
 		var r = JSON.parse(this.responseText); // conversion string en Objet JSON
 		
-		if (r.message=="login_connexion_autorised"){
+		if (r.message=="login_connexion_autorised_admin_"){
 			window.location = "./html/private/admin.html";
-		}else if (r.message=="login_connexion_refused"){
+		}else if(r.message=="login_connexion_autorised_client_"){
+			window.location = "./html/private/client.html";
+		}
+		else if (r.message=="login_connexion_refused"){
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
 			index.mettre_les_cases_en_rouges_du_formulaire("boites_pour_entrer_les_login_");
 			alert("Erreur de connexion");
