@@ -76,21 +76,14 @@ index.callback = function () {
 			window.location = "./html/private/admin.html";
 		}else if(r.message=="login_connexion_autorised_client_"){
 			window.location = "./html/private/client.html";
-		}
-		else if (r.message=="login_connexion_refused"){
+		}else if (r.message=="login_connexion_refused"){
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
 			index.mettre_les_cases_en_rouges_du_formulaire("boites_pour_entrer_les_login_");
 			alert("Erreur de connexion");
-		}else if(r.message == "ok_demande_de_pret_individuelle_") { // non utilisé
-			alert("demande de pret envoyée !");
-		}else if(r.message == "ko_demande_de_pret_individuelle_"){ 
-			alert("demande de pret échouée car erreur formulaire !");
-		}else if(r.message == "ok_login_"){
-			alert("demande de login envoyée !");
 		}else if(r.message == "pret_accepte"){ // utilisé avec algo.js
-			alert("Pret accepté ! :)");
+			alert("Pret accepté !");
 		}else if(r.message == "pret_refuse"){ // avec algo.js
-			alert("Pret refusé ! :/");
+			alert("Pret refusé !");
 		}else{
 			alert("demande  rejetée !");
 		}

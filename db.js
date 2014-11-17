@@ -103,8 +103,7 @@ collection.find({"cookie.value": c[1]}).toArray(function(err, results) {
 };
 
 
-exports.stock_autorisation = function(borrowed_capital, res){
-	console.log("Dans la db : stock_autorisation");
+exports.stock_autorisation = function(borrowed_capital, res){	
 	var infos={};
 	if(borrowed_capital<100000){
 		infos.autorisation=true;

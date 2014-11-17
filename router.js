@@ -108,18 +108,7 @@ go_post:
 		}
 		else if (b.ac == "envoie_demande_de_pret_individuelle_") {	
 			console.log("ENVOIE D'UNE DEMANDE DE PRET POUR INDIVIDUEL");
-			if(verification_data_entrantes.check_data_loan_demand_individual_client_(b)){ // voir fonction plus bas
-				console.log("Champs corectements remplis !");
-				// data = {message:"ok_demande_de_pret_individuelle_"};
-				algo.calcul_autorisation(b.input_borrowed_capital_, b.input_age_of_demander_, b.input_annual_incomes_ , b.input_duration_loan_in_years_, this.resp); // voir le fichier algo.js
-				// data.ac="envoie_demande_de_pret_individuelle_";
-			}else{
-				data = {message:"ko_demande_de_pret_individuelle_"};
-				console.log("JAMAIS APPELLE EN THEORIE SAUF SUR IIIIPPPPPHHHHOOONNNNEEE");
-				this.resp.writeHead(200,{"Content-Type": "application/json" });
-				this.resp.write(JSON.stringify(data));
-				this.resp.end();
-			}
+			algo.calcul_autorisation(b.input_borrowed_capital_, b.input_age_of_demander_, b.input_annual_incomes_ , b.input_duration_loan_in_years_, this.resp); // voir le fichier algo.js			
 		}
 		else if (b.ac == "register"){
 			this.resp.writeHead(200,{"Content -Type": "application/json"});
