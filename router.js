@@ -177,7 +177,6 @@ cb_cookie:
 			}
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++CHATROOM++++++++++++++++++++++++++++*/
 			else if(b.ac == "post-btn"){
-			//console.log("=======aloalaoalaolaoaloallaolaoaloalaoalaoalaoalo=============");
 				if (b.content.length <= 151){ // si le message est inférieur a 150 caractères
 					this.resp.writeHead(200,{"Content -Type": "application/json"});
 					db.insert_message_forum(b.id, b.content, b.date, this.resp);
@@ -202,7 +201,6 @@ cb_cookie:
 			else if(b.ac == "get-content2"){
 				this.resp.writeHead(200,{"Content -Type": "application/json"});
 				db.get_id_admin(this.resp);
-				//console.log("router");
 				return;
 			}
 			/*++++++++++++++++++++++++++++set un compte en admin ou en normal ou en suspend+++++++++++++++++++++++++*/
@@ -261,14 +259,18 @@ cb_cookie:
 		
 read_file:
 function () {
-	//console.log(util.inspect(this.pathname));
-	if (!this.pathname[0] || this.pathname[0] == "router.js" || this.pathname[0] == "server.js" || this.pathname[0] == "db.js") {
+	if(!this.pathname[0]){ // Quand il n'y pas rien dans l'url on redirige l'utiisateur vers la page index.html par default
+		this.pathname = "./index.html";
+		this.path = "./index.html";
+		this.filetype = "html";
+	} else if (this.pathname[0] == "router.js" || this.pathname[0] == "server.js" || this.pathname[0] == "db.js") {
 		util.log("ALERT - Hack attempt, resquest on : " + util.inspect(this.pathname));
 		this.pathname = "./index.html";
 		this.path = "./index.html";
 		this.filetype = "html";
-	}	
-	this.load_file();	
+	} 
+
+	this.load_file();
 },
 	
 load_file:
@@ -288,6 +290,8 @@ load_file:
 				util.log("INFO - File requested not found : " + _this.path);
 				_this.resp.writeHead(404,{"Content -Type":"text/html"});
 				_this.resp.end(); 
+				//_this.resp.writeHead(200,{"Content -Type":"text/html"});
+				//_this.resp.end('<h1 style="text-align:center">La page n\'existe pas</h1><div><img src="../../images/404/404_not_found.png"></div>');
 			}
 		});
 	},

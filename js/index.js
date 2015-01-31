@@ -73,9 +73,9 @@ index.callback = function () {
 		var r = JSON.parse(this.responseText); // conversion string en Objet JSON
 		
 		if (r.message=="login_connexion_autorised_admin_"){
-			window.location = "./html/private/admin.html";
+			window.location = "./html/private/admin.html"; // JE RENVOIE L'ADMIN VERS LA PAGE CLIENT POUR LE MOMENT CAR PAS DE PAGE ADMIN ENCORE TODO
 		}else if(r.message=="login_connexion_autorised_client_"){
-			window.location = "./html/private/client.html";
+			window.location = "./html/public/client.html";
 		}else if (r.message=="login_connexion_refused"){
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
 			index.mettre_les_cases_en_rouges_du_formulaire("boites_pour_entrer_les_login_");
@@ -84,7 +84,11 @@ index.callback = function () {
 			alert("Pret accepté !");
 		}else if(r.message == "pret_refuse"){ // avec algo.js
 			alert("Pret refusé !");
+		}else if(r.message=="something_wrong_in_bdd"){
+			alert("Une erreur est survenue, veuillez rééssailler ultérieurement");
+			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
 		}else{
+			console.log(r);
 			alert("demande  rejetée !");
 		}
 }
