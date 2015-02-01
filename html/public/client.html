@@ -93,33 +93,67 @@
 	
 	
 						  <div class="form-group">
-								<label for="input_firstname_borrower" class="col-sm-4 control-label">Firstname</label>
+								<label for="input_borrower_contract" class="col-sm-4 control-label">Type of employment contract</label>
 								<div class="col-sm-6 input-group">
-									<input type="text" class="form-control" id="input_firstname_borrower" placeholder="Please ente the Firstname" required>
+									<select class="form-control" id="input_borrower_contract">
+									  <option>CDI</option>
+									  <option>CDD</option>
+									  <option>Intérim</option>
+									  <option>Internship</option>
+									  <option>Other</option>
+									</select>
 								</div>
 						  </div>
 						   <div class="form-group">
-								<label for="input_surname_borrower" class="col-sm-4 control-label">Surname</label>
+								<label for="input_borrower_diploma" class="col-sm-4 control-label">Diploma</label>
 								<div class="col-sm-6 input-group">
-						  		<input type="text" class="form-control" id="input_surname_borrower" placeholder="Please ente the Surname" required>
-								</div>
-						  </div>
+									<select class="form-control" id="input_borrower_diploma">
+									  <option>No graduate</option>
+									  <option>High school Graduate</option>
+									  <option>High school +2</option>
+									  <option>License (+3)</option>
+									  <option>Master (+5)</option>
+									  <option>Doctor (+8)</option>
+									  <option>Other</option>
+									</select>
+						 		 </div>
+						 	</div>
+
+						 	<div class="form-group">
+								<label for="input_borrower_activity_sector" class="col-sm-4 control-label">Activity sector</label>
+								<div class="col-sm-6 input-group">
+									<select class="form-control" id="input_borrower_activity_sector">
+									  <option>Agroalimentaire</option>
+									  <option>Banque / Assurance</option>
+									  <option>Bâtiment / travaux publics</option>
+									  <option>Bois / papier / carton / imprimerie </option>
+									  <option>Chimie / parachimie </option>
+									  <option>Commerce / distribution / négoce </option>
+									  <option>Etudes et conseils</option>
+									  <option>Informatique</option>
+									  <option>Mécanique </option>
+									  <option>Mécanique de précision </option>
+									  <option>Métallurgie / travail du métal </option>
+									  <option>Santé / Pharmacie / Médecine </option>
+									  <option>Plastique / caoutchouc </option>
+									  <option>Textile / habillement / chaussure </option>
+									  <option>Transports / logistique </option>
+									</select>
+						 		 </div>
+						 	</div>
+						 	
+						 	<div class="form-group">
+								<label for="input_borrower_employment_Duration" class="col-sm-4 control-label">Duration of employment</label>
+								<div class="col-sm-6 input-group">
+									<select class="form-control" id="input_borrower_employment_Duration">
+									  <option>0 - 1</option>
+									  <option>1 - 5</option>
+									  <option>5 - 10</option>
+									  <option>More</option>
+									</select>
+						 		 </div>
+						 	</div>
 						 
-						  <div class="form-group">
-								<label for="input_annual_incomes_" class="col-sm-4 control-label">Net annual incomes ($)</label>
-								<div class="col-sm-6 input-group">
-									<input min="0" max="1000000000"  type="number" class="form-control" id="input_annual_incomes_" placeholder="Please enter the net annual incomes" required>
-									<span class="input-group-addon">$</span>
-								</div>
-						  </div>
-						  <div class="form-group">
-								<label for="input_duration_loan_in_years_" class="col-sm-4 control-label">Loan duration (max 25)</label>
-								<div class="col-sm-6 input-group">
-									<input min="0" max="25"  type="number" class="form-control" id="input_duration_loan_in_years_" placeholder="Please a loan duration" required>
-									<span class="input-group-addon">years</span>
-								</div>
-						  </div>
-						  
 						  </fieldset>
 						  
 						  </div> <!-- /.col-md-6-->
@@ -130,19 +164,28 @@
 								<legend class="text-primary">Capacity</legend>
 							
 									<div class="form-group">
-										<label for="input_annual_incomes_" class="col-sm-4 control-label">Net annual incomes ($)</label>
+										<label for="input_borrower_annual_incomes" class="col-sm-4 control-label">Net annual incomes</label>
 										<div class="col-sm-6 input-group">
-											<input min="0" max="1000000000"  type="number" class="form-control" id="input_annual_incomes_" placeholder="Please enter the net annual incomes" required>
+											<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_annual_incomes_" placeholder="Please enter the net annual incomes" required>
 											<span class="input-group-addon">$</span>
-									</div>
-						 		</div>
+										</div>
+						 			</div>
+
 						  	<div class="form-group">
-									<label for="input_duration_loan_in_years_" class="col-sm-4 control-label">Loan duration (max 25)</label>
+									<label for="input_borower_loan_duration" class="col-sm-4 control-label">Loan duration (max 25)</label>
 									<div class="col-sm-6 input-group">
-										<input min="0" max="25"  type="number" class="form-control" id="input_duration_loan_in_years_" placeholder="Please a loan duration" required>
+										<input min="0" max="25"  type="number" class="form-control" id="input_borower_loan_duration" placeholder="Please a loan duration" required>
 										<span class="input-group-addon">years</span>
 									</div>
 						  	</div>
+
+						  			<div class="form-group">
+										<label for="input_borrower_monthly_expenses" class="col-sm-4 control-label">Monthly expenses</label>
+										<div class="col-sm-6 input-group">
+											<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_monthly_expenses" placeholder="Please enter yours monthly enpenses" required>
+											<span class="input-group-addon">$</span>
+										</div>
+						 			</div>
 						  	
 						  	</fieldset>
 						  	
@@ -158,20 +201,13 @@
 								<legend class="text-primary">Capital</legend>
 							
 									<div class="form-group">
-										<label for="input_annual_incomes_" class="col-sm-4 control-label">Net annual incomes ($)</label>
+										<label for="input_borrower_contribution" class="col-sm-4 control-label">Contribution</label>
 										<div class="col-sm-6 input-group">
-											<input min="0" max="1000000000"  type="number" class="form-control" id="input_annual_incomes_" placeholder="Please enter the net annual incomes" required>
+											<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_contribution" placeholder="Please enter the contribution you can provide" required>
 											<span class="input-group-addon">$</span>
 									</div>
 						 		</div>
-						  	<div class="form-group">
-									<label for="input_duration_loan_in_years_" class="col-sm-4 control-label">Loan duration (max 25)</label>
-									<div class="col-sm-6 input-group">
-										<input min="0" max="25"  type="number" class="form-control" id="input_duration_loan_in_years_" placeholder="Please a loan duration" required>
-										<span class="input-group-addon">years</span>
-									</div>
-						  	</div>
-						  	
+							  	
 						  	</fieldset>
 						  	
 								</div> <!-- /.col-md-6-->
@@ -179,23 +215,22 @@
 						  <div class="col-md-6">
 						  	<fieldset>
 								<legend class="text-primary">Conditions</legend>
-							
-									<div class="form-group">
-										<label for="input_annual_incomes_" class="col-sm-4 control-label">Net annual incomes ($)</label>
-										<div class="col-sm-6 input-group">
-											<input min="0" max="1000000000"  type="number" class="form-control" id="input_annual_incomes_" placeholder="Please enter the net annual incomes" required>
-											<span class="input-group-addon">$</span>
-									</div>
-						 		</div>
-						  	<div class="form-group">
-									<label for="input_duration_loan_in_years_" class="col-sm-4 control-label">Loan duration (max 25)</label>
-									<div class="col-sm-6 input-group">
-										<input min="0" max="25"  type="number" class="form-control" id="input_duration_loan_in_years_" placeholder="Please a loan duration" required>
-										<span class="input-group-addon">years</span>
-									</div>
-						  	</div>
-						  	
-						  	</fieldset>
+						
+
+							<label for="input_borrower_activity_sector" class="col-sm-4 control-label">Loan's purpose</label>
+								<div class="col-sm-6 input-group">
+									<select class="form-control" id="input_borrower_loan_purpose">
+									  <option>Old property</option>
+									  <option>New property</option>
+									  <option>Car / vehicles</option>
+									  <option>Others</option>
+									</select>
+						 		 </div>
+
+
+
+
+							</fieldset>
 						  	
 								</div> <!-- /.col-md-6-->
 						  
@@ -208,17 +243,29 @@
 								<legend class="text-primary">Collateral</legend>
 							
 									<div class="form-group">
-										<label for="input_annual_incomes_" class="col-sm-4 control-label">Net annual incomes ($)</label>
-										<div class="col-sm-6 input-group">
-											<input min="0" max="1000000000"  type="number" class="form-control" id="input_annual_incomes_" placeholder="Please enter the net annual incomes" required>
-											<span class="input-group-addon">$</span>
+										<label for="input_borrower_owner" class="col-sm-4 control-label">Do you own a property ?</label>
+										<label class="radio-inline">
+										  <input type="radio" name="own_property" id="own_true" value="yes"> Yes
+										</label>
+										<label class="radio-inline">
+										  <input type="radio" name="own_property" id="own_false" value="no"> No
+										</label>
 									</div>
-						 		</div>
+
+
+									<div class="form-group">
+										<label for="input_borrower_property_value" class="col-sm-4 control-label">Value of the house's mortgage</label>
+										<div class="col-sm-6 input-group">
+											<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_property_value" placeholder="Please enter the net annual incomes" required>
+											<span class="input-group-addon">$</span>
+										</div>
+									</div>
+
 						  	<div class="form-group">
-									<label for="input_duration_loan_in_years_" class="col-sm-4 control-label">Loan duration (max 25)</label>
+									<label for="input_borrower_pledge_value" class="col-sm-4 control-label">Pledge</label>
 									<div class="col-sm-6 input-group">
-										<input min="0" max="25"  type="number" class="form-control" id="input_duration_loan_in_years_" placeholder="Please a loan duration" required>
-										<span class="input-group-addon">years</span>
+										<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_pledge_value" placeholder="Please a loan duration" required>
+										<span class="input-group-addon">$</span>
 									</div>
 						  	</div>
 						  	
