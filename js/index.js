@@ -10,9 +10,8 @@ var contenuHTML = {};//objet qui va contenir temporairement le code html (du bou
 
 // fonction appelée au chargement de la page (voir window.onload au bas de la page)
 index.start = function () {
-	index.btn_login_formulaire_(); //action du bouton login
-	index.btn_check_information_for_loan_demand_(); //action du bouton check loan demand
-	index.btn_register_formulaire_();
+	index.btn_login_formulaire_();//formulaire du login
+	index.btn_register_formulaire_();//formulaire du register
 };
 
 index.btn_register_formulaire_ = function(){
@@ -55,33 +54,12 @@ index.btn_login_formulaire_ = function(){
 
 index.data_login = function(){
 	//pour remplir l'objet data avec le username et password et l'action à réaliser pour le router
-	data.ac = "check_login_process_"; // action a traité pour le routeur
+	data.ac = "login_process_"; // action a traité pour le routeur
 	data.userName = document.getElementById('input_username_').value.toLowerCase();
 	data.password = document.getElementById('input_password_').value;
 };
 
-index.btn_check_information_for_loan_demand_ = function(){
-	//ce quil se passe quand on appuie sur le bouton check
-	$( "#check_formulaire_" ).submit( function(event){
-		index.fill_data_loan_demand_individual_client_(); // voir fonction plus bas
-	 	index.post(data, index.callback);
-	 	event.preventDefault(); // On désactive le fonctionnement par défault du bouton. Ainsi en cliquant dessus, on ne recharge pas la page
-	});
-};
 
-
-
-
-
-
-
-index.fill_data_loan_demand_individual_client_ = function(){
-	data.ac="envoie_demande_de_pret_individuelle_";
-	data.input_borrowed_capital_ = document.getElementById('input_borrowed_capital_').value;
-	data.input_age_of_demander_ = document.getElementById('input_age_of_demander_').value;
-	data.input_annual_incomes_ = document.getElementById('input_annual_incomes_').value;
-	data.input_duration_loan_in_years_ = document.getElementById('input_duration_loan_in_years_').value;
-};
 
 index.post = function (data, callback) {
     var xhr = new XMLHttpRequest();
@@ -148,4 +126,23 @@ index.mettre_les_cases_en_rouges_du_formulaire = function(classname){
 
 window.onload = function(){
 		setTimeout(index.start, 1);
+};
+
+
+
+index.btn_check_information_for_loan_demand_ = function(){
+	//ce quil se passe quand on appuie sur le bouton check
+	$( "#check_formulaire_" ).submit( function(event){
+		index.fill_data_loan_demand_individual_client_(); // voir fonction plus bas
+	 	index.post(data, index.callback);
+	 	event.preventDefault(); // On désactive le fonctionnement par défault du bouton. Ainsi en cliquant dessus, on ne recharge pas la page
+	});
+};
+
+index.fill_data_loan_demand_individual_client_ = function(){
+	data.ac="envoie_demande_de_pret_individuelle_";
+	data.input_borrowed_capital_ = document.getElementById('input_borrowed_capital_').value;
+	data.input_age_of_demander_ = document.getElementById('input_age_of_demander_').value;
+	data.input_annual_incomes_ = document.getElementById('input_annual_incomes_').value;
+	data.input_duration_loan_in_years_ = document.getElementById('input_duration_loan_in_years_').value;
 };

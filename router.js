@@ -105,8 +105,9 @@ go_post:
 			db.login(b.userName, b.password, this.resp);
 			console.log("ENVOIE D'UNE DEMANDE DE LOGIN");
 		}
-		else if (b.ac == "register_process_"){
-			console.log(b);
+		else if (b.ac == "register_process_"){			
+			db.register(b,this.resp);
+			console.log("ENVOIE D'UNE DEMANDE DE REGISTER");
 		}
 		
 		else if (b.ac == "get_charts_intraday") {

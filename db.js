@@ -28,21 +28,48 @@ MongoClient.connect(field_to_connect_db.adress, function(err, db) {
 });
 };
 
+exports.register = function(b,res){
+	MongoClient.connect(field_to_connect_db.adress, function(err, db) {
+	if(err) {//en cas d'erreur de connection
+						console.log("DB : erreur de connexion au niveau de register: "+err);
+						res.writeHead(503, {"Content-Type": "application/json" });
+						res.end(JSON.stringify({message: "connexion_error"}));
+						return;
+			}
+	else{
+		res.writeHead(200, {"Content-Type": "application/json" });
+		db.collection('users').insert(b,function(err, doc){
+			if(err){				
+				res.end(JSON.stringify({message:"register_doublon"}));
+				db.close();
+			}else{				
+				res.end(JSON.stringify({message:"register_ok"}));
+				db.close();
+			}
+		});
+	}
+});
+};
+
 exports.login=function(username, pwd, res){
 /*
 Fonction pour le bouton login, pour se connecter avec un identifiant et un mot de passe
 */
-MongoClient.connect(field_to_connect_db.adress, function(err, db) {
-	if(err) {
-						throw err;
-						res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
-					}
-	
+MongoClient.connect(field_to_connect_db.adress, function(err, db){
+	if(err){
+						console.log("DB : erreur de connexion au niveau de login: "+err);
+						res.writeHead(503, {"Content-Type": "application/json" });
+						res.end(JSON.stringify({message: "connexion_error"}));
+						return;
+	}
+	else{
+	res.writeHead(200, {"Content-Type": "application/json" });
 	var collection = db.collection('users'); // on veut acceder à la collection users de la db ProjetEsme
 	collection.find({username:username,pwd:pwd}).toArray( function(err, results){
-		if (err) {
+		if (err){//username ou pwd faux
 					throw err;
-					res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
+					res.end(JSON.stringify({message: "login_connexion_refused"}));
+					db.close(); // on referme la db
 		}
 		else{
 			// création du cookie
@@ -54,27 +81,27 @@ MongoClient.connect(field_to_connect_db.adress, function(err, db) {
 				collection.update({username: username, pwd: pwd},{ $set: {cookie:cookie}}, { upsert: true }, function(err, docs){
 					if(err) {
 						throw err;
-						res.end(JSON.stringify({message: "login_connexion_refused"})); // on convertit le string en objet
+						res.end(JSON.stringify({message: "login_connexion_refused"}));
+						db.close(); // on referme la db
 					}else{
 									console.log("Indice: " + results[0].indice);
 									infos={};
 									res.writeHead(200, {"Content-Type": "'text/plain'", "Set-Cookie" : 'cookieName='+cookie.value+';expires='+cookie.expire});
 									if(results[0].indice == 0){//si c'est un client
-											infos.message="login_connexion_autorised_client_"; // ajout d'un attribut message a l'objet pour gérer les cas dans index.js
+											infos.message="login_connexion_autorised_client_"; 
 									}else if(results[0].indice == 1){//si c'est un admin
-											infos.message="login_connexion_autorised_admin_"; // ajout d'un attribut message a l'objet pour gérer les cas dans index.js
+											infos.message="login_connexion_autorised_admin_"; 
 									}else{
-										infos.message="something_wrong_in_bdd"; // ajout d'un attribut messa
+										infos.message="something_wrong_in_bdd";
 									}
-
 										res.end(JSON.stringify(infos)); // conversion de l'objet JSON en string
-										db.close(); // on referme la db
-									
+										db.close(); // on referme la db									
 					}
 				});
-		}						
+		}//else			
 
 	});
+}
 });	
 };
 
