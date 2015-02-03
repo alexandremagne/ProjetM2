@@ -90,7 +90,8 @@ index.calculation_of_monthly_payments=function(amount, duration, rate){
 	//console.log(rate/1200);
 	var result= (amount / ( (1- (Math.pow( (1+(rate/1200)), ((-1)*(duration*12)) )) ) / (rate/1200)));
 	credit_cost=((result*12*duration)-amount);
-	var string_result="<div><p class=\"bg-primary\">Your monthly repayment: "+ Math.round(result*100)/100 +" €</p><p class=\"bg-success\">Total cost of the credit: "+ Math.round(credit_cost*100)/100+" €</p></div>";
+	//<h3>Example heading <span class="label label-default">New</span></h3>
+	var string_result="<h3>Your monthly repayment: <span class=\"label label-default\">"+ Math.round(result*100)/100 +"€</span></h3><h3>Total cost of the credit: <span class=\"label label-default\">"+ Math.round(credit_cost*100)/100+" €</span></h3>";
 	document.getElementById("result_calculator").innerHTML=string_result;
 	console.log(result);
 };
