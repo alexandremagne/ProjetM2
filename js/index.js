@@ -10,9 +10,54 @@ var contenuHTML = {};//objet qui va contenir temporairement le code html (du bou
 
 // fonction appelée au chargement de la page (voir window.onload au bas de la page)
 index.start = function () {
-	index.btn_check_login_formular_(); //action du bouton login
+	index.btn_login_formulaire_(); //action du bouton login
 	index.btn_check_information_for_loan_demand_(); //action du bouton check loan demand
-	index.btn_register_formular_();
+	index.btn_register_formulaire_();
+};
+
+index.btn_register_formulaire_ = function(){
+	$( "#register_formulaire_" ).submit( function(event){
+	index.data_register_();
+	index.replace_content_by_animation_GIF_loader("button_register");//pour remplacer le bouton par un chargement
+	index.post(data, index.callback);//passage au router des données
+	//$('#modal-reg').modal('hide');
+	 event.preventDefault();//à laisser
+	} );
+};
+
+index.data_register_ = function(){
+	//objet data pour register
+	data.ac = "register_process_"; // action a traité pour le routeur
+
+	data.name = document.getElementById('register_name').value;
+	data.firstname = document.getElementById('register_firstname').value;
+
+	data.register_birthdate_day = document.getElementById('register_birthdate_day').value;
+	data.register_birthdate_month = document.getElementById('register_birthdate_month').value;
+	data.register_birthdate_year = document.getElementById('register_birthdate_year').value;
+
+	data.male = document.getElementById("register_male").checked;
+	data.email = document.getElementById('register_email').value;
+	data.pwd = document.getElementById('register_password').value;
+	data.c_pwd = document.getElementById('register_confirm_password').value;
+	
+};
+
+index.btn_login_formulaire_ = function(){
+	//ce quil se passe quand on appuie sur le bouton login
+	$( "#log_in_formular_" ).submit( function(event){
+	 index.data_login(); //action pour remplir data	 
+	 index.replace_content_by_animation_GIF_loader("button_login");//pour remplacer le bouton par un chargement
+	 index.post(data, index.callback);//passage au router des données
+	 event.preventDefault();//à laisser
+	} );
+};
+
+index.data_login = function(){
+	//pour remplir l'objet data avec le username et password et l'action à réaliser pour le router
+	data.ac = "check_login_process_"; // action a traité pour le routeur
+	data.userName = document.getElementById('input_username_').value.toLowerCase();
+	data.password = document.getElementById('input_password_').value;
 };
 
 index.btn_check_information_for_loan_demand_ = function(){
@@ -24,30 +69,11 @@ index.btn_check_information_for_loan_demand_ = function(){
 	});
 };
 
-index.btn_register_formular_ = function(){
-	$( "#register_formulaire_" ).submit( function(event){
-	alert('register envoyé');
-	$('#modal-reg').modal('hide');
-	 event.preventDefault();//à laisser
-	} );
-};
 
-index.btn_check_login_formular_ = function(){
-	//ce quil se passe quand on appuie sur le bouton login
-	$( "#log_in_formular_" ).submit( function(event){
-	 index.fill_data_login(); //action pour remplir data	 
-	 index.replace_content_by_animation_GIF_loader("button_login");//pour remplacer le bouton par un chargement
-	 index.post(data, index.callback);//passage au router des données
-	 event.preventDefault();//à laisser
-	} );
-};
 
-index.fill_data_login = function(){
-	//pour remplir l'objet data avec le username et password et l'action à réaliser
-	data.ac = "check_login_process_"; // action a traité pour le routeur
-	data.userName = document.getElementById('input_username_').value.toLowerCase();
-	data.password = document.getElementById('input_password_').value;
-};
+
+
+
 
 index.fill_data_loan_demand_individual_client_ = function(){
 	data.ac="envoie_demande_de_pret_individuelle_";
@@ -71,7 +97,9 @@ index.callback = function () {
 	if (this.readyState == 4 && this.status == 200) {
 		console.log("this.responsetext :" + this.responseText);
 		var r = JSON.parse(this.responseText); // conversion string en Objet JSON
-		
+		/***
+			LOGIN CALLBACKS
+		*/
 		if (r.message=="login_connexion_autorised_admin_"){
 			window.location = "./html/private/admin.html"; // JE RENVOIE L'ADMIN VERS LA PAGE CLIENT POUR LE MOMENT CAR PAS DE PAGE ADMIN ENCORE TODO
 		}else if(r.message=="login_connexion_autorised_client_"){
@@ -80,11 +108,10 @@ index.callback = function () {
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
 			index.mettre_les_cases_en_rouges_du_formulaire("boites_pour_entrer_les_login_");
 			alert("Erreur de connexion");
-		}else if(r.message == "pret_accepte"){ // utilisé avec algo.js
-			alert("Pret accepté !");
-		}else if(r.message == "pret_refuse"){ // avec algo.js
-			alert("Pret refusé !");
-		}else if(r.message=="something_wrong_in_bdd"){
+		}/***
+			REGISTER CALLBACKS
+		*/
+		else if(r.message=="something_wrong_in_bdd"){
 			alert("Une erreur est survenue, veuillez rééssailler ultérieurement");
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
 		}else{

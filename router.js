@@ -101,23 +101,12 @@ go_post:
 	function (b) {
 		b = JSON.parse(b);
 		this.b = b;
-		if (b.ac == "check_login_process_") {
-			//this.resp.writeHead(200,{"Content-Type": "application/json" }); en commentaire car pas présent dans le router du projet ligotdor
+		if (b.ac == "login_process_") {			
 			db.login(b.userName, b.password, this.resp);
 			console.log("ENVOIE D'UNE DEMANDE DE LOGIN");
 		}
-		else if (b.ac == "envoie_demande_de_pret_individuelle_") {	
-			console.log("ENVOIE D'UNE DEMANDE DE PRET POUR INDIVIDUEL");
-			algo.calcul_autorisation(b.input_borrowed_capital_, b.input_age_of_demander_, b.input_annual_incomes_ , b.input_duration_loan_in_years_, this.resp); // voir le fichier algo.js			
-		}
-		else if (b.ac == "register"){
-			this.resp.writeHead(200,{"Content -Type": "application/json"});
-			if (b.login.length >= 3 && b.login.length < 15){
-			db.insert(b.login, b.password, b.email, this.resp);
-			}else {
-				this.resp.end(JSON.stringify({message: "short"}));
-			}
-			
+		else if (b.ac == "register_process_"){
+			console.log(b);
 		}
 		
 		else if (b.ac == "get_charts_intraday") {
