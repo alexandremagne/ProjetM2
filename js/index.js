@@ -10,8 +10,13 @@ var contenuHTML = {};//objet qui va contenir temporairement le code html (du bou
 
 // fonction appelée au chargement de la page (voir window.onload au bas de la page)
 index.start = function () {
+	
+	var r2 = new RegExp(/^[a-z\u00E0-\u00FC]+$/i) // regexsui accepte uniquement les lettres et accents	
+	console.log(r2.test("Rémi"));
+
 	index.btn_login_formulaire_();//formulaire du login
 	index.btn_register_formulaire_();//formulaire du register
+	index.btn_button_calculator_();//formulaire du calculator
 };
 
 index.btn_register_formulaire_ = function(){
@@ -42,6 +47,8 @@ index.data_register_ = function(){
 	
 };
 
+
+
 index.btn_login_formulaire_ = function(){
 	//ce quil se passe quand on appuie sur le bouton login
 	$( "#log_in_formular_" ).submit( function(event){
@@ -59,6 +66,34 @@ index.data_login = function(){
 	data.password = document.getElementById('input_password_').value;
 };
 
+index.btn_button_calculator_ = function(){
+	//ce quil se passe quand on appuie sur le bouton check du calculator
+	$( "#check_formulaire_" ).submit( function(event){
+	 index.data_calculator(); //action pour remplir data	 
+	// index.replace_content_by_animation_GIF_loader("button_calculator");//pour remplacer le bouton par un chargement
+	 //index.post(data, index.callback);//passage au router des données
+	 event.preventDefault();//à laisser
+	} );
+};
+
+index.data_calculator = function(){
+	//pour remplir l'objet data avec le montant, year, rate et l'action à réaliser pour le router ???????????????
+	//data.ac = "calculator_"; // action a traité pour le routeur
+	data.amount = document.getElementById('input_loan_amount_').value;
+	data.duration = document.getElementById('input_loan_duration_').value;
+	data.rate = document.getElementById('input_interest_rate_').value;
+	console.log("Vos trois valeurs: " + data.amount + " " + data.duration + " " + data.rate);
+	index.calculation_of_monthly_payments(data.amount, data.duration, data.rate);
+};
+
+index.calculation_of_monthly_payments=function(amount, duration, rate){
+	//console.log(rate/1200);
+	var result= (amount / ( (1- (Math.pow( (1+(rate/1200)), ((-1)*(duration*12)) )) ) / (rate/1200)));
+	credit_cost=((result*12*duration)-amount);
+	var string_result="<div><p class=\"bg-primary\">Your monthly repayment: "+result+" €</p><p class=\"bg-success\">Total cost of the credit: "+credit_cost+" €</p></div>";
+	document.getElementById("result_calculator").innerHTML=string_result;
+	console.log(result);
+};
 
 
 index.post = function (data, callback) {
@@ -90,7 +125,7 @@ index.callback = function () {
 			REGISTER CALLBACKS
 		*/
 		else if(r.message=="register_doublon"){
-			console.log("doublon dans la bdd sur le mail");
+			console.log("doublon dans la bdd sur le mail"); // clé unique sur l'email
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
 		}else if(r.message=="register_ok"){
 			console.log("register ok");
