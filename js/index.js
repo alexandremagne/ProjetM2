@@ -89,11 +89,16 @@ index.callback = function () {
 		}/***
 			REGISTER CALLBACKS
 		*/
-		else if(r.message=="something_wrong_in_bdd"){
-			alert("Une erreur est survenue, veuillez rééssailler ultérieurement");
+		else if(r.message=="register_doublon"){
+			console.log("doublon dans la bdd sur le mail");
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
-		}else{
+		}else if(r.message=="register_ok"){
+			console.log("register ok");
+			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
+		}
+		else{
 			console.log(r);
+			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
 			alert("demande  rejetée !");
 		}
 }

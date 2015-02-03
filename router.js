@@ -105,7 +105,8 @@ go_post:
 			db.login(b.userName, b.password, this.resp);
 			console.log("ENVOIE D'UNE DEMANDE DE LOGIN");
 		}
-		else if (b.ac == "register_process_"){			
+		else if (b.ac == "register_process_"){
+			b.index = 0;		
 			db.register(b,this.resp);
 			console.log("ENVOIE D'UNE DEMANDE DE REGISTER");
 		}
