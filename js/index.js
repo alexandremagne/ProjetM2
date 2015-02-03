@@ -135,6 +135,12 @@ index.lisibilite_nombre=function (nbr) {
 index.regexnumber=function(){
 	var exp = new RegExp("[^0-9]","gi");
 	document.getElementById("input_loan_amount_").value=document.getElementById("input_loan_amount_").value.replace(exp,"");
+	var amount_loan= parseInt(document.getElementById("input_loan_amount_").value.replace(/ /g,""));
+	if(amount_loan>10000000){
+		document.getElementById('input_loan_amount_').value="10000000";
+	} else if (amount_loan<=0){
+		document.getElementById('input_loan_amount_').value="0";
+	}
 };
 
 index.regexnumber2=function(){
