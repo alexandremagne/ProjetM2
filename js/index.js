@@ -100,6 +100,18 @@ index.calculation_of_monthly_payments=function(amount, duration, rate){
 };
 
 document.getElementById("input_loan_amount_").onkeyup=function(){
+	var llme= parseInt(document.getElementById("input_loan_amount_").value);
+	if (llme==0){		
+			var elts=document.getElementsByClassName("has-feedback-amount");
+				for (var i = 0; i < elts.length ; i++) {
+					elts[i].classList.add("has-warning");
+				}
+	} else{
+			var elts=document.getElementsByClassName("has-feedback-amount");
+				for (var i = 0; i < elts.length ; i++) {
+					elts[i].classList.remove("has-warning");
+				}
+	}
 		index.regexnumber();
 };
 
@@ -107,13 +119,26 @@ document.getElementById("input_loan_duration_").onkeyup=function(){
 		index.regexnumber2();
 };
 
+document.getElementById("input_loan_amount_").onfocus=function(){
+	document.getElementById("input_loan_amount_").select();
+};
+
+document.getElementById("input_loan_duration_").onfocus=function(){
+	document.getElementById("input_loan_duration_").select();
+};
+
 
 document.getElementById("input_loan_amount_").onblur=function(){
-	console.log("onblur");
-	var nombre_separe=index.lisibilite_nombre(document.getElementById("input_loan_amount_").value);
+	var nombre_separe=index.lisibilite_nombre(document.getElementById("input_loan_amount_").value.replace(/ /g,""));
 	document.getElementById("input_loan_amount_").value=nombre_separe;
 };
-	
+
+document.getElementById("input_loan_duration_").onblur=function(){
+	if( (document.getElementById("input_loan_duration_").value="0") || (document.getElementById("input_loan_duration_").value="") ){
+		document.getElementById("input_loan_duration_").value="1";
+	}
+		index.regexnumber2();
+};	
 
 index.lisibilite_nombre=function (nbr) {
 	console.log("visibilit");
@@ -141,6 +166,17 @@ index.regexnumber=function(){
 	} else if (amount_loan<=0){
 		document.getElementById('input_loan_amount_').value="0";
 	}
+
+
+	var rate_loan= parseInt(document.getElementById("input_interest_rate_").value);
+	var loan_amount=parseInt(document.getElementById("input_loan_amount_").value);
+	if(rate_loan>100 && loan_amount<=0){
+				document.getElementById("check_calculator").disabled=true;
+			} else if (loan_amount<=0){
+				document.getElementById("check_calculator").disabled=true;
+			} else if (loan_amount>0){
+				document.getElementById("check_calculator").disabled=false;
+			}
 };
 
 index.regexnumber2=function(){
@@ -150,7 +186,16 @@ index.regexnumber2=function(){
 	if(duration>25){
 		document.getElementById('input_loan_duration_').value="25";
 	} else if (duration<=0){
-		document.getElementById('input_loan_duration_').value="1";
+				
+			var elts=document.getElementsByClassName("has-feedback-duration");
+				for (var i = 0; i < elts.length ; i++) {
+					elts[i].classList.add("has-warning");
+				}
+	} else{
+			var elts=document.getElementsByClassName("has-feedback-duration");
+				for (var i = 0; i < elts.length ; i++) {
+					elts[i].classList.remove("has-warning");
+				}
 	}
 
 };
@@ -176,6 +221,15 @@ index.regozoo=function(){
 	 * par l'utilisateur et on apporte les corrections nécessaires.
 	*/ 
 	$('.rate').keyup(function(){
+
+		var rate_loan= parseInt(document.getElementById("input_interest_rate_").value);
+		var loan_amount=parseInt(document.getElementById("input_loan_amount_").value);
+			if(rate_loan>100){
+				document.getElementById('input_interest_rate_').value="100";
+			}
+
+			
+
 		console.log("on push");
 		var field = $(this);
 		var valNum = field.val();
@@ -208,23 +262,15 @@ index.regozoo=function(){
  
 	// On s'assure du format de la saisie en fixant le nombre de décimales à 2
 	$('.rate').blur(function(){
-
-		var rate_loan= parseInt(document.getElementById("input_interest_rate_").value);
-			if(rate_loan>100){
-				document.getElementById('input_interest_rate_').value="100";
-			} else if (rate_loan<=0){
-				document.getElementById('input_interest_rate_').value="0";
-			}
-
 		var field = $(this);
 		var valNum = (field.val() * 1).toFixed(2);
-
-		
  
 		field.val(valNum);
 	});
 
-	
+	$('.rate').focus(function(){
+		document.getElementById("input_interest_rate_").select();
+	});
 };
 
 
