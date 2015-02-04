@@ -72,21 +72,12 @@ index.data_login = function(){
 index.btn_button_calculator_ = function(){
 	//ce quil se passe quand on appuie sur le bouton check du calculator
 	$( "#check_formulaire_" ).submit( function(event){
-	 index.data_calculator(); //action pour remplir data	 
-	// index.replace_content_by_animation_GIF_loader("button_calculator");//pour remplacer le bouton par un chargement
-	 //index.post(data, index.callback);//passage au router des données
-	 event.preventDefault();//à laisser
+	var amount = parseInt(document.getElementById('input_loan_amount_').value.replace(/ /g,""));
+	var duration = parseInt(document.getElementById('input_loan_duration_').value);
+	var rate = parseFloat(document.getElementById('input_interest_rate_').value);
+	index.calculation_of_monthly_payments(amount, duration, rate);	
+	 event.preventDefault();
 	} );
-};
-
-index.data_calculator = function(){
-	//pour remplir l'objet data avec le montant, year, rate et l'action à réaliser pour le router ???????????????
-	//data.ac = "calculator_"; // action a traité pour le routeur
-	data.amount = parseInt(document.getElementById('input_loan_amount_').value.replace(/ /g,""));
-	data.duration = parseInt(document.getElementById('input_loan_duration_').value);
-	data.rate = parseFloat(document.getElementById('input_interest_rate_').value);
-	console.log("Vos trois valeurs: " + data.amount + " " + data.duration + " " + data.rate);
-	index.calculation_of_monthly_payments(data.amount, data.duration, data.rate);
 };
 
 index.calculation_of_monthly_payments=function(amount, duration, rate){
@@ -115,18 +106,6 @@ document.getElementById("input_loan_amount_").onkeyup=function(){
 		index.regexnumber();
 };
 
-document.getElementById("input_loan_duration_").onkeyup=function(){
-		index.regexnumber2();
-};
-
-document.getElementById("input_loan_amount_").onfocus=function(){
-	document.getElementById("input_loan_amount_").select();
-};
-
-document.getElementById("input_loan_duration_").onfocus=function(){
-	document.getElementById("input_loan_duration_").select();
-};
-
 
 document.getElementById("input_loan_amount_").onblur=function(){
 	var nombre_separe=index.lisibilite_nombre(document.getElementById("input_loan_amount_").value.replace(/ /g,""));
@@ -134,7 +113,7 @@ document.getElementById("input_loan_amount_").onblur=function(){
 };
 
 document.getElementById("input_loan_duration_").onblur=function(){
-	if( (document.getElementById("input_loan_duration_").value="0") || (document.getElementById("input_loan_duration_").value="") ){
+	if( (document.getElementById("input_loan_duration_").value=="0") || (document.getElementById("input_loan_duration_").value=="") ){
 		document.getElementById("input_loan_duration_").value="1";
 	}
 		index.regexnumber2();
