@@ -24,12 +24,17 @@ index.start = function () {
 
 index.btn_register_formulaire_ = function(){
 	$( "#register_formulaire_" ).submit( function(event){
-	index.data_register_();
-	index.replace_content_by_animation_GIF_loader("button_register");//pour remplacer le bouton par un chargement
-	index.post(data, index.callback);//passage au router des données
-	//$('#modal-reg').modal('hide');
+	if(document.getElementById('register_password').value != document.getElementById('register_confirm_password').value){
+
+	}else{
+		index.data_register_();
+		index.replace_content_by_animation_GIF_loader("button_register");//pour remplacer le bouton par un chargement
+		index.post(data, index.callback);//passage au router des données
+		//$('#modal-reg').modal('hide');
+	}
 	 event.preventDefault();//à laisser
-	} );
+	});
+
 };
 
 index.data_register_ = function(){
