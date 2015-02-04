@@ -24,8 +24,9 @@ index.start = function () {
 
 index.btn_register_formulaire_ = function(){
 	$( "#register_formulaire_" ).submit( function(event){
-	if(document.getElementById('register_password').value != document.getElementById('register_confirm_password').value){
-
+	if(document.getElementById('register_password').value != document.getElementById('register_confirm_password').value){//si pwd != confirm pwd
+		document.getElementById('problem_confirm_pwd').innerHTML="<strong>You have entered different passwords!</strong>";//on affiche le message d'erreur
+		index.mettre_les_cases_en_rouges_du_formulaire("register_pwd");
 	}else{
 		index.data_register_();
 		index.replace_content_by_animation_GIF_loader("button_register");//pour remplacer le bouton par un chargement
@@ -315,7 +316,7 @@ index.mettre_les_cases_en_rouges_du_formulaire = function(classname){
 	var arr =document.getElementsByClassName(classname);
 	if(arr.length>0){
 		for(i=0;i<arr.length;i++){
-			arr[i].className=arr[i].className+" has-error";
+			arr[i].classList.add("has-error");
 		}
 	}
 	return;
