@@ -106,19 +106,6 @@ document.getElementById("input_loan_amount_").onkeyup=function(){
 		index.regexnumber();
 };
 
-
-document.getElementById("input_loan_amount_").onblur=function(){
-	var nombre_separe=index.lisibilite_nombre(document.getElementById("input_loan_amount_").value.replace(/ /g,""));
-	document.getElementById("input_loan_amount_").value=nombre_separe;
-};
-
-document.getElementById("input_loan_duration_").onblur=function(){
-	if( (document.getElementById("input_loan_duration_").value=="0") || (document.getElementById("input_loan_duration_").value=="") ){
-		document.getElementById("input_loan_duration_").value="1";
-	}
-		index.regexnumber2();
-};	
-
 index.lisibilite_nombre=function (nbr) {
 	console.log("visibilit");
 		var nombre = ''+nbr;
@@ -157,6 +144,14 @@ index.regexnumber=function(){
 				document.getElementById("check_calculator").disabled=false;
 			}
 };
+
+document.getElementById("input_loan_duration_").onblur=function(){
+	if( (document.getElementById("input_loan_duration_").value=="0") || (document.getElementById("input_loan_duration_").value=="") ){
+		document.getElementById("input_loan_duration_").value="1";
+	}
+		index.regexnumber2();
+};
+
 
 index.regexnumber2=function(){
 	var exp = new RegExp("[^0-9]","gi");
