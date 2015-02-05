@@ -26,8 +26,12 @@ index.btn_register_formulaire_ = function(){
 	$( "#register_formulaire_" ).submit( function(event){
 	if(document.getElementById('register_password').value != document.getElementById('register_confirm_password').value){//si pwd != confirm pwd
 		document.getElementById('problem_confirm_pwd').innerHTML="<strong>You have entered different passwords!</strong>";//on affiche le message d'erreur
-		index.mettre_les_cases_en_rouges_du_formulaire("register_pwd");
-	}else{
+		document.getElementById('couleur_register_pwd').className="form-group col-md-6 has-error";//mettre case en rouge pwd et c pwd
+		document.getElementById('couleur_register_confirm_pwd').className="form-group col-md-6 has-error";
+	}else{//pwd et confirm password sont les même
+		document.getElementById('problem_confirm_pwd').innerHTML="";//on supprime le message d'erreur au cas où il y ait
+		document.getElementById('couleur_register_pwd').className="form-group col-md-6 has-success";//mettre case en vert pwd et c pwd
+		document.getElementById('couleur_register_confirm_pwd').className="form-group col-md-6 has-success";
 		index.data_register_();
 		index.replace_content_by_animation_GIF_loader("button_register");//pour remplacer le bouton par un chargement
 		index.post(data, index.callback);//passage au router des données
@@ -277,7 +281,7 @@ index.callback = function () {
 			window.location = "./html/public/client.html";
 		}else if (r.message=="login_connexion_refused"){
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
-			index.mettre_les_cases_en_rouges_du_formulaire("boites_pour_entrer_les_login_");
+			index.changer_couleur_case("boites_pour_entrer_les_login_");
 			alert("Erreur de connexion");
 		}/***
 			REGISTER CALLBACKS
@@ -287,6 +291,9 @@ index.callback = function () {
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
 		}else if(r.message=="register_ok"){
 			console.log("register ok");
+			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
+		}else if(r.message=="register_email_not_valid"){
+			console.log("register probleme mail");
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
 		}
 		else{
@@ -308,7 +315,7 @@ index.replace_content_by_animation_GIF_loader = function(id){
 	document.getElementById("bt1").dispatchEvent(evt);*/
 };
 
-index.mettre_les_cases_en_rouges_du_formulaire = function(classname){
+index.changer_couleur_case = function(classname){
 	/*
 	prend en paramettre le classname
 	et ajoute has error a la classe pour dire que c pas bon et entoure la case en rouge
@@ -324,23 +331,4 @@ index.mettre_les_cases_en_rouges_du_formulaire = function(classname){
 
 window.onload = function(){
 		setTimeout(index.start, 1);
-};
-
-
-
-index.btn_check_information_for_loan_demand_ = function(){
-	//ce quil se passe quand on appuie sur le bouton check
-	$( "#check_formulaire_" ).submit( function(event){
-		index.fill_data_loan_demand_individual_client_(); // voir fonction plus bas
-	 	index.post(data, index.callback);
-	 	event.preventDefault(); // On désactive le fonctionnement par défault du bouton. Ainsi en cliquant dessus, on ne recharge pas la page
-	});
-};
-
-index.fill_data_loan_demand_individual_client_ = function(){
-	data.ac="envoie_demande_de_pret_individuelle_";
-	data.input_borrowed_capital_ = document.getElementById('input_borrowed_capital_').value;
-	data.input_age_of_demander_ = document.getElementById('input_age_of_demander_').value;
-	data.input_annual_incomes_ = document.getElementById('input_annual_incomes_').value;
-	data.input_duration_loan_in_years_ = document.getElementById('input_duration_loan_in_years_').value;
 };

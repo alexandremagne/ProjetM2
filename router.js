@@ -105,10 +105,17 @@ go_post:
 			db.login(b.userName, b.password, this.resp);
 			console.log("ENVOIE D'UNE DEMANDE DE LOGIN");
 		}
-		else if (b.ac == "register_process_"){
-			b.index = 0;		
-			db.register(b,this.resp);
-			console.log("ENVOIE D'UNE DEMANDE DE REGISTER");
+		else if (b.ac == "register_process_"){			
+			var r = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
+			if(!r.test(b.email)){//si mail non valide				
+				this.resp.writeHead(200,{"Content-Type": "application/json" });
+				this.resp.write(JSON.stringify({message:"register_email_not_valid"}));
+				this.resp.end();
+			}else{
+				b.index = 0;		
+				db.register(b,this.resp);
+				console.log("ENVOIE D'UNE DEMANDE DE REGISTER");
+			}
 		}
 		
 		else if (b.ac == "get_charts_intraday") {
