@@ -51,46 +51,49 @@ exports.register = function(b,res){
 });
 };
 
-exports.login=function(username, pwd, res){
+exports.login=function(email, pwd, res){
 /*
 Fonction pour le bouton login, pour se connecter avec un identifiant et un mot de passe
 */
 MongoClient.connect(field_to_connect_db.adress, function(err, db){
 	if(err){
-						console.log("DB : erreur de connexion au niveau de login: "+err);
-						res.writeHead(503, {"Content-Type": "application/json" });
-						res.end(JSON.stringify({message: "connexion_error"}));
-						return;
+		console.log("DB : erreur de connexion au niveau de login: "+err);
+		res.writeHead(503, {"Content-Type": "application/json" });
+		res.end(JSON.stringify({message: "connexion_error"}));
+		return;
 	}
 	else{
-	res.writeHead(200, {"Content-Type": "application/json" });
-	var collection = db.collection('users'); // on veut acceder à la collection users de la db ProjetEsme
-	collection.find({username:username,pwd:pwd}).toArray( function(err, results){
-		if (err){//username ou pwd faux
-					throw err;
-					res.end(JSON.stringify({message: "login_connexion_refused"}));
-					db.close(); // on referme la db
+		res.writeHead(200, {"Content-Type": "application/json" });
+		var collection = db.collection('users'); // on veut acceder à la collection users de la db ProjetEsme
+		collection.find({email:email,pwd:pwd}).toArray( function(err, results){
+		if (err){//email ou pwd faux
+			throw err;
+			res.end(JSON.stringify({message: "login_connexion_refused"}));
+			db.close(); // on referme la db
+		}else if(results.length == 0){//si pas de resultat un peu pareil mais cas particulier
+			res.end(JSON.stringify({message: "login_connexion_refused"}));
+			db.close(); // on referme la db
 		}
 		else{
 			// création du cookie
 				var cookie = {}; //mon objet cookie
-				cookie.value = ""+username.substring(0,3)+Math.floor(Math.random() * 100000000); //valeur du cookie
+				cookie.value = ""+email.substring(0,3)+Math.floor(Math.random() * 100000000); //valeur du cookie
 				cookie.expire = new Date(new Date().getTime()+900000).toUTCString(); //expire au bout de 1 heure
 				
 				// MAJ BDD
-				collection.update({username: username, pwd: pwd},{ $set: {cookie:cookie}}, { upsert: true }, function(err, docs){
+				collection.update({email: email, pwd: pwd},{ $set: {cookie:cookie}}, { upsert: true }, function(err, docs){
 					if(err) {
 						throw err;
 						res.end(JSON.stringify({message: "login_connexion_refused"}));
 						db.close(); // on referme la db
 					}else{
-									console.log("Indice: " + results[0].indice);
+									console.log("indice: " + results[0].indice);
 									infos={};
 									res.writeHead(200, {"Content-Type": "'text/plain'", "Set-Cookie" : 'cookieName='+cookie.value+';expires='+cookie.expire});
 									if(results[0].indice == 0){//si c'est un client
-											infos.message="login_connexion_autorised_client_"; 
+										infos.message="login_connexion_autorised_client_"; 
 									}else if(results[0].indice == 1){//si c'est un admin
-											infos.message="login_connexion_autorised_admin_"; 
+										infos.message="login_connexion_autorised_admin_"; 
 									}else{
 										infos.message="something_wrong_in_bdd";
 									}

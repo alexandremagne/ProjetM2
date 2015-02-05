@@ -293,7 +293,7 @@ index.callback = function () {
 			console.log("register ok");
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
 		}else if(r.message=="register_email_not_valid"){
-			console.log("register probleme mail");
+			alert("email format invalid");
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
 		}
 		else{

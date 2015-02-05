@@ -112,7 +112,7 @@ go_post:
 				this.resp.write(JSON.stringify({message:"register_email_not_valid"}));
 				this.resp.end();
 			}else{
-				b.index = 0;		
+				b.indice = 0;		
 				db.register(b,this.resp);
 				console.log("ENVOIE D'UNE DEMANDE DE REGISTER");
 			}
