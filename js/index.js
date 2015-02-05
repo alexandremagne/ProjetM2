@@ -7,13 +7,12 @@
 var index = {}; // objet contenant toutes nos fonctions
 var data = {}; //objet : transmettre au routeur
 var contenuHTML = {};//objet qui va contenir temporairement le code html (du bouton login par exemple)
+var variables_formule ={};
 
 // fonction appelée au chargement de la page (voir window.onload au bas de la page)
 index.start = function () {
-	
 	var r2 = new RegExp(/^[a-z\u00E0-\u00FC]+$/i) // regexsui accepte uniquement les lettres et accents	
 	console.log(r2.test("Rémi"));
-
 	index.btn_login_formulaire_();//formulaire du login
 	index.btn_register_formulaire_();//formulaire du register
 	index.btn_button_calculator_();//formulaire du calculator
@@ -92,13 +91,19 @@ index.btn_button_calculator_ = function(){
 
 index.calculation_of_monthly_payments=function(amount, duration, rate){
 	//console.log(rate/1200);
-	var result= (amount / ( (1- (Math.pow( (1+(rate/1200)), ((-1)*(duration*12)) )) ) / (rate/1200)));
-	credit_cost=((result*12*duration)-amount);
+	if(rate!=0){
+		variables_formule.result= (amount / ( (1- (Math.pow( (1+(rate/1200)), ((-1)*(duration*12)) )) ) / (rate/1200))); // mensualités
+		variables_formule.credit_cost=((variables_formule.result*12*duration)-amount); // Intérets
+	} else {
+		variables_formule.result= (amount / (12*duration));
+		variables_formule.credit_cost=((variables_formule.result*12*duration)-amount);
+	}
 	//<h3>Example heading <span class="label label-default">New</span></h3>
-	var string_result="<h3>Your monthly repayment: <span class=\"label label-success\">"+ Math.round(result*100)/100 +"€</span></h3><h3>Total cost of the credit: <span class=\"label label-success\">"+ Math.round(credit_cost*100)/100+" €</span></h3>";
+	var string_result="<h1 style=\"color:grey\">Results</h1><h3>Your monthly repayment: <span class=\"label label-success\">"+ Math.round(variables_formule.result*100)/100 +" <span class=\"glyphicon glyphicon-eur\" aria-hidden=\"true\"></span></span></h3><h3>Total cost of the credit: <span class=\"label label-success\">"+ Math.round(variables_formule.credit_cost*100)/100+" <span class=\"glyphicon glyphicon-eur\" aria-hidden=\"true\"></span></span></h3><h3>Total Price (Loan amount + Interest) : <span class=\"label label-success\">"+ Math.round((amount+variables_formule.credit_cost)*100)/100 +" <span class=\"glyphicon glyphicon-eur\" aria-hidden=\"true\"></span></span></h3>";
 	document.getElementById("result_calculator").innerHTML=string_result;
-	console.log(result);
+	console.log(variables_formule.result);
 };
+
 
 document.getElementById("input_loan_amount_").onkeyup=function(){
 	var llme= parseInt(document.getElementById("input_loan_amount_").value);

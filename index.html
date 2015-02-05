@@ -130,7 +130,7 @@
       
       <!-- ////////////// INFOS FORMULAIRE CLIENT pour les info ////////////// -->
 				<div class="row">
-					<div class="col-md-7">
+					<div class="col-md-8">
 						<form id="check_formulaire_" class="form-horizontal" role="form" >
 						  <div class="form-group has-feedback-amount">
 							<label for="input_borrowed_capital_" class="col-sm-4 control-label">Loan amount</label>
@@ -143,7 +143,7 @@
 							<label for="input_age_of_demander_" class="col-sm-4 control-label">Loan duration (max 25)</label>
 							<div class="col-sm-8 input-group">								
 							 <input type="text" class="form-control" id="input_loan_duration_"
-							  onclick="this.focus();this.select();" placeholder="Please enter the loan duration" required>
+							  onclick="this.focus();this.select();" placeholder="Please enter the loan duration" onKeyup="index.regexnumber2();" required>
 							  <span class="input-group-addon">years</span>
 							</div>
 						  </div>
@@ -161,11 +161,18 @@
 							  	<input class="btn btn-primary btn-block btn-lg" type="submit" id="check_calculator" value="check"/>
 							</div>
 						  </div>
-
 						</form>
 					</div>
-					<div class="col-md-5" id="result_calculator">
+					
+				
+				</div> <!-- row -->
 
+				<div class="row">
+					<div class="col-md-12">
+						<hr>
+					</div>
+					<div class="col-md-12" id="result_calculator">
+						
 					</div>
 				</div>
 
