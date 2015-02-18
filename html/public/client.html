@@ -235,11 +235,13 @@
 
 							<label for="input_borrower_activity_sector" class="col-sm-4 control-label">Loan's purpose</label>
 								<div class="col-sm-6 input-group">
-									<select class="form-control" id="input_borrower_loan_purpose">
-									  <option>Old property</option>
-									  <option>New property</option>
-									  <option>Car / vehicles</option>
-									  <option>Others</option>
+									<select class="form-control" id="input_borrower_loan_purpose" onchange="console.log(this.value);">
+									  <option value="na">Choose purpose of your loan...</option>
+									  <option value="1">Buy property (Old building)</option>
+									  <option value="2">Buy property (New building)</option>
+									  <option value="3">Buy Car / vehicles</option>
+									  <option value="4">Consumption credit</option>
+									  <option value="5">Others</option>
 									</select>
 						 		 </div>
 
