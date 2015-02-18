@@ -94,7 +94,7 @@
 	
 						  <div class="form-group">
 								<label for="input_borrower_contract" class="col-sm-4 control-label">Type of employment contract</label>
-								<div class="col-sm-6 input-group">
+								<div class="col-sm-6 ">
 									<select class="form-control" id="input_borrower_contract" onchange="console.log(this.value)">
 									  <option value="na">Choose a contract type...</option>
 									  <option value="1">CDI</option>
@@ -108,7 +108,7 @@
 						  </div>
 						   <div class="form-group">
 								<label for="input_borrower_diploma" class="col-sm-4 control-label">Diploma</label>
-								<div class="col-sm-6 input-group">
+								<div class="col-sm-6 ">
 									<select class="form-control" id="input_borrower_diploma" onchange="console.log(this.value)">
 									  <option value="na">Choose your level of studies...</option>
 									  <option value="1">No graduate</option>
@@ -124,7 +124,7 @@
 
 						 	<div class="form-group">
 								<label for="input_borrower_activity_sector" class="col-sm-4 control-label">Activity sector</label>
-								<div class="col-sm-6 input-group">
+								<div class="col-sm-6">
 									<select class="form-control" id="input_borrower_activity_sector">
 									  <option>Agroalimentaire</option>
 									  <option>Banque / Assurance</option>
@@ -147,7 +147,7 @@
 						 	
 						 	<div class="form-group">
 								<label for="input_borrower_employment_Duration" class="col-sm-4 control-label">Duration of employment</label>
-								<div class="col-sm-6 input-group">
+								<div class="col-sm-6">
 									<select class="form-control" id="input_borrower_employment_Duration">
 									  <option>0 - 1</option>
 									  <option>1 - 5</option>
@@ -175,18 +175,24 @@
 						 			</div>
 
 									<div class="form-group">
-										<label for="input_borrower_annual_incomes" class="col-sm-4 control-label" style="cursor:help" data-toggle="tooltip" data-placement="top" title="Salary">Net annual incomes</label>
+										<label for="input_borrower_annual_incomes" class="col-sm-4 control-label" >Net annual incomes (only salary)</label>
 										<div class="col-sm-6 input-group">
 											<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_annual_incomes_" placeholder="Please enter the net annual incomes" required>
 											<span class="input-group-addon">$</span>
 										</div>
 						 			</div>
-						 			
-						 			<script>
-						 			$(function () {
-  									$('[data-toggle="tooltip"]').tooltip()
-									})
-									</script>
+						 		<div class="form-group">
+									<label for="input_borrower_other_incomes" class="col-sm-4 control-label">Do you have another incomes?</label>
+									<div class="col-sm-6 form-inline" style="padding-right:0px;">
+										<label class="checkbox">
+										  <input type="checkbox" id="" onchange="if(this.checked){document.getElementById('input_borrower_other_incomes').disabled=false}else{document.getElementById('input_borrower_other_incomes').disabled=true};">Yes
+										</label>
+										<div class="input-group col-md-10">
+										<input class="form-control" id="input_borrower_other_incomes" type="text" placeholder="Amount of other incomes" disabled>
+										<span class="input-group-addon">$</span>
+									</div>
+									</div>
+								</div>
 
 						  	<div class="form-group">
 									<label for="input_borower_loan_duration" class="col-sm-4 control-label">Loan duration (max 25)</label>
