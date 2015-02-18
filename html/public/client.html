@@ -95,26 +95,29 @@
 						  <div class="form-group">
 								<label for="input_borrower_contract" class="col-sm-4 control-label">Type of employment contract</label>
 								<div class="col-sm-6 input-group">
-									<select class="form-control" id="input_borrower_contract">
-									  <option>CDI</option>
-									  <option>CDD</option>
-									  <option>Intérim</option>
-									  <option>Internship</option>
-									  <option>Other</option>
+									<select class="form-control" id="input_borrower_contract" onchange="console.log(this.value)">
+									  <option value="na">Choose a contract type...</option>
+									  <option value="1">CDI</option>
+									  <option value="2">CDD</option>
+									  <option value="3">Intérim</option>
+									  <option value="4">Internship</option>
+									  <option value="5">unemployed</option>
+									  <option value="6">Other</option>
 									</select>
 								</div>
 						  </div>
 						   <div class="form-group">
 								<label for="input_borrower_diploma" class="col-sm-4 control-label">Diploma</label>
 								<div class="col-sm-6 input-group">
-									<select class="form-control" id="input_borrower_diploma">
-									  <option>No graduate</option>
-									  <option>High school Graduate</option>
-									  <option>High school +2</option>
-									  <option>License (+3)</option>
-									  <option>Master (+5)</option>
-									  <option>Doctor (+8)</option>
-									  <option>Other</option>
+									<select class="form-control" id="input_borrower_diploma" onchange="console.log(this.value)">
+									  <option value="na">Choose your level of studies...</option>
+									  <option value="1">No graduate</option>
+									  <option value="2">High school Graduate</option>
+									  <option value="3">High school +2</option>
+									  <option value="4">License (+3)</option>
+									  <option value="5">Master (+5)</option>
+									  <option value="6">Doctor (+8)</option>
+									  <option value="7">Other</option>
 									</select>
 						 		 </div>
 						 	</div>
