@@ -3,25 +3,32 @@ var demande_pret = function(contract_type,duration_contract,monthly_incomes,mont
 	if(contract_type == 1){//si c'est un CDI		
 		if(debt_ratio){//si ratio d'endettement <= 33%
 			console.log("pret possible");
+			alert("pret possible");
 		}else{//si ratio d'endettement > 33%
-			console.log("pret refusé");			
+			console.log("pret refusé");
+			alert("pret refusé");	
 		}
 	}else if(contract_type == 2 || contract_type == 4 || contract_type == 3){//CDD ou stage ou Interim
 		if(loan_duration<duration_contract){//durée du pret < durée du contrat
 			if(debt_ratio){//si ratio d'endettement <= 33%
 				console.log("pret possible");
+				alert("pret possible");
 			}else{//si ratio d'endettement > 33%
 				console.log("pas de pret possible");
+				alert("pas de pret possible");
 			}
 		}else{
 			if(other_incomes){// si autres revenu
 				console.log("type particulier");
+				alert("type particulier");
 			}else{//si pas 	d'autres revenus
 				console.log("pas de pret possible");
+				alert("pas de pret possible");
 			}
 		}
 	}else{
 		console.log("type non répertorié");
+		alert("type non répertorié");
 	}
 }
 

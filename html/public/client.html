@@ -77,193 +77,190 @@
       <div class="panel-body">
       
       <!-- ////////////// INFOS FORMULAIRE CLIENT pour les info ////////////// -->
-				<div class="row">
-					<div class="col-md-12">
-						<form id="check_formulaire_" class="form-horizontal" action="" >
+			<div class="row">
+				<div class="col-md-12">
+					<form id="check_formulaire_" role="form" class="form-horizontal" action="">
 						
 						
 						<div class="row">
-						
-						<div class="col-md-6"> <!-- formulaire 1 de gauche : CHARACTER -->
-	<!-- dans un premier temps, pour voir si dans la database on a pas déjà ce client ! -->
-	<!-- Si oui, la bdd nous transmet alors tout plein d'infos à savoir son age son adresse etc... -->
-	
-						 	<fieldset>
-							<legend class="text-primary">Character</legend>
-	
-	
-						  <div class="form-group">
-								<label for="input_borrower_contract" class="col-sm-4 control-label">Type of employment contract</label>
-								<div class="col-sm-6 ">
-									<select class="form-control" id="input_borrower_contract" onchange="console.log(this.value)">
-									  <option value="na">Choose a contract type...</option>
-									  <option value="1">CDI</option>
-									  <option value="2">CDD</option>
-									  <option value="3">Intérim</option>
-									  <option value="4">Internship</option>
-									  <option value="5">unemployed</option>
-									  <option value="6">Other</option>
-									</select>
-								</div>
-						  </div>
-						   <div class="form-group">
-								<label for="input_borrower_diploma" class="col-sm-4 control-label">Diploma</label>
-								<div class="col-sm-6 ">
-									<select class="form-control" id="input_borrower_diploma" onchange="console.log(this.value)">
-									  <option value="na">Choose your level of studies...</option>
-									  <option value="1">No graduate</option>
-									  <option value="2">High school Graduate</option>
-									  <option value="3">High school +2</option>
-									  <option value="4">License (+3)</option>
-									  <option value="5">Master (+5)</option>
-									  <option value="6">Doctor (+8)</option>
-									  <option value="7">Other</option>
-									</select>
-						 		 </div>
-						 	</div>
 
-						 	<div class="form-group">
-								<label for="input_borrower_activity_sector" class="col-sm-4 control-label">Activity sector</label>
-								<div class="col-sm-6">
-									<select class="form-control" id="input_borrower_activity_sector">
-									  <option>Agroalimentaire</option>
-									  <option>Banque / Assurance</option>
-									  <option>Bâtiment / travaux publics</option>
-									  <option>Bois / papier / carton / imprimerie </option>
-									  <option>Chimie / parachimie </option>
-									  <option>Commerce / distribution / négoce </option>
-									  <option>Etudes et conseils</option>
-									  <option>Informatique</option>
-									  <option>Mécanique </option>
-									  <option>Mécanique de précision </option>
-									  <option>Métallurgie / travail du métal </option>
-									  <option>Santé / Pharmacie / Médecine </option>
-									  <option>Plastique / caoutchouc </option>
-									  <option>Textile / habillement / chaussure </option>
-									  <option>Transports / logistique </option>
-									</select>
-						 		 </div>
-						 	</div>
-						 	
-						 	<div class="form-group">
-								<label for="input_borrower_employment_Duration" class="col-sm-4 control-label">Duration of employment</label>
-								<div class="col-sm-6">
-									<select class="form-control" id="input_borrower_employment_Duration">
-									  <option>0 - 1</option>
-									  <option>1 - 5</option>
-									  <option>5 - 10</option>
-									  <option>More</option>
-									</select>
-						 		 </div>
-						 	</div>
-						 
-						  </fieldset>
-						  
-						  </div> <!-- /.col-md-6-->
+							<div class="col-md-6"> <!-- formulaire 1 de gauche : CHARACTER -->
+								<!-- dans un premier temps, pour voir si dans la database on a pas déjà ce client ! -->
+								<!-- Si oui, la bdd nous transmet alors tout plein d'infos à savoir son age son adresse etc... -->
+	
+							 	<fieldset>
+									<legend class="text-primary">Character</legend>
+		
+		
+								  	 <div class="form-group">
+										<label for="input_borrower_contract" class="col-sm-4 control-label">Type of employment contract</label>
+										<div class="col-sm-6 ">
+											<select class="form-control" id="input_borrower_contract" onchange="console.log(this.value)" style="background-color:blue">
+											  <option value="na">Choose a contract type...</option>
+											  <option value="1">CDI</option>
+											  <option value="2">CDD</option>
+											  <option value="3">Intérim</option>
+											  <option value="4">Internship</option>
+											  <option value="5">unemployed</option>
+											  <option value="6">Other</option>
+											</select>
+										</div>
+								  	 </div>
+								  	 <div class="form-group">
+										<label for="input_borrower_diploma" class="col-sm-4 control-label">Diploma</label>
+										<div class="col-sm-6 ">
+											<select class="form-control" id="input_borrower_diploma" onchange="console.log(this.value)">
+											  <option value="na">Choose your level of studies...</option>
+											  <option value="1">No graduate</option>
+											  <option value="2">High school Graduate</option>
+											  <option value="3">High school +2</option>
+											  <option value="4">License (+3)</option>
+											  <option value="5">Master (+5)</option>
+											  <option value="6">Doctor (+8)</option>
+											  <option value="7">Other</option>
+											</select>
+								 		 </div>
+								 	</div>
+
+								 	<div class="form-group">
+										<label for="input_borrower_activity_sector" class="col-sm-4 control-label">Activity sector</label>
+										<div class="col-sm-6">
+											<select class="form-control" id="input_borrower_activity_sector">
+											  <option>Agroalimentaire</option>
+											  <option>Banque / Assurance</option>
+											  <option>Bâtiment / travaux publics</option>
+											  <option>Bois / papier / carton / imprimerie </option>
+											  <option>Chimie / parachimie </option>
+											  <option>Commerce / distribution / négoce </option>
+											  <option>Etudes et conseils</option>
+											  <option>Informatique</option>
+											  <option>Mécanique </option>
+											  <option>Mécanique de précision </option>
+											  <option>Métallurgie / travail du métal </option>
+											  <option>Santé / Pharmacie / Médecine </option>
+											  <option>Plastique / caoutchouc </option>
+											  <option>Textile / habillement / chaussure </option>
+											  <option>Transports / logistique </option>
+											</select>
+								 		 </div>
+								 	</div>
+							 	
+								 	<div class="form-group">
+										<label for="input_borrower_employment_Duration" class="col-sm-4 control-label">Duration of employment</label>
+										<div class="col-sm-6">
+											<select class="form-control" id="input_borrower_employment_Duration" onchange="console.log(this.value)" style="background-color:blue">
+											  <option value="1">0 - 1</option>
+											  <option value="5">1 - 5</option>
+											  <option value="10">5 - 10</option>
+											  <option value="40">More</option>
+											</select>
+								 		 </div>
+								 	</div>
+							 
+							  	</fieldset>
+						  	</div> <!-- /.col-md-6-->
 						  
 							<div class="col-md-6">
 							
 								<fieldset>
-								<legend class="text-primary">Capacity</legend>
-									
-									<div class="form-group">
-										<label for="input_borrower_loan_amount" class="col-sm-4 control-label">Loan Amount needed</label>
-										<div class="col-sm-6 input-group">
-											<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_loan_amount" placeholder="Please enter your loan requirement" required>
-											<span class="input-group-addon">$</span>
-										</div>
-						 			</div>
+									<legend class="text-primary">Capacity</legend>
+										
+										<div class="form-group">
+											<label for="input_borrower_loan_amount" class="col-sm-4 control-label">Loan Amount needed</label>
+											<div class="col-sm-6 input-group">
+												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_loan_amount" placeholder="Please enter your loan requirement" requiredd>
+												<span class="input-group-addon">$</span>
+											</div>
+							 			</div>
 
-									<div class="form-group">
-										<label for="input_borrower_annual_incomes" class="col-sm-4 control-label" >Net annual incomes (only salary)</label>
-										<div class="col-sm-6 input-group">
-											<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_annual_incomes_" placeholder="Please enter the net annual incomes" required>
-											<span class="input-group-addon">$</span>
+										<div class="form-group">
+											<label for="input_borrower_annual_incomes" class="col-sm-4 control-label" >Net annual incomes (only salary)</label>
+											<div class="col-sm-6 input-group">
+												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_annual_incomes" placeholder="Please enter the net annual incomes" required style="background-color:blue">
+												<span class="input-group-addon">$</span>
+											</div>
+							 			</div>
+								 		<div class="form-group">
+											<label for="input_borrower_other_incomes" class="col-sm-4 control-label" style="color:blue">Do you have another incomes?</label>
+											<div class="col-sm-6 form-inline" style="padding-right:0px;">
+												<label class="checkbox">
+												  <input type="checkbox" id="input_borrower_other_incomes_checked" onchange="obj.disableotherincomes()" >Yes
+												</label>
+												<div class="input-group col-md-10">
+												<input class="form-control" id="input_borrower_other_incomes" type="number" min="0" max="1000000000" placeholder="Amount of other incomes" disabled>
+												<span class="input-group-addon">$</span>
+											</div>
+											</div>
 										</div>
-						 			</div>
-						 		<div class="form-group">
-									<label for="input_borrower_other_incomes" class="col-sm-4 control-label">Do you have another incomes?</label>
-									<div class="col-sm-6 form-inline" style="padding-right:0px;">
-										<label class="checkbox">
-										  <input type="checkbox" id="input_borrower_other_incomes_checked" onchange="if(this.checked){document.getElementById('input_borrower_other_incomes').disabled=false}else{document.getElementById('input_borrower_other_incomes').disabled=true};">Yes
-										</label>
-										<div class="input-group col-md-10">
-										<input class="form-control" id="input_borrower_other_incomes" type="number" min="0" max="1000000000" placeholder="Amount of other incomes" disabled>
-										<span class="input-group-addon">$</span>
-									</div>
-									</div>
-								</div>
 
-						  	<div class="form-group">
-									<label for="input_borower_loan_duration" class="col-sm-4 control-label">Loan duration (max 25)</label>
-									<div class="col-sm-6 input-group">
-										<input min="0" max="25"  type="number" class="form-control" id="input_borower_loan_duration" placeholder="Please a loan duration" required>
-										<span class="input-group-addon">years</span>
-									</div>
-						  	</div>
-						  			<div class="form-group">
-										<label for="input_borrower_monthly_expenses" class="col-sm-4 control-label">Monthly expenses</label>
-										<div class="col-sm-6 input-group">
-											<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_monthly_expenses" placeholder="Please enter yours monthly enpenses" required>
-											<span class="input-group-addon">$</span>
-										</div>
-						 			</div>
-						  	
-						  	</fieldset>
-						  	
-								</div> <!-- /.col-md-6-->
+									  	<div class="form-group">
+												<label for="input_borower_loan_duration" class="col-sm-4 control-label">Loan duration (max 25)</label>
+												<div class="col-sm-6 input-group">
+													<input min="0" max="25"  type="number" class="form-control" id="input_borower_loan_duration" placeholder="Please a loan duration" required style="background-color:blue">
+													<span class="input-group-addon">years</span>
+												</div>
+									  	</div>
+							  			<div class="form-group">
+											<label for="input_borrower_monthly_expenses" class="col-sm-4 control-label">Monthly expenses</label>
+											<div class="col-sm-6 input-group">
+												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_monthly_expenses" placeholder="Please enter yours monthly enpenses" required style="background-color:blue">
+												<span class="input-group-addon">$</span>
+											</div>
+							 			</div>
+							  	
+						  		</fieldset>	
+							</div> <!-- /.col-md-6-->
 								
-						  </div> <!-- /.row -->
+						</div> <!-- /.row -->
 						  
-						  <div class="row">
+						<div class="row">
 						  
 						  	<div class="col-md-6">
 					
 								<fieldset>
-								<legend class="text-primary">Capital</legend>
+									<legend class="text-primary">Capital</legend>
 							
 									<div class="form-group">
 										<label for="input_borrower_contribution" class="col-sm-4 control-label">Contribution</label>
 										<div class="col-sm-6 input-group">
-											<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_contribution" placeholder="Please enter the contribution you can provide" required>
+											<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_contribution" placeholder="Please enter the contribution you can provide" requiredd>
 											<span class="input-group-addon">$</span>
-									</div>
-						 		</div>
+										</div>
+						 			</div>
 							  	
-						  	</fieldset>
+						  		</fieldset>
 						  	
-								</div> <!-- /.col-md-6-->
+							</div> <!-- /.col-md-6-->
 						  
-						  <div class="col-md-6">
-						  	<fieldset>
-								<legend class="text-primary">Conditions</legend>
-						
+							<div class="col-md-6">
+							  	<fieldset>
+									<legend class="text-primary">Conditions</legend>
+							
 
-							<label for="input_borrower_activity_sector" class="col-sm-4 control-label">Loan's purpose</label>
-								<div class="col-sm-6 input-group">
-									<select class="form-control" id="input_borrower_loan_purpose" onchange="console.log(this.value);">
-									  <option value="na">Choose purpose of your loan...</option>
-									  <option value="1">Buy property (Old building)</option>
-									  <option value="2">Buy property (New building)</option>
-									  <option value="3">Buy Car / vehicles</option>
-									  <option value="4">Consumption credit</option>
-									  <option value="5">Others</option>
-									</select>
-						 		 </div>
-
-
+								<label for="input_borrower_activity_sector" class="col-sm-4 control-label">Loan's purpose</label>
+									<div class="col-sm-6 input-group">
+										<select class="form-control" id="input_borrower_loan_purpose" onchange="console.log(this.value);">
+										  <option value="na">Choose purpose of your loan...</option>
+										  <option value="1">Buy property (Old building)</option>
+										  <option value="2">Buy property (New building)</option>
+										  <option value="3">Buy Car / vehicles</option>
+										  <option value="4">Consumption credit</option>
+										  <option value="5">Others</option>
+										</select>
+							 		 </div>
 
 
-							</fieldset>
-						  	
-								</div> <!-- /.col-md-6-->
+
+
+								</fieldset>	  	
+							</div> <!-- /.col-md-6-->
 						  
-						  </div> <!-- /.row -->
+						</div> <!-- /.row -->
 						  
-						  <div class="row">
+						<div class="row">
 						  	
 						  	<div class="col-md-12">
-						  	<fieldset>
+						  		<fieldset>
 								<legend class="text-primary">Collateral</legend>
 							
 									<div class="form-group">
@@ -280,34 +277,33 @@
 									<div class="form-group">
 										<label for="input_borrower_property_value" class="col-sm-4 control-label">Value of the house's mortgage</label>
 										<div class="col-sm-6 input-group">
-											<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_property_value" placeholder="Please enter the net annual incomes" required>
+											<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_property_value" placeholder="Please enter the net annual incomes" requiredd>
 											<span class="input-group-addon">$</span>
 										</div>
 									</div>
 
-						  	<div class="form-group">
-									<label for="input_borrower_pledge_value" class="col-sm-4 control-label">Pledge</label>
-									<div class="col-sm-6 input-group">
-										<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_pledge_value" placeholder="Please a loan duration" required>
-										<span class="input-group-addon">$</span>
-									</div>
-						  	</div>
+								  	<div class="form-group">
+											<label for="input_borrower_pledge_value" class="col-sm-4 control-label">Pledge</label>
+											<div class="col-sm-6 input-group">
+												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_pledge_value" placeholder="Please a loan duration" requiredd>
+												<span class="input-group-addon">$</span>
+											</div>
+								  	</div>
 						  	
-						  	</fieldset>
+						  		</fieldset>
+							</div> <!-- /.col-md-12-->
 						  	
-								</div> <!-- /.col-md-6-->
-						  	
-						  </div> <!-- /.row -->
+						</div> <!-- /.row -->
 						  	
 						   <div class="form-group">
 								<div class="col-sm-offset-0 col-sm-2">
-										<input class="btn btn-primary btn-block btn-lg" type="submit" value="check"/>
+									<input class="btn btn-primary btn-block btn-lg" type="submit" value="check"/>
 								</div>
-						  </div>
+						   </div>
 						  
-						</form>
-					</div>
+					</form>
 				</div>
+			</div>
 
 <!-- ////////////// fin des informations à entrer ////////////////////// -->
 
