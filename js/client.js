@@ -60,8 +60,10 @@ obj.callback=function(){
 		console.log("this.responsetext :" + this.responseText);
 		var r = JSON.parse(this.responseText); // conversion string en Objet JSON
 
-		if (r.message=="demande_pret_stockee"){
+		if (r.message=="store_loan_demand_ok"){
 			console.log("demande de prêt stocké dans la bdd");
+		}else if(r.message=="something_wrong"){
+			console.log("demande de prêt NON stocké");
 		}else if (r.message=="nocookie"){
 			window.location = "/index.html";
 		}else{

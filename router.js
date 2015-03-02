@@ -163,9 +163,12 @@ cb_cookie:
 			}
 
 			else if(b.ac == "demande_stockage_pret"){
-				util.log("reçu");
+				this.resp.writeHead(200,{"Content -Type": "application/json"});
+				db.store_loan_demand(b, this.resp);
 				return;
-			} else if (b.ac=="check_cookie"){
+			} 
+
+			else if (b.ac=="check_cookie"){
 				console.log("fonction appelée à chaque rechargement de page pour cheker si le cookie est la ou pas");
 				return;
 			}

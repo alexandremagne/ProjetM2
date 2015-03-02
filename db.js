@@ -108,6 +108,29 @@ MongoClient.connect(field_to_connect_db.adress, function(err, db){
 });	
 };
 
+exports.store_loan_demand=function(b, res){
+	console.log(b);
+	MongoClient.connect(field_to_connect_db.adress, function(err, db) {
+	if(err) {//en cas d'erreur de connection
+		console.log("DB : erreur de connexion à la db au niveau de store_loan_demand: "+err);
+		res.writeHead(503, {"Content-Type": "application/json" });
+		res.end(JSON.stringify({message: "store_loan_demand_error"}));
+		return;
+	} else{
+		res.writeHead(200, {"Content-Type": "application/json" });
+		db.collection('loan_demands').insert(b,function(err, doc){
+			if(err){				
+				res.end(JSON.stringify({message:"something_wrong"}));
+				db.close();
+			}else{				
+				res.end(JSON.stringify({message:"store_loan_demand_ok"}));
+				db.close();
+			}
+		});
+	}
+});
+};
+
 
 exports.valid_cookie = function(c,obj,fct){
 	/*
@@ -116,7 +139,6 @@ exports.valid_cookie = function(c,obj,fct){
 	avec cookie.value dans la DB USERS
 	*/
 
-	console.log("rererererererereree:" + fct);
 	if (c){
 				MongoClient.connect(field_to_connect_db.adress, function(err, db) {
 				    if(err) throw err;	
