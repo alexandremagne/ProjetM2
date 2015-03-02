@@ -117,6 +117,8 @@ go_post:
 				console.log("ENVOIE D'UNE DEMANDE DE REGISTER");
 			}
 		}
+
+		
 		
 		else if (b.ac == "get_charts_intraday") {
 			//data = fs.readFileSync("./data.js");
@@ -139,22 +141,35 @@ go_post:
 			// /* stuff */
 			// obj[cb](true/false);
 		}
-		
+
 		
 		
 	},
 
 cb_cookie:
 	function (ret) {
-	
+
+		console.log("Contenue de ret " + ret);
+		
 		var b = this.b;
-		if (ret) {
+		console.log("b.ac: " + b.ac);
+
+		if (ret.a == true) {	
 /*++++++++++++++++++++++++++++++++++++++++++++MY WALLET++++++++++++++++++++++++++++*/		
 			if (b.ac == "buy-btn"){
 				this.resp.writeHead(200,{"Content -Type": "application/json"});
 				db.buy( b.wallet, b.nbstock, this.req.headers.cookie, this.resp);	
 				return;
 			}
+
+			else if(b.ac == "demande_stockage_pret"){
+				util.log("reçu");
+				return;
+			} else if (b.ac=="check_cookie"){
+				console.log("fonction appelée à chaque rechargement de page pour cheker si le cookie est la ou pas");
+				return;
+			}
+
 			else if (b.ac == 'get-money'){
 				this.resp.writeHead(200,{"Content -Type": "application/json"});
 				db.get_money(this.req.headers.cookie, this.resp);
@@ -246,7 +261,7 @@ cb_cookie:
 		
 		
 		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-		}
+		} 
 				
 		util.log("INFO - Action not found : " + b.ac);
 		//this.resp.writeHead(501, {"Content -Type": "application/json"});

@@ -115,6 +115,8 @@ exports.valid_cookie = function(c,obj,fct){
 	il faut prendre dans cookieName= la valeur aprés et vérifier 
 	avec cookie.value dans la DB USERS
 	*/
+
+	console.log("rererererererereree:" + fct);
 	if (c){
 				MongoClient.connect(field_to_connect_db.adress, function(err, db) {
 				    if(err) throw err;	

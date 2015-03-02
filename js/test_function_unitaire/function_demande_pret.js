@@ -1,4 +1,5 @@
 var demande_pret = function(contract_type,duration_contract,monthly_incomes,monthly_expenses,loan_duration,other_incomes){
+		client.ac="demande_stockage_pret";
 		var debt_ratio = monthly_expenses/monthly_incomes<=0.33;		
 	if(contract_type == 1){//si c'est un CDI		
 		if(debt_ratio){//si ratio d'endettement <= 33%
@@ -8,6 +9,7 @@ var demande_pret = function(contract_type,duration_contract,monthly_incomes,mont
 			console.log("pret refusé");
 			alert("pret refusé");	
 		}
+	obj.post(client, obj.callback);//passage au router des données
 	}else if(contract_type == 2 || contract_type == 4 || contract_type == 3){//CDD ou stage ou Interim
 		if(loan_duration<duration_contract){//durée du pret < durée du contrat
 			if(debt_ratio){//si ratio d'endettement <= 33%
@@ -26,10 +28,13 @@ var demande_pret = function(contract_type,duration_contract,monthly_incomes,mont
 				alert("pas de pret possible");
 			}
 		}
+	obj.post(client, obj.callback);//passage au router des données
 	}else{
 		console.log("type non répertorié");
 		alert("type non répertorié");
 	}
+
+
 }
 
 //test unitaire valable du 14 février 2015
