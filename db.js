@@ -108,8 +108,9 @@ MongoClient.connect(field_to_connect_db.adress, function(err, db){
 });	
 };
 
-exports.store_loan_demand=function(b, res){
-	console.log(b);
+
+
+exports.store_loan_demand=function(cookie, b, res){
 	MongoClient.connect(field_to_connect_db.adress, function(err, db) {
 	if(err) {//en cas d'erreur de connection
 		console.log("DB : erreur de connexion à la db au niveau de store_loan_demand: "+err);
@@ -118,17 +119,31 @@ exports.store_loan_demand=function(b, res){
 		return;
 	} else{
 		res.writeHead(200, {"Content-Type": "application/json" });
-		db.collection('loan_demands').insert(b,function(err, doc){
-			if(err){				
-				res.end(JSON.stringify({message:"something_wrong"}));
-				db.close();
-			}else{				
-				res.end(JSON.stringify({message:"store_loan_demand_ok"}));
-				db.close();
-			}
+
+			var user = db.collection('users');//pour aller choper le cookie dans la db
+			var  loan_demands = db.collection("loan_demands");
+			c = cookie.split("cookieName=");
+		user.find({"cookie.value":c[1]}).toArray(function(err, results){
+					if(err) {
+						throw err;
+						res.end(JSON.stringify({message: "no_cookie"}));
+						db.close(); // on referme la db
+					}else{
+									
+							b.email=results[0].email;
+							loan_demands.insert(b,function(err, doc){	
+								if(err){				
+									res.end(JSON.stringify({message:"something_wrong"}));
+									db.close();
+								}else{				
+									res.end(JSON.stringify({message:"store_loan_demand_ok"}));
+									db.close();
+								}
+							});						
+						}
 		});
-	}
-});
+		}
+	});
 };
 
 

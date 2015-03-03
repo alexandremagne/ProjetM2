@@ -164,7 +164,7 @@ cb_cookie:
 
 			else if(b.ac == "demande_stockage_pret"){
 				this.resp.writeHead(200,{"Content -Type": "application/json"});
-				db.store_loan_demand(b, this.resp);
+				db.store_loan_demand(this.req.headers.cookie, b, this.resp);
 				return;
 			} 
 
