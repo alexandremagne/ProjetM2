@@ -1,4 +1,4 @@
-include('../../js/test_function_unitaire/function_capacite.js');
+include('../../js/test_function_unitaire/function_demande_pret.js');
 
 var obj = {}; // objet contenant toutes nos fonctions
 var client = {}; // objet qui contiendra tous les champs des formulaires utile pour le scoring
@@ -18,26 +18,17 @@ obj.check_cookie=function(){
 // appelée au chargement de la page (3/3)
 obj.check_loan=function(){		
 	$("#check_formulaire_").submit(function(event){
-
-		client.input_borrower_loan_amount = document.getElementById("input_borrower_loan_amount").value;
-		//client.input_borrower_annual_incomes = document.getElementById("input_borrower_annual_incomes").value;
-		client.input_borrower_assets_type = document.getElementById("input_borrower_assets_type").value; // asset types
-		//client.input_borrower_other_incomes = document.getElementById("input_borrower_other_incomes").value;
-
-		/*client.input_borrower_loan_amount = document.getElementById("input_borrower_loan_amount").value;
 		client.input_borrower_annual_incomes = document.getElementById("input_borrower_annual_incomes").value;
 		client.input_borower_loan_duration = document.getElementById("input_borower_loan_duration").value;
 		client.input_borrower_monthly_expenses = document.getElementById("input_borrower_monthly_expenses").value;
 		client.input_borrower_contract = document.getElementById("input_borrower_contract").value;
 		client.input_borrower_employment_Duration = document.getElementById("input_borrower_employment_Duration").value;
-		client.input_borrower_other_incomes_checked = document.getElementById("input_borrower_other_incomes_checked").checked;*/
+		client.input_borrower_other_incomes_checked = document.getElementById("input_borrower_other_incomes_checked").checked;
 		
-		client.input_borrower_contribution=document.getElementById("input_borrower_contribution").value;
+		event.preventDefault();// Pour annuler le comportement par default d'un formulaire
 
 		// vérifier si on peut demander un pret (donc ne prend pas en compte le montant du prêt)
-		//demande_pret(client.input_borrower_contract,client.input_borrower_employment_Duration,client.input_borrower_annual_incomes/12,client.input_borrower_monthly_expenses,client.input_borower_loan_duration,client.input_borrower_other_incomes_checked); //->pret possible
-		asset(client.input_borrower_contribution,client.input_borrower_loan_amount,client.input_borrower_assets_type);
-		event.preventDefault();// Pour annuler le comportement par default d'un formulaire
+		demande_pret(client.input_borrower_contract,client.input_borrower_employment_Duration,client.input_borrower_annual_incomes/12,client.input_borrower_monthly_expenses,client.input_borower_loan_duration,client.input_borrower_other_incomes_checked); //->pret possible
 
 	});
 };
