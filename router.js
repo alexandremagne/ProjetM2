@@ -116,23 +116,8 @@ go_post:
 				db.register(b,this.resp);
 				console.log("ENVOIE D'UNE DEMANDE DE REGISTER");
 			}
-		}
-
-		
-		
-		else if (b.ac == "get_charts_intraday") {
-			//data = fs.readFileSync("./data.js");
-			data = fs.readFileSync("./dataSG.json");
-			this.resp.writeHead(200,{"Content-Type": "application/json" });
-			this.resp.write(data);
-			this.resp.end();
-		}
-		else if (b.ac == "get_charts_sg") {
-			//data = fs.readFileSync("./data.js");
-			data = fs.readFileSync("./dataSG.json");
-			this.resp.writeHead(200,{"Content-Type": "application/json" });
-			this.resp.write(data);
-			this.resp.end();
+		}else if(b.ac == "affichage_demande"){
+			db.affichage_demande(this.resp);
 		}
 		else {
 			db.valid_cookie(this.req.headers.cookie, this, "cb_cookie");
