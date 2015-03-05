@@ -1,4 +1,5 @@
 include('../../js/test_function_unitaire/function_capacite.js');
+include('../../js/test_function_unitaire/function_collateral.js');
 
 var obj = {}; // objet contenant toutes nos fonctions
 var client = {}; // objet qui contiendra tous les champs des formulaires utile pour le scoring
@@ -19,11 +20,29 @@ obj.check_cookie=function(){
 obj.check_loan=function(){		
 	$("#check_formulaire_").submit(function(event){
 
+	////////////////////////////////////////////////// POUR function_CAPITAL //////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		client.input_borrower_loan_amount = document.getElementById("input_borrower_loan_amount").value;
-		//client.input_borrower_annual_incomes = document.getElementById("input_borrower_annual_incomes").value;
 		client.input_borrower_assets_type = document.getElementById("input_borrower_assets_type").value; // asset types
-		//client.input_borrower_other_incomes = document.getElementById("input_borrower_other_incomes").value;
+		client.input_borrower_contribution=document.getElementById("input_borrower_contribution").value;
 
+	////////////////////////////////////////////////// POUR function_COLLATERAL (on récupere également la valeur du prêt)/////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		client.input_borrower_pledge_value=document.getElementById("input_borrower_pledge_value").value;
+		client.input_borrower_bails_value=document.getElementById("input_borrower_bails_value").value;
+
+		if(document.getElementById("input_borrower_property_yes").checked)
+			client.input_borrower_property=document.getElementById("input_borrower_property_yes").value;
+		else
+			client.input_borrower_property=document.getElementById("input_borrower_property_no").value;
+
+		if(document.getElementById("input_borrower_guarantee_yes").checked)
+			client.input_borrower_guarantee=document.getElementById("input_borrower_guarantee_yes").value;
+		else
+			client.input_borrower_guarantee=document.getElementById("input_borrower_guarantee_no").value;
+
+		//client.input_borrower_annual_incomes = document.getElementById("input_borrower_annual_incomes").value;
+		//client.input_borrower_other_incomes = document.getElementById("input_borrower_other_incomes").value;
 		/*client.input_borrower_loan_amount = document.getElementById("input_borrower_loan_amount").value;
 		client.input_borrower_annual_incomes = document.getElementById("input_borrower_annual_incomes").value;
 		client.input_borower_loan_duration = document.getElementById("input_borower_loan_duration").value;
@@ -32,11 +51,16 @@ obj.check_loan=function(){
 		client.input_borrower_employment_Duration = document.getElementById("input_borrower_employment_Duration").value;
 		client.input_borrower_other_incomes_checked = document.getElementById("input_borrower_other_incomes_checked").checked;*/
 		
-		client.input_borrower_contribution=document.getElementById("input_borrower_contribution").value;
+		
 
 		// vérifier si on peut demander un pret (donc ne prend pas en compte le montant du prêt)
 		//demande_pret(client.input_borrower_contract,client.input_borrower_employment_Duration,client.input_borrower_annual_incomes/12,client.input_borrower_monthly_expenses,client.input_borower_loan_duration,client.input_borrower_other_incomes_checked); //->pret possible
-		asset(client.input_borrower_contribution,client.input_borrower_loan_amount,client.input_borrower_assets_type);
+		
+
+	//////////////////////////////////////// FONCIONS UTILIES POUR LES 5C - 1 fonction par C ////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//asset(client.input_borrower_contribution,client.input_borrower_loan_amount,client.input_borrower_assets_type);
+		collateral(client.input_borrower_property, client.input_borrower_pledge_value, client.input_borrower_bails_value, client.input_borrower_guarantee, client.input_borrower_loan_amount);
 		event.preventDefault();// Pour annuler le comportement par default d'un formulaire
 
 	});
@@ -47,7 +71,18 @@ obj.disableotherincomes=function(){
 		document.getElementById('input_borrower_other_incomes').disabled=false;
 	}else{
 		document.getElementById('input_borrower_other_incomes').disabled=true;
-		document.getElementById('input_borrower_other_incomes').value="";
+		document.getElementById('input_borrower_other_incomes').value=""; // on vide ce qu'il y a dedans afin de ne rien récupérer
+	}
+};
+
+obj.disablemortgage=function(){
+	if(document.getElementById("input_borrower_property_value_checked").checked){
+		document.getElementById('input_borrower_property_value').disabled=false;
+		console.log(document.getElementById("input_borrower_property_value").value);
+	}else{
+		document.getElementById('input_borrower_property_value').disabled=true;
+		document.getElementById('input_borrower_property_value').value=""; // on vide ce qu'il y a dedans afin de ne rien récupérer
+		console.log(document.getElementById("input_borrower_property_value").value);
 	}
 };
 

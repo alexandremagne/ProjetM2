@@ -278,32 +278,45 @@
 						  		<fieldset>
 								<legend class="text-primary">Collateral</legend>
 							
+
 									<div class="form-group">
-										<label for="input_borrower_owner" class="col-sm-4 control-label">Do you own a property ?</label>
+										<label for="input_borrower_property" class="col-sm-4 control-label">Do you own a property  ?</label>
 										<label class="radio-inline">
-										  <input type="radio" name="own_property" id="own_true" value="yes"> Yes
+										  <input type="radio" name="own_property" id="input_borrower_property_yes" value="yes"> Yes
 										</label>
 										<label class="radio-inline">
-										  <input type="radio" name="own_property" id="own_false" value="no"> No
+										  <input type="radio" name="own_property" id="input_borrower_property_no" value="no"> No
 										</label>
 									</div>
 
 
-									<div class="form-group">
-										<label for="input_borrower_property_value" class="col-sm-4 control-label">Value of the house's mortgage</label>
-										<div class="col-sm-6 input-group">
-											<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_property_value" placeholder="Please enter the net annual incomes" requiredd>
-											<span class="input-group-addon">$</span>
-										</div>
-									</div>
+									
 
 								  	<div class="form-group">
 											<label for="input_borrower_pledge_value" class="col-sm-4 control-label">Pledge</label>
 											<div class="col-sm-6 input-group">
-												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_pledge_value" placeholder="Please a loan duration" requiredd>
+												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_pledge_value" placeholder="Please the amount of the pledge" required>
 												<span class="input-group-addon">$</span>
 											</div>
 								  	</div>
+
+								  	<div class="form-group">
+											<label for="input_borrower_bails_value" class="col-sm-4 control-label">Bails</label>
+											<div class="col-sm-6 input-group">
+												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_bails_value" placeholder="Please enter the amount of the bail" required>
+												<span class="input-group-addon">$</span>
+											</div>
+								  	</div>
+
+								  	<div class="form-group">
+										<label for="input_borrower_guarantee" class="col-sm-4 control-label">May you have a guarantee for the requested loan ?</label>
+										<label class="radio-inline">
+										  <input type="radio" name="guarantee" id="input_borrower_guarantee_yes" value="yes"> Yes
+										</label>
+										<label class="radio-inline">
+										  <input type="radio" name="guarantee" id="input_borrower_guarantee_no" value="no"> No
+										</label>
+									</div>
 						  	
 						  		</fieldset>
 							</div> <!-- /.col-md-12-->
