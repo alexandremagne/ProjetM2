@@ -3,7 +3,7 @@ var fs=require('fs');
 
 var demande_pret = function(contract_type,duration_contract,monthly_incomes,monthly_expenses,loan_duration,other_incomes){
 		//client.ac="demande_stockage_pret";
-		var debt_ratio = monthly_expenses/monthly_incomes<=0.33;
+		var debt_ratio = monthly_expenses/monthly_incomes<=0.66;
 
 	if(contract_type == 1){//si c'est un CDI
 		if(debt_ratio){//si ratio d'endettement <= 33%

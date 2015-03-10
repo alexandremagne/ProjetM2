@@ -34,9 +34,22 @@
   		<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
       <div class="row">
         <hr>
-        <h1 class='col-md-offset-4'>Première simulation</h1>
+        <blockquote>
+        <p class='col-md-offset-4'>Première simulation</p>
+        <footer class='col-md-offset-4'>2880000 clients CDI et 2880000 clients autres contrats</footer>
+        <footer class='col-md-offset-4'>debt ratio = 0,33 et 0,66</footer>
+        </blockquote>
         <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
       </div>
+      <div class="row">
+        <hr>
+        <blockquote>
+        <p class='col-md-offset-4'>Deuxième simulation</p>
+        <footer class='col-md-offset-4'>2880000 clients CDI et 2880000 clients autres contrats</footer>
+        </blockquote>
+        <div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+      </div>
+  
   	</div>
   </body>
   <script>
@@ -127,7 +140,7 @@
         },
         
         subtitle:{
-            text:'2880000 de clients',
+            text:'2880000 pour chaque courbe',
             x:-80
         },
 
@@ -160,15 +173,23 @@
         },
 
         series: [{
-            name: 'cdi',
+            name: 'cdi, debt ratio = 0,33',
             data: [17, 83, 0, 0],
             pointPlacement: 'on'
         }, {
-            name: 'autres contrats',
+            name: 'autres contrats, debt ratio = 0,33',
             data: [8.146, 65.8125, 0, 26],
             pointPlacement: 'on'
+        }],series: [{
+            name: 'cdi, debt ratio = 0,66',
+            data: [33.33, 66.67, 0, 0],
+            pointPlacement: 'on'
+        }, {
+            name: 'autres contrats, debt ratio = 0,66',
+            data: [16, 58, 0, 26],
+            pointPlacement: 'on'
         }]
+});
 
-    
-});</script>
+</script>
   </html>
