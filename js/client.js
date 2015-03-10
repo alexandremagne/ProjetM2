@@ -1,5 +1,7 @@
 include('../../js/test_function_unitaire/function_capacite.js');
 include('../../js/test_function_unitaire/function_collateral.js');
+include('../../js/test_function_unitaire/cinqc.js');
+
 
 var obj = {}; // objet contenant toutes nos fonctions
 var client = {}; // objet qui contiendra tous les champs des formulaires utile pour le scoring
@@ -20,7 +22,7 @@ obj.check_cookie=function(){
 obj.check_loan=function(){		
 	$("#check_formulaire_").submit(function(event){
 
-	////////////////////////////////////////////////// POUR function_CAPITAL //////////////////////////////////////////////
+	////////////////////////////////////////////////// POUR CAPACITY //////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		client.input_borrower_loan_amount = document.getElementById("input_borrower_loan_amount").value;
 		client.input_borrower_assets_type = document.getElementById("input_borrower_assets_type").value; // asset types
@@ -59,8 +61,17 @@ obj.check_loan=function(){
 
 	//////////////////////////////////////// FONCIONS UTILIES POUR LES 5C - 1 fonction par C ////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//asset(client.input_borrower_contribution,client.input_borrower_loan_amount,client.input_borrower_assets_type);
-		collateral(client.input_borrower_property, client.input_borrower_pledge_value, client.input_borrower_bails_value, client.input_borrower_guarantee, client.input_borrower_loan_amount);
+
+		var obj5c = cinqc(collateral(client.input_borrower_property, client.input_borrower_pledge_value, client.input_borrower_bails_value, client.input_borrower_guarantee, client.input_borrower_loan_amount),asset(client.input_borrower_contribution,client.input_borrower_loan_amount,client.input_borrower_assets_type))
+		alert("Probalilité de défault du client: " + obj5c.default_probability);
+
+	//CAPACITY////
+		//alert(asset(client.input_borrower_contribution,client.input_borrower_loan_amount,client.input_borrower_assets_type)); 
+		
+	//COLLATERAL////
+		//alert(collateral(client.input_borrower_property, client.input_borrower_pledge_value, client.input_borrower_bails_value, client.input_borrower_guarantee, client.input_borrower_loan_amount));
+		
+		//obj.post(client, obj.callback);//passage au router des données
 		event.preventDefault();// Pour annuler le comportement par default d'un formulaire
 
 	});

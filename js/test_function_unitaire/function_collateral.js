@@ -4,6 +4,7 @@
 
 		//on attribue en fonction des paramètres rentrés par l'user, des valeurs pour affecter une pondération. Celle-ci est encore très simpliste
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 		if(properties_type=="yes"){
 			properties_type=parseInt("1");
 			console.log(properties_type);
@@ -39,60 +40,60 @@
 
 		if (properties_type == 1) {												// si hypotheque
 			var poids_1 = 40;
-			alert(poids_1);
+			//(poids_1);
 			if (pledges_type == 1) {												// si investissement
 				var poids_11 = 30;
-				alert(poids_1 + poids_11);
+				//(poids_1 + poids_11);
 				if (bails_type == 1) {													// si caution
 					var poids_111 = 15;
-					alert(poids_1 + poids_11 + poids_111);									
+					//(poids_1 + poids_11 + poids_111);									
 					if (guarantee_type == 1) {												// si garantie
 						var poids_1111 = 15;
-						alert(poids_1 + poids_11 + poids_111 + poids_1111);
+						return(poids_1 + poids_11 + poids_111 + poids_1111);
 					}
 					else {																	// si aucune garantie
 						var poids_1112 = 0;
-						alert(poids_1 + poids_11 + poids_111 + poids_1112);					
+						return(poids_1 + poids_11 + poids_111 + poids_1112);					
 					}
 				}
 				else {																	// si aucune caution
 					var poids_112 = 0;
-					alert(poids_1 + poids_11 + poids_112);
+					//(poids_1 + poids_11 + poids_112);
 					if (guarantee_type == 1) {												// si garantie
 						var poids_1121 = 15;
-						alert(poids_1 + poids_11 + poids_112 + poids_1121);
+						return(poids_1 + poids_11 + poids_112 + poids_1121);
 					}
 					else {																	// si aucune garantie
 						var poids_1122 = 0;
-						alert(poids_1 + poids_11 + poids_112 + poids_1122);					
+						return(poids_1 + poids_11 + poids_112 + poids_1122);					
 					}						
 				}
 			}
 			else {																	// si aucun investissement
 				var poids_12 = 0;
-				alert(poids_1 + poids_12);
+				//(poids_1 + poids_12);
 				if (bails_type == 1) {													// si caution
 					var poids_121 = 15;
-					alert(poids_1 + poids_12 + poids_121);
+					//(poids_1 + poids_12 + poids_121);
 					if (guarantee_type == 1) {												// si garantie
 						var poids_1211 = 15;
-						alert(poids_1 + poids_12 + poids_121 + poids_1211);
+						return(poids_1 + poids_12 + poids_121 + poids_1211);
 					}
 					else {																	// si aucune garantie
 						var poids_1212 = 0;
-						alert(poids_1 + poids_12 + poids_121 + poids_1212);					
+						return(poids_1 + poids_12 + poids_121 + poids_1212);					
 					}	
 				}
 				else {																	// si aucune caution
 					var poids_122 = 0;
-					alert(poids_1 + poids_12 + poids_122);
+					//(poids_1 + poids_12 + poids_122);
 					if (guarantee_type == 1) {												// si garantie
 						var poids_1221 = 15;
-						alert(poids_1 + poids_12 + poids_122 + poids_1221);
+						return(poids_1 + poids_12 + poids_122 + poids_1221);
 					}
 					else {																	// si aucune garantie
 						var poids_1222 = 0;
-						alert(poids_1 + poids_12 + poids_122 + poids_1222);					
+						return(poids_1 + poids_12 + poids_122 + poids_1222);					
 					}						
 				}
 			}
@@ -100,60 +101,60 @@
 
 		else {															// si aucune hypotheque
 			var poids_2 = 0;
-			alert(poids_2);
+			//(poids_2);
 			if (pledges_type == 1) {												// si investissement
 				var poids_21 = 30;
-				alert(poids_2 + poids_21);
+				//(poids_2 + poids_21);
 				if (bails_type == 1) {													// si caution
 					var poids_211 = 15;
-					alert(poids_2 + poids_21 + poids_211);
+					//(poids_2 + poids_21 + poids_211);
 					if (guarantee_type == 1) {												// si garantie
 						var poids_2111 = 15;
-						alert(poids_2 + poids_21 + poids_211 + poids_2111);
+						return(poids_2 + poids_21 + poids_211 + poids_2111);
 					}
 					else {																	// si aucune garantie
 						var poids_2112 = 0;
-						alert(poids_2 + poids_21 + poids_211 + poids_2112);					
+						return(poids_2 + poids_21 + poids_211 + poids_2112);					
 					}
 				}
 				else {																	// si aucune caution
 					var poids_212 = 0;
-					alert(poids_2 + poids_21 + poids_212);
+					//(poids_2 + poids_21 + poids_212);
 					if (guarantee_type == 1) {												// si garantie
 						var poids_2121 = 15;
-						alert(poids_2 + poids_21 + poids_212 + poids_2121);
+						return(poids_2 + poids_21 + poids_212 + poids_2121);
 					}
 					else {																	// si aucune garantie
 						var poids_2122 = 0;
-						alert(poids_2 + poids_21 + poids_212 + poids_2122);					
+						return(poids_2 + poids_21 + poids_212 + poids_2122);					
 					}						
 				}
 			}
 			else {																	// si aucun investissement
 				var poids_22 = 0;
-				alert(poids_2 + poids_22);
+				//(poids_2 + poids_22);
 				if (bails_type == 1) {													// si caution
 					var poids_221 = 15;
-					alert(poids_2 + poids_22 + poids_221);
+					//(poids_2 + poids_22 + poids_221);
 					if (guarantee_type == 1) {												// si garantie
 						var poids_2211 = 15;
-						alert(poids_2 + poids_22 + poids_221 + poids_2211);
+						return(poids_2 + poids_22 + poids_221 + poids_2211);
 					}
 					else {																	// si aucune garantie
 						var poids_2212 = 0;
-						alert(poids_2 + poids_22 + poids_221 + poids_2212);					
+						return(poids_2 + poids_22 + poids_221 + poids_2212);					
 					}
 				}
 				else {																	// si aucune caution
 					var poids_222 = 0;
-					alert(poids_2 + poids_22 + poids_222);
+					//(poids_2 + poids_22 + poids_222);
 					if (guarantee_type == 1) {												// si garantie
 						var poids_2221 = 15;
-						alert(poids_2 + poids_22 + poids_222 + poids_2221);
+						return(poids_2 + poids_22 + poids_222 + poids_2221);
 					}
 					else {																	// si aucune garantie
 						var poids_2222 = 0;
-						alert(poids_2 + poids_22 + poids_222 + poids_2222);					
+						return(poids_2 + poids_22 + poids_222 + poids_2222);					
 					}						
 				}
 			}

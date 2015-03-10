@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+	 
+		<!-- BOOTSTRAP essai branche -->
+		<script  type="text/javascript"  src="../dist/js/jquery.js"></script>
+		<script  type="text/javascript"  src="../dist/js/bootstrap.min.js"> </script>		
+		<script  type="text/javascript"  src="../js/highchart/highcharts.js"> </script>
+		<script  type="text/javascript"  src="../js/highchart/exporting.js"> </script>
+        <script  type="text/javascript"  src="../js/highchart/highcharts-more.js"> </script>
+		<link rel="stylesheet" type="text/css" href="../dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../dist/css/bootstrap-theme.min.css" />
+
+	
+		<title>CLIENT</title>
+  </head>
+  
+ 	<body style="padding-top: 0px;"> 	
+  	<div class="container">
+  		<h1>Hello</h1>
+  		
+        <div id="container3" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+  	</div>
+  </body>
+
+
+
+<script>
+$(function () {
+
+    $('#container3').highcharts({
+
+        chart: {
+            polar: true,
+            type: 'line'
+        },
+
+        title: {
+            text: "5C's profile client",
+            x: -80
+        },
+
+        pane: {
+            size: '80%'
+        },
+
+        xAxis: {
+            categories: ['Character', 'Collateral', 'Capacity', 'Condition', 'Capital'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+
+        tooltip: {
+            shared: true,
+            pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 70,
+            layout: 'vertical'
+        },
+
+        series: [{
+            name: 'Allocated Budget',
+            data: [0.1, 0.3, 0.4, 0.8, 1],
+            pointPlacement: 'on'
+        }, {
+            name: 'Actual Spending',
+            data: [0.2, 0.3, 0.5, 0.4, 0.9],
+            pointPlacement: 'on'
+        }]
+
+    });
+});
+</script>
+
+
+
+</html>
