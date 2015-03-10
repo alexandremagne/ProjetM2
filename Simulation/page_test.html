@@ -39,7 +39,7 @@
         <footer class='col-md-offset-4'>2880000 clients CDI et 2880000 clients autres contrats</footer>
         <footer class='col-md-offset-4'>debt ratio = 0,33 et 0,66</footer>
         </blockquote>
-        <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        <div id="container2" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
       </div>
       <div class="row">
         <hr>
@@ -123,7 +123,7 @@
             data: data.ord
         }]
     });
-});
+
 
 
 
@@ -173,23 +173,27 @@
         },
 
         series: [{
+                    
             name: 'cdi, debt ratio = 0,33',
             data: [17, 83, 0, 0],
             pointPlacement: 'on'
         }, {
+           
             name: 'autres contrats, debt ratio = 0,33',
             data: [8.146, 65.8125, 0, 26],
             pointPlacement: 'on'
         },{
+         
             name: 'cdi, debt ratio = 0,66',
             data: [33.33, 66.67, 0, 0],
             pointPlacement: 'on'
         }, {
+         
             name: 'autres contrats, debt ratio = 0,66',
             data: [16, 58, 0, 26],
             pointPlacement: 'on'
         }]
 });
-
+});
 </script>
   </html>
