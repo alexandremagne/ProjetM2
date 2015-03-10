@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+	 
+		<!-- BOOTSTRAP essai branche -->
+		<script  type="text/javascript"  src="../../dist/js/jquery.js"></script>
+		<script  type="text/javascript"  src="../../dist/js/bootstrap.min.js"> </script>		
+		<script  type="text/javascript"  src="../../js/highchart/highcharts.js"> </script>
+		<script  type="text/javascript"  src="../../js/highchart/exporting.js"> </script>
+		<link rel="stylesheet" type="text/css" href="../../dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../dist/css/bootstrap-theme.min.css" />
+
+	
+		<title>CLIENT</title>
+  </head>
+  
+ 	<body style="padding-top: 0px;"> 	
+  	<div class="container">
+  		<h1>Hello</h1>
+  
+  		<div class="row">
+		    <form method="submit" class="col-md-5" id="form_number">
+		      <label for="points">Modifier la valeur:</label>
+		      <input type="range" name="points" value="50" min="0" max="100" id='slider_number'>
+		      <input type="number" value="50" min="0" max="100" data-inline="true" value='10' id='input_number'>		      
+		    </form>
+		 </div>
+		
+
+  		<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+  	</div>
+  </body>
+  <script>
+
+  $(document).ready(function(){    
+
+  	
+	
+	//high chart
+    $('#container').highcharts({
+        title: {
+            text: 'Probabilité de défaut en fonction des taux appliqués',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'Source: moi',
+            x: -20
+        },
+        xAxis: {
+            categories: obj.i
+        },
+        yAxis: {
+            title: {
+                text: 'Temperature (°C)'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '°C'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Tokyo',
+            data: obj.result
+        }]
+    });
+});</script>
+  </html>
+
+
+

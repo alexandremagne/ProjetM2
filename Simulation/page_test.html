@@ -6,8 +6,11 @@
 		<!-- BOOTSTRAP essai branche -->
 		<script  type="text/javascript"  src="../dist/js/jquery.js"></script>
 		<script  type="text/javascript"  src="../dist/js/bootstrap.min.js"> </script>		
+
 		<script  type="text/javascript"  src="../js/highchart/highcharts.js"> </script>
+    <script  type="text/javascript"  src="../js/highchart/highcharts-more.js"> </script>
 		<script  type="text/javascript"  src="../js/highchart/exporting.js"> </script>
+
 		<link rel="stylesheet" type="text/css" href="../dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="../dist/css/bootstrap-theme.min.css" />
 
@@ -29,6 +32,11 @@
 		
 
   		<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+      <div class="row">
+        <hr>
+        <h1 class='col-md-offset-4'>Première simulation</h1>
+        <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+      </div>
   	</div>
   </body>
   <script>
@@ -102,5 +110,65 @@
             data: data.ord
         }]
     });
+});
+
+
+
+    $('#container2').highcharts({
+
+        chart: {
+            polar: true,
+            type: 'line'
+        },
+
+        title: {
+            text: 'Prêt accordé selon le contrat',
+            x: -80
+        },
+        
+        subtitle:{
+            text:'2880000 de clients',
+            x:-80
+        },
+
+        pane: {
+            size: '80%'
+        },
+
+        xAxis: {
+            categories: ['Prêt ok', 'Pas de Prêt', 'Erreur', 'Cas spécial'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+
+        tooltip: {
+            shared: true,
+            pointFormat: '<span style="color:{series.color}">{series.name}: <b>%{point.y:,.0f}</b><br/>'
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 70,
+            layout: 'vertical'
+        },
+
+        series: [{
+            name: 'cdi',
+            data: [17, 83, 0, 0],
+            pointPlacement: 'on'
+        }, {
+            name: 'autres contrats',
+            data: [8.146, 65.8125, 0, 26],
+            pointPlacement: 'on'
+        }]
+
+    
 });</script>
   </html>
