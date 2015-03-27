@@ -37,9 +37,6 @@ var demande_pret = function(contract_type,duration_contract,monthly_incomes,mont
 		alert("type non répertorié");
 	}
 	obj.post(client, obj.callback);//passage au router des données
-
-
-
 }
 
 //test unitaire valable du 14 février 2015

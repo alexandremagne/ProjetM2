@@ -142,23 +142,13 @@ exports.store_loan_demand=function(cookie, b, res){
 			var user = db.collection('users');//pour aller choper le cookie dans la db
 			var  loan_demands = db.collection("loan_demands");
 			c = cookie.split("cookieName=");
-		user.find({"cookie.value":c[1]}).toArray(function(err, results){
+			user.update({"cookie.value":c[1]},{ $set: {pret_ok_or_not:b}}, { upsert: false }, function(err, docs){		
 					if(err) {
 						throw err;
 						res.end(JSON.stringify({message: "no_cookie"}));
 						db.close(); // on referme la db
 					}else{
-									
-							b.email=results[0].email;
-							loan_demands.insert(b,function(err, doc){	
-								if(err){				
-									res.end(JSON.stringify({message:"something_wrong"}));
-									db.close();
-								}else{				
-									res.end(JSON.stringify({message:"store_loan_demand_ok"}));
-									db.close();
-								}
-							});						
+						res.end(JSON.stringify({message:"store_loan_demand_ok"}));																			
 						}
 		});
 		}

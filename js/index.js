@@ -283,7 +283,7 @@ index.callback = function () {
 		if (r.message=="login_connexion_autorised_admin_"){
 			window.location = "./html/private/admin.html"; // JE RENVOIE L'ADMIN VERS LA PAGE CLIENT POUR LE MOMENT CAR PAS DE PAGE ADMIN ENCORE TODO
 		}else if(r.message=="login_connexion_autorised_client_"){
-			window.location = "./html/public/situation_client.html";
+			window.location = "./html/public/1_demande_pret.html";
 		}else if (r.message=="login_connexion_refused"){
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
 			index.changer_couleur_case("boites_pour_entrer_les_login_");
@@ -297,6 +297,8 @@ index.callback = function () {
 		}else if(r.message=="register_ok"){
 			console.log("register ok");
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)
+			alert('Register successful');
+			location.reload();
 		}else if(r.message=="register_email_not_valid"){
 			alert("email format invalid");
 			document.getElementById(contenuHTML.id).innerHTML = contenuHTML.string;//pour remettre le bouton originel (car gif qui tourne)

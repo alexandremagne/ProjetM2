@@ -115,7 +115,7 @@ obj.callback=function(){
 
 		if (r.message=="store_loan_demand_ok"){
 			console.log("demande de prêt stocké dans la bdd");
-			window.location="client.html";
+			window.location="2_demande_pret.html";
 		}else if(r.message=="something_wrong"){
 			console.log("demande de prêt NON stocké");
 		}else if (r.message=="nocookie"){

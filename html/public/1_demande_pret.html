@@ -25,7 +25,7 @@
 						<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 							<div class="navbar-header">
-								<a class="navbar-brand active" href="./client.html">
+								<a class="navbar-brand active" href="./1_demande_pret.html">
 									<p style="font:15px verdana; color:#000;">
 										PARTIE CLIENT
 									</p>
@@ -94,7 +94,7 @@
 		
 								  	 <div class="form-group">
 										<label for="input_borrower_contract" class="col-sm-4 control-label">Type of employment contract</label>
-										<div class="col-sm-6 ">
+										<div class="col-sm-6 input-group">
 											<select class="form-control" id="input_borrower_contract" onchange="console.log(this.value)">
 											  <option value="na">Choose a contract type...</option>
 											  <option value="1">CDI</option>
@@ -110,7 +110,7 @@
 							 	
 								 	<div class="form-group ">
 										<label for="input_borrower_employment_Duration" class="col-sm-4 control-label">Duration of employment</label>
-										<div class="col-sm-6">
+										<div class="col-sm-6 input-group">
 											<select class="form-control" id="input_borrower_employment_Duration" onchange="console.log(this.value)" >
 											  <option value="1">0 - 1</option>
 											  <option value="5">1 - 5</option>
@@ -130,30 +130,30 @@
 							 			</div>
 
 							 			<div class="form-group">
-											<label for="input_borrower_other_incomes" class="col-sm-4 control-label" >Do you have another incomes?</label>
+											<label for="input_borrower_other_incomes" class="col-sm-4 control-label" >Do you have another incomes? (annual)</label>											
 											<div class="col-sm-6 form-inline" style="padding-right:0px;">
 												<label class="checkbox">
 												  <input type="checkbox" id="input_borrower_other_incomes_checked" onchange="obj.disableotherincomes()" >Yes
 												</label>
-												<div class="input-group col-md-10">
+												<div class="input-group col-md-11">
 												<input class="form-control" id="input_borrower_other_incomes" type="number" min="0" max="1000000000" placeholder="Amount of other incomes" disabled>
 												<span class="input-group-addon">$</span>
-											</div>
+											</div>											
 											</div>
 										</div>
 
 										<div class="form-group">
-												<label for="input_borower_loan_duration" class="col-sm-4 control-label">Loan duration (max 25)</label>
+												<label for="input_borower_loan_duration" class="col-sm-4 control-label">Loan duration (max 25 months)</label>
 												<div class="col-sm-6 input-group">
 													<input min="0" max="25"  type="number" class="form-control" id="input_borower_loan_duration" placeholder="Please a loan duration" required>
-													<span class="input-group-addon">years</span>
+													<span class="input-group-addon">Months</span>
 												</div>
 									  	</div>
 							  			<div class="form-group">
-											<label for="input_borrower_monthly_expenses" class="col-sm-4 control-label">Monthly expenses</label>
+											<label for="input_borrower_monthly_expenses" class="col-sm-4 control-label">Monthly debt currently</label>
 											<div class="col-sm-6 input-group">
 												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_monthly_expenses" placeholder="Please enter yours monthly enpenses" required >
-												<span class="input-group-addon">$</span>
+												<span class="input-group-addon">$/month</span>
 											</div>
 							 			</div>
 							 
@@ -213,7 +213,7 @@
 			
 	</div><!-- /.container -->		
 
-	<script  type="text/javascript"  src="../../js/situation_client.js"></script>
+	<script  type="text/javascript"  src="../../js/1_demande_pret.js"></script>
 	</body>
 </html>
 		

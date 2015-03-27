@@ -132,29 +132,19 @@ go_post:
 	},
 
 cb_cookie:
-	function (ret) {
-
-		console.log("Contenue de ret " + ret);
-		
+	function (ret) {		
 		var b = this.b;
-		console.log("b.ac: " + b.ac);
-
 		if (ret.a == true) {	
 /*++++++++++++++++++++++++++++++++++++++++++++MY WALLET++++++++++++++++++++++++++++*/		
-			if (b.ac == "buy-btn"){
-				this.resp.writeHead(200,{"Content -Type": "application/json"});
-				db.buy( b.wallet, b.nbstock, this.req.headers.cookie, this.resp);	
-				return;
-			}
 
-			else if(b.ac == "demande_stockage_pret"){
+
+			if(b.ac == "demande_stockage_pret"){
 				this.resp.writeHead(200,{"Content -Type": "application/json"});
 				db.store_loan_demand(this.req.headers.cookie, b, this.resp);
 				return;
 			} 
 
-			else if (b.ac=="check_cookie"){
-				console.log("fonction appelée à chaque rechargement de page pour cheker si le cookie est la ou pas");
+			else if (b.ac=="check_cookie"){				
 				return;
 			}
 
