@@ -1,5 +1,4 @@
 
-
 	var collateral = function(properties_type, pledges_type, bails_type, guarantee_type, loan_amount) {
 
 		//on attribue en fonction des paramètres rentrés par l'user, des valeurs pour affecter une pondération. Celle-ci est encore très simpliste

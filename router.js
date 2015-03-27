@@ -138,11 +138,17 @@ cb_cookie:
 /*++++++++++++++++++++++++++++++++++++++++++++MY WALLET++++++++++++++++++++++++++++*/		
 
 
-			if(b.ac == "demande_stockage_pret"){
+			if(b.ac == "demande_stockage_pret"){//premier test
 				this.resp.writeHead(200,{"Content -Type": "application/json"});
 				db.store_loan_demand(this.req.headers.cookie, b, this.resp);
 				return;
 			} 
+
+			else if (b.ac=="save_loan_request"){//deuxiem test
+				this.resp.writeHead(200,{"Content -Type": "application/json"});
+				db.store_loan_request_5C(this.req.headers.cookie, b, this.resp);
+				return;
+			}
 
 			else if (b.ac=="check_cookie"){				
 				return;

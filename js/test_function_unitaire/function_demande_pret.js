@@ -1,10 +1,16 @@
+// Fonction utilisés dans "situation_client.html"
 
 // cette fonction est une première barrière avant d'aller plus loin dans le formulaire.
 // EN effet si la demande de prêt n'est PAS favorable, on refuse le prêt. => Il ne s'agit pas encore des 5C, il n'y a pas de pondérations à ce stade.
 // Si la demande de prêt est FAVORABLE, on poursuit le formulaire, et on utilise les 5C 
 
+// Dans cette fonction, on ne prend pas en compte le MONTANT DU PRET. On vérifie juste si ses conditions sont favorable a l'acquisition d'un nouveau prêt
+//qu'il définiera dans la page suivante (client.html)
+
 var demande_pret = function(contract_type,duration_contract,monthly_incomes,monthly_expenses,loan_duration,other_incomes){
+
 		client.ac="demande_stockage_pret";
+		
 		var debt_ratio = monthly_expenses/monthly_incomes<=0.33;		
 	if(contract_type == 1){//si c'est un CDI
 		if(debt_ratio){//si ratio d'endettement <= 33%
@@ -37,6 +43,9 @@ var demande_pret = function(contract_type,duration_contract,monthly_incomes,mont
 		alert("type non répertorié");
 	}
 	obj.post(client, obj.callback);//passage au router des données
+
+
+
 }
 
 //test unitaire valable du 14 février 2015

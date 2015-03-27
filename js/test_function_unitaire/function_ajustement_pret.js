@@ -1,3 +1,5 @@
+// JE ne sais pas quand on utilise cette fonction
+
 var ajustement_pret = function(monthly_incomes, monthly_expenses, loan_duration, loan_amount){
 
 // ici rate est le taux sans riques avec taux de rendement = taux sans risque + spread de credit. Le spread = 0 pour le moment

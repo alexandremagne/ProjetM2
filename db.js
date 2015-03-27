@@ -154,6 +154,31 @@ exports.store_loan_demand=function(cookie, b, res){
 	});
 };
 
+// pour la demande de pret final, on stocke ce ue nous renvoie la fonction 5C => la valeur de chacun des C (sur 5) ainsi que la proba de defaut
+exports.store_loan_request_5C=function(cookie, b, res){
+	MongoClient.connect(field_to_connect_db.adress, function(err, db) {
+	if(err) {//en cas d'erreur de connection
+		console.log("DB : erreur de connexion à la db au niveau de store_loan_demand: "+err);
+		res.writeHead(503, {"Content-Type": "application/json" });
+		res.end(JSON.stringify({message: "store_loan_request_error"}));
+		return;
+	} else{
+		res.writeHead(200, {"Content-Type": "application/json" });
+
+			var user = db.collection('users');//pour aller choper le cookie dans la db			
+			c = cookie.split("cookieName=");
+			user.update({"cookie.value":c[1]},{ $set: {cinqCform:b}}, { upsert: false }, function(err, docs){	
+					if(err) {
+						throw err;
+						res.end(JSON.stringify({message: "no_cookie"}));
+						db.close(); // on referme la db
+					}else{									
+							res.end(JSON.stringify({message:"store_loan_request_ok"}));																							
+						}
+		});
+		}
+	});
+};
 
 exports.valid_cookie = function(c,obj,fct){
 	/*
