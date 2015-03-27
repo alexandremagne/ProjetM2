@@ -37,8 +37,11 @@ var affichage_demande_function_html = function(){
 		var str_to_show ='';
 		str_to_show+="<tr><td>N°</td><td>Name</td><td>Mail</td><td>Résultat</td></tr>";		
 		for(a in obj.r){			
-			compteur++;
-			str_to_show+="<tr><td>"+compteur+"</td><td>"+obj.r[a].firstname+"</td><td>"+obj.r[a].email+"</td><td>"+obj.r[a].pret_ok_or_not.resultat_fonction+"</td></tr>";
+			
+			if(obj.r[a].resultat_fonction){
+				str_to_show+="<tr><td>"+compteur+"</td><td>"+obj.r[a].firstname+"</td><td>"+obj.r[a].email+"</td><td>"+obj.r[a].pret_ok_or_not.resultat_fonction+"</td></tr>";
+				compteur++;
+			}
 		}
 		document.getElementById('affichage_pret').innerHTML=str_to_show;
 	}else{
