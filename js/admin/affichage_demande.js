@@ -33,10 +33,12 @@ obj.callback=function(){
 var affichage_demande_function_html = function(){
 
 	if(obj.r[0]){
+		compteur =0;
 		var str_to_show ='';
-		str_to_show+="<tr><td>N°</td><td>Name</td><td>Date</td></tr>";		
-		for(a in obj.r){
-			str_to_show+="<tr><td>"+obj.r[a].input_borrower_annual_incomes+"</td><td>"+obj.r[a].input_borrower_annual_incomes+"</td><td>"+obj.r[a].input_borrower_annual_incomes+"</td></tr>";
+		str_to_show+="<tr><td>N°</td><td>Name</td><td>Mail</td><td>Résultat</td></tr>";		
+		for(a in obj.r){			
+			compteur++;
+			str_to_show+="<tr><td>"+compteur+"</td><td>"+obj.r[a].firstname+"</td><td>"+obj.r[a].email+"</td><td>"+obj.r[a].pret_ok_or_not.resultat_fonction+"</td></tr>";
 		}
 		document.getElementById('affichage_pret').innerHTML=str_to_show;
 	}else{

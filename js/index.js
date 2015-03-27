@@ -281,7 +281,7 @@ index.callback = function () {
 			LOGIN CALLBACKS
 		*/
 		if (r.message=="login_connexion_autorised_admin_"){
-			window.location = "./html/private/admin.html"; // JE RENVOIE L'ADMIN VERS LA PAGE CLIENT POUR LE MOMENT CAR PAS DE PAGE ADMIN ENCORE TODO
+			window.location = "./html/private/affichage_demande.html"; // JE RENVOIE L'ADMIN VERS LA PAGE CLIENT POUR LE MOMENT CAR PAS DE PAGE ADMIN ENCORE TODO
 		}else if(r.message=="login_connexion_autorised_client_"){
 			window.location = "./html/public/1_demande_pret.html";
 		}else if (r.message=="login_connexion_refused"){

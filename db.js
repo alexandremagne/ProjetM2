@@ -32,10 +32,9 @@ exports.affichage_demande = function(res){
 MongoClient.connect(field_to_connect_db.adress, function(err, db) {
     if(err) throw err;//si erreur de connections
 	
-	 var collection = db.collection('loan_demands');//on veut acceder à la collection test 1 de la db ProjetEsme
+	 var collection = db.collection('users');//on veut acceder à la collection test 1 de la db ProjetEsme
 	 collection.find().toArray(function(err, results) {
-     if (err) throw err;
-	
+     if (err) throw err;	
       		res.writeHead(200, {"Content-Type": "application/json" });
       		var data = {};
       		data.message = "ok_affichage_demande";
