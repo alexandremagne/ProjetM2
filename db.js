@@ -181,6 +181,30 @@ exports.store_loan_request_5C=function(cookie, b, res){
 	});
 };
 
+exports.affichage_spider = function(cookie, res){
+MongoClient.connect(field_to_connect_db.adress, function(err, db) {
+	c = cookie.split("cookieName=");
+    if(err) throw err;//si erreur de connections
+	
+	 var collection = db.collection('users');//on veut acceder à la collection test 1 de la db ProjetEsme
+	 collection.find({"cookie.value":c[1]}).toArray(function(err, results) {
+	 res.writeHead(200, {"Content-Type": "application/json" });
+     if (err){
+     	throw err;
+		res.end(JSON.stringify({message: "no_cookie"}));
+		db.close(); // on referme la db
+     }if(results){
+      		var data = {};
+      		data.message = "ok_affichage_spider";
+      		data.r = results;
+			res.end(JSON.stringify(data));
+			db.close();      		
+      }
+   });
+});
+};
+
+
 exports.valid_cookie = function(c,obj,fct){
 	/*
 	fonction pour voir si le cookie existe ou non dans la db

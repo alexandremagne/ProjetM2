@@ -25,9 +25,17 @@ var cinqc=function(collateral_user, capital_user, capacity_user, condition_user,
 	obj5c.character=coef5c.character*(parseInt(character_user)/100);
 
 	obj5c.default_probability= 1 - obj5c.collateral-obj5c.capital-obj5c.capacity-obj5c.condition-obj5c.character;
-	
-
 	console.log("probabilité de défaut du client : " + (obj5c.default_probability*100) + "%");
+	if(obj5c.default_probability<0)
+		obj5c.default_probability=0;
+
+	obj5c.collateral=collateral_user/100;
+	obj5c.capital=capital_user/100;
+	obj5c.capacity=capacity_user/100;
+	obj5c.condition=capacity_user/100;
+	obj5c.character=character_user/100;
+
+	console.log("probabilité de défaut du client : " + (obj5c.default_probability) + "%");
 
 	return obj5c; // on retourne tout l'objet de manière a afficher un spider graph
 };

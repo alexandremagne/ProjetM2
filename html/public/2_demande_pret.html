@@ -8,11 +8,11 @@
 		<script  type="text/javascript"  src="../../dist/js/bootstrap.min.js"> </script>
 		<link rel="stylesheet" type="text/css" href="../../dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="../../dist/css/bootstrap-theme.min.css" />
-
-		<script  type="text/javascript"  src="../../js/highchart/highcharts.js"> </script>
-		<script  type="text/javascript"  src="../../js/highchart/exporting.js"> </script>
+		
+		<script  type="text/javascript"  src="../../js/highchart/highcharts.js"> </script>		
         <script  type="text/javascript"  src="../../js/highchart/highcharts-more.js"> </script>
-
+        
+        <script  type="text/javascript"  src="../../js/highchart/exporting.js"> </script>
 
 	
 		<title>CLIENT</title>
@@ -44,11 +44,11 @@
 								 </button>								
 							</div>
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-							      <ul class="nav navbar-nav">
-							        <li class=""><a href="#">Contacter son banquier<span class="sr-only">(current)</span></a></li>
-							        <li class=""><a href="#">Voir demandes de prêts<span class="sr-only">(current)</span></a></li>
-							      </ul>
-							</div>			
+							      
+							      <a class="navbar-brand navbar-right" href="#">
+        							<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+      							  </a>
+							</div>		
 						</div><!-- /.container-fluid -->
 					</div>
 				</div><!-- /.col-md-12 -->
@@ -355,6 +355,18 @@
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
         <div id="containerGraph" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+        <br>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <div id="containerGraph2" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+        <br>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <div id="containerGraph3" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
       </div>
     </div>
   </div>
@@ -379,63 +391,7 @@
 
 	</div><!-- /.container -->	
 
-	<!-- Highchart -->
-	<script>
-$(function () {
-
-    $('#containerGraph').highcharts({
-
-        chart: {
-            polar: true,
-            type: 'line'
-        },
-
-        title: {
-            text: "5C's profile client",
-            x: -80
-        },
-
-        pane: {
-            size: '80%'
-        },
-
-        xAxis: {
-            categories: ['Character', 'Collateral', 'Capacity', 'Condition', 'Capital'],
-            tickmarkPlacement: 'on',
-            lineWidth: 0
-        },
-
-        yAxis: {
-            gridLineInterpolation: 'polygon',
-            lineWidth: 0,
-            min: 0
-        },
-
-        tooltip: {
-            shared: true,
-            pointFormat: '<span style="colorr:{series.colorr}">{series.name}: <b>${point.y:,.0f}</b><br/>'
-        },
-
-        legend: {
-            align: 'right',
-            verticalAlign: 'top',
-            y: 70,
-            layout: 'vertical'
-        },
-
-        series: [{
-            name: 'Allocated Budget',
-            data: [0.1, 0.3, 0.4, 0.8, 1],
-            pointPlacement: 'on'
-        }, {
-            name: 'Actual Spending',
-            data: [0.2, 0.3, 0.5, 0.4, 0.9],
-            pointPlacement: 'on'
-        }]
-
-    });
-});
-</script>
+	
 
 
 	<script  type="text/javascript"  src="../../js/2_demande_pret.js"></script>

@@ -1,351 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
-	 
-
-		  <!-- BOOTSTRAP essai branche -->
-        <script  type="text/javascript"  src="../dist/js/jquery.js"></script>
-        <script  type="text/javascript"  src="../dist/js/bootstrap.min.js"> </script>       
-        <script  type="text/javascript"  src="../js/highchart/highcharts.js"> </script>
-        <script  type="text/javascript"  src="../js/highchart/exporting.js"> </script>
-        <script  type="text/javascript"  src="../js/highchart/highcharts-more.js"> </script>
-        <link rel="stylesheet" type="text/css" href="../dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="../dist/css/bootstrap-theme.min.css" />
+<script  type="text/javascript"  src="../dist/js/jquery.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<script src="http://code.highcharts.com/modules/solid-gauge.js"></script>
 
 
-	
-		<title>CLIENT</title>
-  </head>
-  
- 	<body style="padding-top: 0px;"> 	
-  	<div class="container">
-  		<h1>Hello</h1>
-  
-  		<div class="row">
-		    <form method="submit" class="col-md-5" id="form_number">
-		      <label for="points">Modifier la valeur:</label>
-		      <input type="range" name="points" value="50" min="0" max="100" id='slider_number'>
-		      <input type="number" value="50" min="0" max="100" data-inline="true" value='10' id='input_number'>		      
-		    </form>
-		 </div>
-		
+    <div id="containerGraph3" style="width: 300px; height: 200px; float: left"></div>
+    
 
+<script type="text/javascript">
+$(function () {
+ var gaugeOptions = {
 
-  		<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-      <div class="row">
-        <hr>
-        <blockquote>
-        <p class='col-md-offset-4'>Première simulation</p>
-        <footer class='col-md-offset-4'>2880000 clients CDI et 2880000 clients autres contrats</footer>
-        <footer class='col-md-offset-4'>debt ratio = 0,33 et 0,66</footer>
-        </blockquote>
-        <div id="container2" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
-      </div>
-      <div class="row">
-        <hr>
-        <blockquote>
-        <p class='col-md-offset-4'>Deuxième simulation</p>
-        <footer class='col-md-offset-4'>2880000 clients CDI et 2880000 clients autres contrats</footer>
-        </blockquote>
-        <div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-      </div>
-  
-  	</div>
-  </body>
-
-  <script>
-$(document).ready(function(){    
-
-    data={};
-    data.abs = new Array();
-    data.ord = new Array();
-    //pour l'axe des absices
-    for(var i = 0 ; i<11 ; i++){
-        data.abs.push(i);
-        data.ord.push(i*document.getElementById('slider_number').value/100)
-    }
-    function modif(coef){
-        data.ord=new Array();
-        for(var i = 0 ; i<11 ; i++){
-            data.ord.push(i*coef);
-            $('#container').highcharts().series[0].data[i].update(i*coef/100)
-        }
-    };
-    $('#form_number').submit(function(e){
-        return false;
-    });
-
-    $("#slider_number").on("input", function(){     
-        $("#input_number").val(this.value);
-        modif(this.value);
-    });
-
-    $("#input_number").on("input", function(){      
-        $("#slider_number").val(this.value);
-        modif(this.value);
-    });
-
-  
-    //high chart
-
-    $('#container1').highcharts({
-        title: {
-            text: 'Probabilité de défaut en fonction des taux appliqués',
-            x: -20 //center
-        },
-        subtitle: {
-            text: 'Source: moi',
-            x: -20
-        },
-        xAxis: {
-            categories: data.abs
-        },
-        yAxis: {
-            title: {
-                text: 'Temperature (°C)'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        tooltip: {
-            valueSuffix: '°C'
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            borderWidth: 0
-        },
-        series: [{
-            name: 'Tokyo',
-            data: data.ord
-        }]
-    });
-<<<<<<< HEAD
-});</script>
-
-
-
-<script>
-      $(function () {
-    $('#container2').highcharts({
         chart: {
-            type: 'areaspline'
+            type: 'solidgauge'
         },
-        title: {
-            text: 'Capacité'
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'left',
-            verticalAlign: 'top',
-            x: 150,
-            y: 100,
-            floating: true,
-            borderWidth: 1,
-            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
-        },
-        xAxis: {
-            categories: [
-                'Contribution',
-                'Loan Amount',
-                'Assets Type',
-                'Thursday'
-            ],
-            plotBands: [{ // visualize the weekend
-                from: 4.5,
-                to: 6.5,
-                color: 'rgba(68, 170, 213, .2)'
-            }]
-        },
-        yAxis: {
-            title: {
-                text: '$'
+
+        title: null,
+
+        pane: {
+            center: ['50%', '85%'],
+            size: '140%',
+            startAngle: -90,
+            endAngle: 90,
+            background: {
+                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                innerRadius: '60%',
+                outerRadius: '100%',
+                shape: 'arc'
             }
         },
+
         tooltip: {
-            shared: true,
-            valueSuffix: ' units'
+            enabled: false
         },
+
+        // the value axis
+        yAxis: {
+            stops: [
+                [0.1, '#DF5353'], // red
+                [0.5, '#DDDF0D'], // yellow
+                [0.9, '#55BF3B'] // green
+                
+            ],
+            lineWidth: 0,
+            minorTickInterval: null,
+            tickPixelInterval: 400,
+            tickWidth: 0,
+            title: {
+                y: -70
+            },
+            labels: {
+                y: 16
+            }
+        },
+
+        plotOptions: {
+            solidgauge: {
+                dataLabels: {
+                    y: 5,
+                    borderWidth: 0,
+                    useHTML: true
+                }
+            }
+        }
+    };
+
+    // The speed gauge
+    $('#containerGraph3').highcharts(Highcharts.merge(gaugeOptions, {
+        yAxis: {
+            min: 0,
+            max: 100,
+            title: {
+                text: 'Speed'
+            }
+        },
+
         credits: {
             enabled: false
         },
-        plotOptions: {
-            areaspline: {
-                fillOpacity: 0.5
+
+        series: [{
+            name: 'Your profile',
+            data: [100],
+            dataLabels: {
+                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                       '<span style="font-size:12px;color:silver">%</span></div>'
+            },
+            tooltip: {
+                valueSuffix: ' %'
             }
-        },
-        series: [{
-            name: 'Alex',
-            data: [3, 4, 3, 5, 4, 10, 12]
-        }, {
-            name: 'Romain',
-            data: [1, 3, 4, 3, 3, 5, 4]
-        }]
-    });
-});
-</script>
-
-<script>
-$(function () {
-
-    $('#container3').highcharts({
-
-        chart: {
-            polar: true,
-            type: 'line'
-        },
-
-        title: {
-            text: "5C's profile client",
-            x: -80
-        },
-
-        pane: {
-            size: '80%'
-        },
-
-        xAxis: {
-            categories: ['Character', 'Collateral', 'Capacity', 'Condition', 'Capital'],
-            tickmarkPlacement: 'on',
-            lineWidth: 0
-        },
-
-        yAxis: {
-            gridLineInterpolation: 'polygon',
-            lineWidth: 0,
-            min: 0
-        },
-
-        tooltip: {
-            shared: true,
-            pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
-        },
-
-        legend: {
-            align: 'right',
-            verticalAlign: 'top',
-            y: 70,
-            layout: 'vertical'
-        },
-
-        series: [{
-            name: 'Allocated Budget',
-            data: [0.1, 0.3, 0.4, 0.8, 1],
-            pointPlacement: 'on'
-        }, {
-            name: 'Actual Spending',
-            data: [0.2, 0.3, 0.5, 0.4, 0.9],
-            pointPlacement: 'on'
         }]
 
-    });
+    }));//container 3
+
+
 });
 </script>
-
-<script>
-$(function () {
-
-    $('#container').highcharts({
-=======
-
-
-
-
-    $('#container2').highcharts({
->>>>>>> ba8f1e6d88134b9f64d053082aa28680a076bf38
-
-        chart: {
-            polar: true,
-            type: 'line'
-        },
-
-        title: {
-            text: 'Prêt accordé selon le contrat',
-            x: -80
-        },
-        
-        subtitle:{
-<<<<<<< HEAD
-            text:'2880000 de clients',
-=======
-            text:'2880000 pour chaque courbe',
->>>>>>> ba8f1e6d88134b9f64d053082aa28680a076bf38
-            x:-80
-        },
-
-        pane: {
-            size: '80%'
-        },
-
-        xAxis: {
-            categories: ['Prêt ok', 'Pas de Prêt', 'Erreur', 'Cas spécial'],
-            tickmarkPlacement: 'on',
-            lineWidth: 0
-        },
-
-        yAxis: {
-            gridLineInterpolation: 'polygon',
-            lineWidth: 0,
-            min: 0
-        },
-
-        tooltip: {
-            shared: true,
-            pointFormat: '<span style="color:{series.color}">{series.name}: <b>%{point.y:,.0f}</b><br/>'
-        },
-
-        legend: {
-            align: 'right',
-            verticalAlign: 'top',
-            y: 70,
-            layout: 'vertical'
-        },
-
-        series: [{
-<<<<<<< HEAD
-            name: 'cdi',
-            data: [17, 83, 0, 0],
-            pointPlacement: 'on'
-        }, {
-            name: 'autres contrats',
-            data: [8.146, 65.8125, 0, 26],
-            pointPlacement: 'on'
-        }]
-
-    });
-});
-</script>
-
-
-</html>
-=======
-                    
-            name: 'cdi, debt ratio = 0,33',
-            data: [17, 83, 0, 0],
-            pointPlacement: 'on'
-        }, {
-           
-            name: 'autres contrats, debt ratio = 0,33',
-            data: [8.146, 65.8125, 0, 26],
-            pointPlacement: 'on'
-        },{
-         
-            name: 'cdi, debt ratio = 0,66',
-            data: [33.33, 66.67, 0, 0],
-            pointPlacement: 'on'
-        }, {
-         
-            name: 'autres contrats, debt ratio = 0,66',
-            data: [16, 58, 0, 26],
-            pointPlacement: 'on'
-        }]
-});
-});
-</script>
-  </html>
->>>>>>> ba8f1e6d88134b9f64d053082aa28680a076bf38

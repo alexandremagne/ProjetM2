@@ -52,12 +52,64 @@ var affichage_demande_function_html = function(){
 }
 
 afficher_mail = function(id){
-	document.getElementById("modal2").innerHTML='<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">  <div class="modal-dialog">    <div class="modal-content">      <div class="modal-header">        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        <h4 class="modal-title" id="myModalLabel">Personne concernée: ' + id.firstname+'</h4>     </div>       <div class="modal-body">  Probabilité de défaut: '+ id.cinqCform.obj5c.collateral +'      </div>      <div class="modal-footer">        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>        <button type="button" class="btn btn-primary">Save changes</button>      </div>    </div>  </div></div>'
+	if(id.cinqCform){
+		document.getElementById("modal2").innerHTML='<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">  <div class="modal-dialog">    <div class="modal-content">      <div class="modal-header">        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        <h4 class="modal-title" id="myModalLabel">Personne concernée: ' + id.firstname+'</h4>     </div>       <div class=\'modal-body\'>  <span class=\'bg-info\'>Probabilité de défaut: '+ id.cinqCform.obj5c.default_probability +' %  </span><br/><br/><div id=\'spiderclient\' style=\'min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto\'></div>    </div>      <div class="modal-footer">        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>        <button type="button" class="btn btn-primary">Save changes</button>      </div>    </div>  </div></div>';	
+		console.log((id.cinqCform.obj5c));
+		obj.Affichage_spider(id.cinqCform.obj5c);
+	} else{
+		document.getElementById("modal2").innerHTML='<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">  <div class="modal-dialog">    <div class="modal-content">      <div class="modal-header">        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        <h4 class="modal-title" id="myModalLabel">Personne concernée: ' + id.firstname+'</h4>     </div>       <div class=\'modal-body\'>  <span class=\'bg-danger\'>Probabilité de défaut: Non répertorié     </span></div>      <div class="modal-footer">        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>        <button type="button" class="btn btn-primary">Save changes</button>      </div>    </div>  </div></div>';	
+	}
 	//alert(id);
-	console.log((id.cinqCform.obj5c));
 
 }
 
+
+obj.Affichage_spider=function(datagraph){
+    $('#spiderclient').highcharts({
+
+        chart: {
+            polar: true,
+            type: 'line'
+        },
+
+        title: {
+            text: "5C's profile client",
+            x: -80
+        },
+
+        pane: {
+            size: '60%'
+        },
+
+        xAxis: {
+            categories: ['Character', 'Collateral', 'Capacity', 'Condition', 'Capital'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+
+        tooltip: {
+            shared: true,
+            pointFormat: '<span style="colorr:{series.colorr}">{series.name}: <b>%{point.y:,.0f}</b><br/>'
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 70,
+            layout: 'vertical'
+        },
+
+        series: [{            
+            data: [datagraph.character,datagraph.collateral,datagraph.capacity,datagraph.condition,datagraph.capital],
+            pointPlacement: 'on'
+        }]
+    });}////////container 1
 
 
 

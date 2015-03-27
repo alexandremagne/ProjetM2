@@ -110,11 +110,9 @@ obj.disableotherincomes=function(){
 obj.disablemortgage=function(){
 	if(document.getElementById("input_borrower_property_value_checked").checked){
 		document.getElementById('input_borrower_property_value').disabled=false;
-		console.log(document.getElementById("input_borrower_property_value").value);
 	}else{
 		document.getElementById('input_borrower_property_value').disabled=true;
 		document.getElementById('input_borrower_property_value').value=""; // on vide ce qu'il y a dedans afin de ne rien récupérer
-		console.log(document.getElementById("input_borrower_property_value").value);
 	}
 };
 
@@ -131,7 +129,6 @@ obj.post = function (client, callback) {
 
 obj.callback=function(){
 	if (this.readyState == 4 && this.status == 200) {
-		console.log("this.responsetext :" + this.responseText);
 		var r = JSON.parse(this.responseText); // conversion string en Objet JSON
 
 		if (r.message=="store_loan_request_ok"){
@@ -141,8 +138,14 @@ obj.callback=function(){
 			console.log("demande de prêt 5C NON stockée");
 		}else if (r.message=="nocookie"){
 			window.location = "/index.html";
-		}else{
-			console.log(r);
+		}else if(r.message=="ok_affichage_spider"){
+			if(r.r[0].cinqCform){
+				obj.affichage_spider = r.r[0].cinqCform.obj5c;
+				obj.fun_affichage_spider();
+			}
+			
+		}
+		else{
 			alert("Stockage refusé");
 		}
 	}
@@ -159,3 +162,168 @@ document.write("<script type='text/javascript' src='"+fileName+"'></script>" );
 window.onload=function(){
 	setTimeout(obj.start,1);
 };
+
+obj.fun_affichage_spider=function(){
+    $('#containerGraph').highcharts({
+
+        chart: {
+            polar: true,
+            type: 'line'
+        },
+
+        title: {
+            text: "5C's profile client",
+            x: -80
+        },
+
+        pane: {
+            size: '100%'
+        },
+
+        xAxis: {
+            categories: ['Character', 'Collateral', 'Capacity', 'Condition', 'Capital'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+
+        tooltip: {
+            shared: true,
+            pointFormat: '<span style="colorr:{series.colorr}">{series.name}: <b>%{point.y:,.0f}</b><br/>'
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 70,
+            layout: 'vertical'
+        },
+
+        series: [{            
+            data: [obj.affichage_spider.character, obj.affichage_spider.collateral, obj.affichage_spider.capacity, obj.affichage_spider.condition, obj.affichage_spider.capital],
+            pointPlacement: 'on'
+        }]
+    });////////container 1
+ $('#containerGraph2').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '5c Result'
+        },
+        xAxis: {
+            categories: ['Character', 'Collateral', 'Capacity', 'Condition', 'Capital']
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{            
+            data: [obj.affichage_spider.character, obj.affichage_spider.collateral, obj.affichage_spider.capacity, obj.affichage_spider.condition, obj.affichage_spider.capital]
+        }]
+    });//////container 2
+$('#containerGraph3').highcharts({
+
+        chart: {
+            type: 'gauge',
+            plotBackgroundColor: null,
+            plotBackgroundImage: null,
+            plotBorderWidth: 0,
+            plotShadow: false
+        },
+
+        title: {
+            text: 'Your Score'
+        },
+
+        pane: {
+            startAngle: -150,
+            endAngle: 150,
+            background: [{
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#FFF'],
+                        [1, '#333']
+                    ]
+                },
+                borderWidth: 0,
+                outerRadius: '109%'
+            }, {
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#333'],
+                        [1, '#FFF']
+                    ]
+                },
+                borderWidth: 1,
+                outerRadius: '107%'
+            }, {
+                // default background
+            }, {
+                backgroundColor: '#DDD',
+                borderWidth: 0,
+                outerRadius: '105%',
+                innerRadius: '103%'
+            }]
+        },
+
+        // the value axis
+        yAxis: {
+            min: 0,
+            max: 100,
+
+            minorTickInterval: 'auto',
+            minorTickWidth: 1,
+            minorTickLength: 10,
+            minorTickPosition: 'inside',
+            minorTickColor: '#666',
+
+            tickPixelInterval: 30,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 10,
+            tickColor: '#666',
+            labels: {
+                step: 2,
+                rotation: 'auto'
+            },
+            title: {
+                text: 'Success'
+            },
+            plotBands: [{
+                from: 0,
+                to: 40,
+                color: '#DF5353' // green 
+            }, {
+                from: 40,
+                to: 60,
+                color: '#DDDF0D' // yellow
+            }, {
+                from: 60,
+                to: 100,
+                color: '#55BF3B' // red DF5353
+            }]
+        },
+
+        series: [{
+            name: 'Your Score',
+            data: [parseInt(100-obj.affichage_spider.default_probability*100)],
+            tooltip: {
+                valueSuffix: ' %'
+            }
+        }]
+
+    },
+        // Add some life
+        function (chart) {
+           
+        });
+ 
+
+}
