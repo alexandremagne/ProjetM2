@@ -101,7 +101,7 @@
 								  	 <div class="form-group">
 										<label for="input_borrower_contract" class="col-sm-4 control-label">Type of employment contract</label>
 										<div class="col-sm-6 ">
-											<select class="form-control" id="input_borrower_contract" onchange="console.log(this.value)" >
+											<select class="form-control" id="input_borrower_contract" onchange="console.log(this.value)" required>
 											  <option value="0">Choose a contract type...</option>
 											  <option value="1">CDI</option>
 											  <option value="2">Retirement</option>
@@ -117,7 +117,7 @@
 								  	 <div class="form-group">
 										<label for="input_borrower_diploma" class="col-sm-4 control-label">Diploma</label>
 										<div class="col-sm-6 ">
-											<select class="form-control" id="input_borrower_diploma" onchange="console.log(this.value)">
+											<select class="form-control" id="input_borrower_diploma" onchange="console.log(this.value)" required>
 											  <option value="0">Choose your level of studies...</option>
 											  <option value="5">No graduate</option>
 											  <option value="4">Bac</option>
@@ -132,7 +132,7 @@
 								 	<div class="form-group">
 										<label for="input_borrower_habitat" class="col-sm-4 control-label">Where do you live ?</label>
 										<div class="col-sm-6">
-											<select class="form-control" id="input_borrower_habitat">
+											<select class="form-control" id="input_borrower_habitat" required>
 											  <option value="1">Owner</option>
 											  <option value="2">Parent's house</option>
 											  <option value="3">Renting</option>
@@ -162,44 +162,44 @@
 									<legend class="text-primary">Capacity</legend>
 										
 										<div class="form-group">
-											<label for="input_borrower_loan_amount" class="col-sm-4 control-label" style="color:purple">Loan Amount needed</label>
+											<label for="input_borrower_loan_amount" class="col-sm-4 control-label" style="colorr:purple">Loan Amount needed</label>
 											<div class="col-sm-6 input-group">
-												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_loan_amount" placeholder="Please enter your loan requirement" requiredd>
+												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_loan_amount" placeholder="Please enter your loan requirement" required>
 												<span class="input-group-addon">$</span>
 											</div>
 							 			</div>
 
 										<div class="form-group">
-											<label for="input_borrower_annual_incomes" class="col-sm-4 control-label" style="color:yellow">Net annual incomes (only salary)</label>
+											<label for="input_borrower_annual_incomes" class="col-sm-4 control-label" style="colorr:yellow">Net annual incomes (only salary)</label>
 											<div class="col-sm-6 input-group">
-												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_annual_incomes" placeholder="Please enter the net annual incomes"  >
+												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_annual_incomes" placeholder="Please enter the net annual incomes" required>
 												<span class="input-group-addon">$</span>
 											</div>
 							 			</div>
 								 		<div class="form-group">
-											<label for="input_borrower_other_incomes" class="col-sm-4 control-label" style="color:yellow">Do you have another incomes?</label>
+											<label for="input_borrower_other_incomes" class="col-sm-4 control-label" style="colorr:yellow">Do you have another incomes?</label>
 											<div class="col-sm-6 form-inline" style="padding-right:0px;">
 												<label class="checkbox">
 												  <input type="checkbox" id="input_borrower_other_incomes_checked" onchange="obj.disableotherincomes()" >Yes
 												</label>
 												<div class="input-group col-md-10">
-												<input class="form-control" id="input_borrower_other_incomes" type="number" min="0" max="1000000000" placeholder="Amount of other incomes" disabled>
+												<input class="form-control" id="input_borrower_other_incomes" type="number" min="0" max="1000000000" placeholder="Amount of other incomes" disabled >
 												<span class="input-group-addon">$</span>
 											</div>
 											</div>
 										</div>
 
 									  	<div class="form-group">
-												<label for="input_borower_loan_duration" class="col-sm-4 control-label" style="color:yellow">Loan duration (max 25)</label>
+												<label for="input_borower_loan_duration" class="col-sm-4 control-label" style="colorr:yellow">Loan duration (max 25)</label>
 												<div class="col-sm-6 input-group">
-													<input min="0" max="25"  type="number" class="form-control" id="input_borower_loan_duration" placeholder="Please a loan duration" >
+													<input min="0" max="25"  type="number" class="form-control" id="input_borower_loan_duration" placeholder="Please a loan duration" required>
 													<span class="input-group-addon">years</span>
 												</div>
 									  	</div>
 							  			<div class="form-group">
-											<label for="input_borrower_monthly_expenses" class="col-sm-4 control-label" style="color:yellow" >Monthly expenses</label>
+											<label for="input_borrower_monthly_expenses" class="col-sm-4 control-label" style="colorr:yellow" >Monthly expenses</label>
 											<div class="col-sm-6 input-group">
-												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_monthly_expenses" placeholder="Please enter yours monthly enpenses" >
+												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_monthly_expenses" placeholder="Please enter yours monthly enpenses" required>
 												<span class="input-group-addon">$</span>
 											</div>
 							 			</div>
@@ -219,15 +219,15 @@
 
 
 									<div class="form-group">
-										<label for="input_borrower_contribution" class="col-sm-4 control-label" style="color:red">Contribution</label>
+										<label for="input_borrower_contribution" class="col-sm-4 control-label" style="colorr:red">Contribution</label>
 										<div class="col-sm-6 input-group">
-											<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_contribution" placeholder="Please enter the contribution you can provide" requiredd>
+											<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_contribution" placeholder="Please enter the contribution you can provide" required>
 											<span class="input-group-addon">$</span>
 										</div>
 						 			</div>
 
 						 			 <div class="form-group">
-										<label for="input_borrower_assets_type" class="col-sm-4 control-label" style="color:red">Type of banck account</label>
+										<label for="input_borrower_assets_type" class="col-sm-4 control-label" style="colorr:red">Type of banck account</label>
 										<div class="col-sm-6 ">
 											<select class="form-control" id="input_borrower_assets_type" onchange="console.log(this.value)" >
 											  <option value="na">Choose a type of bank account...</option>
@@ -248,7 +248,7 @@
 									<legend class="text-primary">Conditions</legend>
 							
 
-								<label for="input_borrower_loan_purpose" class="col-sm-4 control-label" style="color:yellow">Loan's purpose</label>
+								<label for="input_borrower_loan_purpose" class="col-sm-4 control-label" style="colorr:yellow">Loan's purpose</label>
 									<div class="col-sm-6 input-group">
 										<select class="form-control" id="input_borrower_loan_purpose" onchange="console.log(this.value);">
 										  <option >Choose purpose of your loan...</option>
@@ -261,7 +261,7 @@
 							 		 </div>
 
 							 		 <div class="form-group">
-										<label for="input_futur_expanses" class="col-sm-4 control-label" style="color:green">Will you have futur expanses during the loan duration ?</label>
+										<label for="input_futur_expanses" class="col-sm-4 control-label" style="colorr:green">Will you have futur expanses during the loan duration ?</label>
 										<label class="radio-inline">
 										  <input type="radio" name="futur_expanses" id="input_futur_expanses_yes" value="yes"> Yes
 										</label>
@@ -286,7 +286,7 @@
 							
 
 									<div class="form-group">
-										<label for="input_borrower_property" class="col-sm-4 control-label" style="color:blue">Do you own a property  ?</label>
+										<label for="input_borrower_property" class="col-sm-4 control-label" style="colorr:blue">Do you own a property  ?</label>
 										<label class="radio-inline">
 										  <input type="radio" name="own_property" id="input_borrower_property_yes" value="yes"> Yes
 										</label>
@@ -299,23 +299,23 @@
 									
 
 								  	<div class="form-group">
-											<label for="input_borrower_pledge_value" class="col-sm-4 control-label" style="color:blue">Pledge</label>
+											<label for="input_borrower_pledge_value" class="col-sm-4 control-label" style="colorr:blue">Pledge</label>
 											<div class="col-sm-6 input-group">
-												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_pledge_value" placeholder="Please the amount of the pledge" requiredd>
+												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_pledge_value" placeholder="Please the amount of the pledge" required>
 												<span class="input-group-addon">$</span>
 											</div>
 								  	</div>
 
 								  	<div class="form-group">
-											<label for="input_borrower_bails_value" class="col-sm-4 control-label" style="color:blue">Bails</label>
+											<label for="input_borrower_bails_value" class="col-sm-4 control-label" style="colorr:blue">Bails</label>
 											<div class="col-sm-6 input-group">
-												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_bails_value" placeholder="Please enter the amount of the bail" requiredd>
+												<input min="0" max="1000000000"  type="number" class="form-control" id="input_borrower_bails_value" placeholder="Please enter the amount of the bail" required>
 												<span class="input-group-addon">$</span>
 											</div>
 								  	</div>
 
 								  	<div class="form-group">
-										<label for="input_borrower_guarantee" class="col-sm-4 control-label" style="color:blue">May you have a guarantee for the requested loan ?</label>
+										<label for="input_borrower_guarantee" class="col-sm-4 control-label" style="colorr:blue">May you have a guarantee for the requested loan ?</label>
 										<label class="radio-inline">
 										  <input type="radio" name="guarantee" id="input_borrower_guarantee_yes" value="yes"> Yes
 										</label>
@@ -413,7 +413,7 @@ $(function () {
 
         tooltip: {
             shared: true,
-            pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+            pointFormat: '<span style="colorr:{series.colorr}">{series.name}: <b>${point.y:,.0f}</b><br/>'
         },
 
         legend: {
