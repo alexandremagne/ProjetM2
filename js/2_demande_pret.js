@@ -13,15 +13,11 @@ var obj_proba_5C ={} // objet qui contient la méthode d'appel a la fonction 5C
 
 
 // appelée au chargement de la page (2/3)
-obj.start=function(){
-	obj.check_cookie();
-	obj.post(data, obj.callback);
+obj.start=function(){	
+	obj.post({ac:"affichage_spider"}, obj.callback);
 	obj.check_loan(); // bouton de demande de prêt
 };
 
-obj.check_cookie=function(){
-	data.ac="check_cookie";
-};
 
 // appelée au chargement de la page (3/3)
 obj.check_loan=function(){		
@@ -135,7 +131,7 @@ obj.post = function (client, callback) {
 
 obj.callback=function(){
 	if (this.readyState == 4 && this.status == 200) {
-		console.log("this.responsetext :" + this.responseText);
+		//console.log("this.responsetext :" + this.responseText);
 		var r = JSON.parse(this.responseText); // conversion string en Objet JSON
 
 		if (r.message=="store_loan_request_ok"){
@@ -145,8 +141,15 @@ obj.callback=function(){
 			console.log("demande de prêt 5C NON stockée");
 		}else if (r.message=="nocookie"){
 			window.location = "/index.html";
-		}else{
-			console.log(r);
+		}else if(r.message=="ok_affichage_spider"){
+			if(r.r[0].cinqCform){
+				obj.affichage_spider = r.r[0].cinqCform.obj5c;
+				obj.fun_affichage_spider();
+			}
+			
+		}
+		else{
+			//console.log(r);
 			alert("Stockage refusé");
 		}
 	}
@@ -163,3 +166,72 @@ document.write("<script type='text/javascript' src='"+fileName+"'></script>" );
 window.onload=function(){
 	setTimeout(obj.start,1);
 };
+
+obj.fun_affichage_spider=function(){
+	console.log(obj.affichage_spider);
+    $('#containerGraph').highcharts({
+
+        chart: {
+            polar: true,
+            type: 'line'
+        },
+
+        title: {
+            text: "5C's profile client",
+            x: -80
+        },
+
+        pane: {
+            size: '120%'
+        },
+
+        xAxis: {
+            categories: ['Character', 'Collateral', 'Capacity', 'Condition', 'Capital'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+
+        tooltip: {
+            shared: true,
+            pointFormat: '<span style="colorr:{series.colorr}">{series.name}: <b>%{point.y:,.0f}</b><br/>'
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 70,
+            layout: 'vertical'
+        },
+
+        series: [{            
+            data: [obj.affichage_spider.character, obj.affichage_spider.collateral, obj.affichage_spider.capacity, obj.affichage_spider.condition, obj.affichage_spider.capital],
+            pointPlacement: 'on'
+        }]
+    });////////container 1
+ $('#containerGraph2').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '5c Result'
+        },
+        xAxis: {
+            categories: ['Character', 'Collateral', 'Capacity', 'Condition', 'Capital']
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{            
+            data: [obj.affichage_spider.character, obj.affichage_spider.collateral, obj.affichage_spider.capacity, obj.affichage_spider.condition, obj.affichage_spider.capital]
+        }]
+    });//////container 2
+
+ 
+
+}
