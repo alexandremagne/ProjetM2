@@ -3,6 +3,7 @@ var obj = {}; // objet contenant toutes nos fonctions
 
 // appelée au chargement de la page (2/3)
 obj.start=function(){
+	document.addEventListener("click", obj.on_click);
 	document.getElementById('affichage_pret').innerHTML='<img src="../../images/gif_loader/loading_connexion.gif" style="height:auto width:auto" >';
 	obj.post({ac:"affichage_demande"}, obj.callback);//passage au router des données
 };
@@ -35,11 +36,12 @@ var affichage_demande_function_html = function(){
 	if(obj.r[0]){
 		compteur =0;
 		var str_to_show ='';
-		str_to_show+="<tr><td>N°</td><td>Name</td><td>Mail</td><td>Résultat</td></tr>";		
+		str_to_show+="<tr><td>N°</td><td>Name</td><td>Mail</td><td>Résultat</td><td>Détails</td></tr>";		
 		for(a in obj.r){			
 			
-			if(obj.r[a].pret_ok_or_not){
-				str_to_show+="<tr><td>"+compteur+"</td><td>"+obj.r[a].firstname+"</td><td>"+obj.r[a].email+"</td><td>"+obj.r[a].pret_ok_or_not.resultat_fonction+"</td></tr>";
+			if(obj.r[a].pret_ok_or_not){//premier test
+				var string=JSON.stringify(obj.r[a]);
+				str_to_show+='<tr><td>'+compteur+'</td><td>'+obj.r[a].firstname+'</td><td>'+obj.r[a].email+'</td><td>'+obj.r[a].pret_ok_or_not.resultat_fonction+'</td><td><button onclick=\'afficher_mail('+string+')\' type=\'button\' data-toggle=\'modal\' data-target=\'#myModal2\'class=\'btn btn-warning\'>Détails</button></td></tr>';
 				compteur++;
 			}
 		}
@@ -48,6 +50,28 @@ var affichage_demande_function_html = function(){
 		document.getElementById('affichage_pret').innerHTML="pas de fiche";
 	}
 }
+
+afficher_mail = function(id){
+	document.getElementById("modal2").innerHTML='<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">  <div class="modal-dialog">    <div class="modal-content">      <div class="modal-header">        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        <h4 class="modal-title" id="myModalLabel">Personne concernée: ' + id.firstname+'</h4>     </div>       <div class="modal-body">  Probabilité de défaut: '+ id.cinqCform.obj5c.collateral +'      </div>      <div class="modal-footer">        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>        <button type="button" class="btn btn-primary">Save changes</button>      </div>    </div>  </div></div>'
+	//alert(id);
+	console.log((id.cinqCform.obj5c));
+
+}
+
+
+
+
+/*
+obj.afficher_clas()=function(){
+
+}
+
+HTMLElement.prototype.has_class = function (c) {
+	return (this.className.indexOf(c) >= 0);
+};
+*/
+
+
 
 // appelé au chargement de la page (1/3)
 window.onload=function(){

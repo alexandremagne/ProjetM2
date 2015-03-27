@@ -13,15 +13,11 @@ var obj_proba_5C ={} // objet qui contient la méthode d'appel a la fonction 5C
 
 
 // appelée au chargement de la page (2/3)
-obj.start=function(){
-	obj.check_cookie();
-	obj.post(data, obj.callback);
+obj.start=function(){	
+	obj.post({ac:"affichage_spider"}, obj.callback);
 	obj.check_loan(); // bouton de demande de prêt
 };
 
-obj.check_cookie=function(){
-	data.ac="check_cookie";
-};
 
 // appelée au chargement de la page (3/3)
 obj.check_loan=function(){		

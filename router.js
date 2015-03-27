@@ -154,6 +154,11 @@ cb_cookie:
 				return;
 			}
 
+			else if (b.ac=="affichage_spider"){	
+				db.affichage_spider(this.req.headers.cookie, this.resp);
+				return;
+			}
+
 			else if (b.ac == 'get-money'){
 				this.resp.writeHead(200,{"Content -Type": "application/json"});
 				db.get_money(this.req.headers.cookie, this.resp);

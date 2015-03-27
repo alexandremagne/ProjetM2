@@ -39,6 +39,7 @@ MongoClient.connect(field_to_connect_db.adress, function(err, db) {
       		var data = {};
       		data.message = "ok_affichage_demande";
       		data.r = results;
+      		console.log(results);
 			res.end(JSON.stringify(data));
 			db.close();
       db.close();

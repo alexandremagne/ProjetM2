@@ -38,10 +38,10 @@
 								 </button>								
 							</div>
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-							      <ul class="nav navbar-nav">
-							        <li class=""><a href="#">ajouter fiche client<span class="sr-only">(current)</span></a></li>
-							        <li class=""><a href="#">voir les fiches clients<span class="sr-only">(current)</span></a></li>
-							      </ul>
+							      
+							      <a class="navbar-brand navbar-right" href="#">
+        							<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+      							  </a>
 							</div>			
 						</div><!-- /.container-fluid -->
 					</div>
@@ -54,11 +54,39 @@
 					<div class="col-md-10 img-thumbnail jumbotron" style="padding:8px;">
 						<div>
 							<h1>Restricted area employee.</h1>
-							<p>Please, select the tab for the type of customer and fill it.</p>
-							<p>Our server will respond if or not the bank customer is eligible.
+							<p>Here you can see all the loan request for the clients.</p>
+							<p>You can consult the graphique that explain how to accept the loan request.</p>
 						</div>
 					</div>
 				</div>
+			<blockquote class="blockquote-reverse">
+					Veuillez cliquer sur le bouton ci-dessous afin d'accéder au graphique permettant de donner l'autorisation de prêt au client en fonction de sa probabilité de défaut.
+			
+
+			<!-- Button trigger modal -->
+				<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal">
+				  Chart risks
+				</button>
+			</blockquote>
+
+				<!-- Modal -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title" id="myModalLabel">Chart risks</h4>
+				      </div>
+				      <div class="modal-body">
+				       <img src="./images/chart_risks.png" class="img-responsive" alt="Responsive image">
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				
 		
 	
 <!-- ////////////////// Choix du type de client (****** ACORDEON *****) /////////////////////// -->
@@ -70,6 +98,15 @@
 					
 				</table>
 			</div><!-- row -->
+
+
+
+
+<div id="modal2"></div>
+<!-- Modal -->
+
+
+
 	</div><!-- /.container -->		
 
 	<script  type="text/javascript"  src="../../js/admin/affichage_demande.js"></script>
