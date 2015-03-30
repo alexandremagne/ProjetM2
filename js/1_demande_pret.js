@@ -6,6 +6,7 @@ var data={};
 
 // appelée au chargement de la page (2/3)
 obj.start=function(){
+	document.addEventListener("click", obj.on_click);
 	obj.check_cookie();
 	obj.post(data, obj.callback);
 	obj.check_loan(); // bouton de demande de prêt
@@ -13,6 +14,27 @@ obj.start=function(){
 
 obj.check_cookie=function(){
 	data.ac="check_cookie";
+};
+
+
+obj.on_click = function (ev) {
+    var src = ev.target;
+    if (src.has_class("logout")) {
+    	console.log("biehzz");
+        obj.deleteCookie();
+    }
+};
+
+
+// ============pour logout ==============
+
+obj.deleteCookie = function () {
+    var data = {ac: "delete-cookie"};
+    obj.post(data, obj.callback);
+};
+
+HTMLElement.prototype.has_class = function (c) {
+	return (this.className.indexOf(c) >= 0);
 };
 
 // appelée au chargement de la page (3/3)
@@ -57,8 +79,10 @@ obj.callback=function(){
 	if (this.readyState == 4 && this.status == 200) {
 		console.log("this.responsetext :" + this.responseText);
 		var r = JSON.parse(this.responseText); // conversion string en Objet JSON
-
-		if (r.message=="store_loan_demand_ok"){
+		if (r.message=="logout"){
+			console.log("delete ok");
+            window.location = "../../index.html";
+		}else if (r.message=="store_loan_demand_ok"){
 			console.log("demande de prêt stocké dans la bdd");
 			window.location="2_demande_pret.html";
 		}else if(r.message=="something_wrong"){

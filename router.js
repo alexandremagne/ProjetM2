@@ -121,10 +121,6 @@ go_post:
 		}
 		else {
 			db.valid_cookie(this.req.headers.cookie, this, "cb_cookie");
-			//console.log("======+++++++===="+ this);
-			//exports.valid_cookie = function (cookie, obj, cb) {
-			// /* stuff */
-			// obj[cb](true/false);
 		}
 
 		
@@ -156,6 +152,13 @@ cb_cookie:
 
 			else if (b.ac=="affichage_spider"){	
 				db.affichage_spider(this.req.headers.cookie, this.resp);
+				return;
+			}
+
+			else if (b.ac == "delete-cookie"){
+				console.log("SUPPRESSION DU COOKIE");
+				this.resp.writeHead(200, {"Content -Type": "application/json"});
+				db.delete_cookie(this.req.headers.cookie, this.resp);
 				return;
 			}
 

@@ -93,4 +93,4 @@ obj_global.else_ko = obj_global.else_ko/obj_global.compteur*100;
 obj_global.else_particulier = obj_global.else_particulier/obj_global.compteur*100;
 obj_global.else_error = obj_global.else_error/obj_global.compteur*100;
 
- fs.writeFileSync("./dataSG.json", JSON.stringify(obj_global));
+ fs.writeFileSync("./dataSG.csv", JSON.stringify(obj_global));

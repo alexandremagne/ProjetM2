@@ -8,6 +8,24 @@ obj.start=function(){
 	obj.post({ac:"affichage_demande"}, obj.callback);//passage au router des données
 };
 
+
+obj.on_click = function (ev) {
+    var src = ev.target;
+    if (src.has_class("logout")) {
+        obj.deleteCookie();
+    }
+};
+
+
+// ============pour logout ==============
+
+obj.deleteCookie = function () {
+    var data = {ac: "delete-cookie"};
+    obj.post(data, obj.callback);
+};
+ 
+
+
 ////////////// Communication avec le router via la méthode POST ////////////
 obj.post = function (client, callback) {
     var xhr = new XMLHttpRequest();
@@ -19,14 +37,16 @@ obj.post = function (client, callback) {
 
 obj.callback=function(){
 	if (this.readyState == 4 && this.status == 200) {
-		console.log("this.responsetext :" + this.responseText);
 		var r = JSON.parse(this.responseText); // conversion string en Objet JSON
-		if (r.message=="ok_affichage_demande"){
-			obj.r = r.r;
-			console.log("demandes bien recu");
-			affichage_demande_function_html();
-		}else{
+		if (r.message=="logout"){
+			console.log("delete ok");
+            window.location = "../../index.html";
+		}else if (r.message=="ok_affichage_demande"){
+            obj.r = r.r;
+            affichage_demande_function_html();
+        }else{
 			console.log("error");
+            window.reload();
 		}
 	}
 };
@@ -54,7 +74,6 @@ var affichage_demande_function_html = function(){
 afficher_mail = function(id){
 	if(id.cinqCform){
 		document.getElementById("modal2").innerHTML='<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">  <div class="modal-dialog">    <div class="modal-content">      <div class="modal-header">        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        <h4 class="modal-title" id="myModalLabel">Personne concernée: ' + id.firstname+'</h4>     </div>       <div class=\'modal-body\'>  <span class=\'bg-info\'>Probabilité de défaut: '+ id.cinqCform.obj5c.default_probability +' %  </span><br/><br/><div id=\'spiderclient\' style=\'min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto\'></div>    </div>      <div class="modal-footer">        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>        <button type="button" class="btn btn-primary">Save changes</button>      </div>    </div>  </div></div>';	
-		console.log((id.cinqCform.obj5c));
 		obj.Affichage_spider(id.cinqCform.obj5c);
 	} else{
 		document.getElementById("modal2").innerHTML='<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">  <div class="modal-dialog">    <div class="modal-content">      <div class="modal-header">        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        <h4 class="modal-title" id="myModalLabel">Personne concernée: ' + id.firstname+'</h4>     </div>       <div class=\'modal-body\'>  <span class=\'bg-danger\'>Probabilité de défaut: Non répertorié     </span></div>      <div class="modal-footer">        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>        <button type="button" class="btn btn-primary">Save changes</button>      </div>    </div>  </div></div>';	
@@ -113,19 +132,12 @@ obj.Affichage_spider=function(datagraph){
 
 
 
-/*
-obj.afficher_clas()=function(){
-
-}
-
 HTMLElement.prototype.has_class = function (c) {
 	return (this.className.indexOf(c) >= 0);
 };
-*/
 
 
 
-// appelé au chargement de la page (1/3)
 window.onload=function(){
 	setTimeout(obj.start,1);
 };

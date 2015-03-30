@@ -14,9 +14,32 @@ var obj_proba_5C ={} // objet qui contient la méthode d'appel a la fonction 5C
 
 // appelée au chargement de la page (2/3)
 obj.start=function(){	
+    document.addEventListener("click", obj.on_click);
 	obj.post({ac:"affichage_spider"}, obj.callback);
 	obj.check_loan(); // bouton de demande de prêt
 };
+
+
+
+obj.on_click = function (ev) {
+    var src = ev.target;
+    if (src.has_class("logout")) {
+        obj.deleteCookie();
+    }
+};
+
+HTMLElement.prototype.has_class = function (c) {
+    return (this.className.indexOf(c) >= 0);
+};
+
+
+// ============pour logout ==============
+
+obj.deleteCookie = function () {
+    var data = {ac: "delete-cookie"};
+    obj.post(data, obj.callback);
+};
+ 
 
 
 // appelée au chargement de la page (3/3)
@@ -130,8 +153,10 @@ obj.post = function (client, callback) {
 obj.callback=function(){
 	if (this.readyState == 4 && this.status == 200) {
 		var r = JSON.parse(this.responseText); // conversion string en Objet JSON
-
-		if (r.message=="store_loan_request_ok"){
+        if (r.message=="logout"){
+            console.log("delete ok");
+            window.location = "../../index.html";
+        } else if (r.message=="store_loan_request_ok"){
 			console.log("demande de prêt 5C stocké dans la bdd");
 			window.location.reload();
 		}else if(r.message=="something_wrong"){

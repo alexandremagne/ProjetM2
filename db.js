@@ -21,7 +21,7 @@ MongoClient.connect(field_to_connect_db.adress, function(err, db) {
 	 var collection = db.collection('test1');//on veut acceder à la collection test 1 de la db ProjetEsme
 	 collection.find().toArray(function(err, results) {
      if (err) throw err;
-	
+
       console.log(results);
       db.close();
    });
@@ -39,7 +39,6 @@ MongoClient.connect(field_to_connect_db.adress, function(err, db) {
       		var data = {};
       		data.message = "ok_affichage_demande";
       		data.r = results;
-      		console.log(results);
 			res.end(JSON.stringify(data));
 			db.close();
       db.close();
@@ -106,7 +105,6 @@ MongoClient.connect(field_to_connect_db.adress, function(err, db){
 						res.end(JSON.stringify({message: "login_connexion_refused"}));
 						db.close(); // on referme la db
 					}else{
-									console.log("indice: " + results[0].indice);
 									infos={};
 									res.writeHead(200, {"Content-Type": "'text/plain'", "Set-Cookie" : 'cookieName='+cookie.value+';expires='+cookie.expire});
 									if(results[0].indice == 0){//si c'est un client
@@ -126,6 +124,35 @@ MongoClient.connect(field_to_connect_db.adress, function(err, db){
 }
 });	
 };
+
+
+exports.delete_cookie=function(cookie, res){
+	console.log("delete_cookie");
+	MongoClient.connect(field_to_connect_db.adress, function(err, db){
+	if(err){
+		res.writeHead(503, {"Content-Type": "application/json" });
+		res.end(JSON.stringify({message: "connexion_error"}));
+		return;
+	}
+	else{
+		res.writeHead(200, {"Content-Type": "application/json" });
+		var collection = db.collection('users'); // on veut acceder à la collection users de la db ProjetEsme
+		var m = cookie.split("cookieName=");
+		console.log("valeur du cookie :" + m[1]);
+				collection.update( {"cookie.value": m[1] },{ $set: {"cookie.value":"0"} }, { upsert: false },function(err, docs){
+					if(err) {
+						throw err;
+						res.end(JSON.stringify({message: "error"}));
+						db.close(); // on referme la db
+					}else{
+						console.log("LOGOUT DU CLIENT");
+						res.end(JSON.stringify({message: "logout"}));
+						db.close(); // on referme la db									
+					}
+				});	
+	}
+});
+};	
 
 
 

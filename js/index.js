@@ -12,7 +12,6 @@ var variables_formule ={};
 // fonction appelée au chargement de la page (voir window.onload au bas de la page)
 index.start = function () {
 	var r2 = new RegExp(/^[a-z\u00E0-\u00FC]+$/i) // regexsui accepte uniquement les lettres et accents	
-	console.log(r2.test("Rémi"));
 	index.btn_login_formulaire_();//formulaire du login
 	index.btn_register_formulaire_();//formulaire du register
 	index.btn_button_calculator_();//formulaire du calculator
@@ -191,7 +190,6 @@ index.regexnumber2=function(){
 
 
 index.regozoo=function(){
-	console.log("fct_internet");
 	var half = 1/2;
  
 	/*
@@ -275,7 +273,6 @@ index.post = function (data, callback) {
 index.callback = function () {
 	// si tout s'est bien passé
 	if (this.readyState == 4 && this.status == 200) {
-		console.log("this.responsetext :" + this.responseText);
 		var r = JSON.parse(this.responseText); // conversion string en Objet JSON
 		/***
 			LOGIN CALLBACKS
