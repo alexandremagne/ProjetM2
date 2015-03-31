@@ -38,7 +38,7 @@ exports.update_resultat_banquier = function(message,mail,res){
 	else{
 		res.writeHead(200, {"Content-Type": "application/json" });
 		var collection = db.collection('users'); // on veut acceder à la collection users de la db ProjetEsme				
-				collection.update( {email: mail },{ $set: {"resustat_banquier":message} }, { upsert: false },function(err, docs){
+				collection.update( {email: mail },{ $set: {"resultat_banquier":message} }, { upsert: false },function(err, docs){
 					if(err) {
 						throw err;
 						res.end(JSON.stringify({message: "error"}));
