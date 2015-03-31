@@ -168,6 +168,13 @@ obj.callback=function(){
 				obj.affichage_spider = r.r[0].cinqCform.obj5c;
 				obj.fun_affichage_spider();
 			}
+            if(r.r[0].resultat_banquier == "ok"){
+                document.getElementById("reponse_banquier").innerHTML = "votre prêt a été accepté, félicitations";
+            }else if(r.r[0].resultat_banquier == "ko"){
+                document.getElementById("reponse_banquier").innerHTML = "votre profil ne semble pas correspondre à votre demande prêt, vous pouvez réitérer votre demande...";
+            }else{
+                document.getElementById("reponse_banquier").innerHTML = "pas de réponse actuellement";
+            }
 			
 		}
 		else{
