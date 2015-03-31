@@ -44,9 +44,12 @@ obj.callback=function(){
 		}else if (r.message=="ok_affichage_demande"){
             obj.r = r.r;
             affichage_demande_function_html();
-        }else{
+        }else if (r.message=="resultat_banquier_sent"){
+            alert("profil mis a jour");
+        }
+        else{
 			console.log("error");
-            window.reload();
+            //window.reload();
 		}
 	}
 };
