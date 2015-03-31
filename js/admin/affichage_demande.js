@@ -61,7 +61,7 @@ var affichage_demande_function_html = function(){
 			
 			if(obj.r[a].pret_ok_or_not){//premier test
 				var string=JSON.stringify(obj.r[a]);
-				str_to_show+='<tr><td>'+compteur+'</td><td>'+obj.r[a].firstname+'</td><td>'+obj.r[a].email+'</td><td>'+obj.r[a].pret_ok_or_not.resultat_fonction+'</td><td><button onclick=\'afficher_mail('+string+')\' type=\'button\' data-toggle=\'modal\' data-target=\'#myModal2\'class=\'btn btn-warning\'>Détails</button></td><td><div type=\'button\' class=\'btn col-sm-3 btn-success\'>OK</div><div type=\'button\' class=\'btn col-sm-3 col-sm-offset-1 btn-danger\'>KO</div></td></tr>';
+				str_to_show+='<tr><td>'+compteur+'</td><td>'+obj.r[a].firstname+'</td><td>'+obj.r[a].email+'</td><td>'+obj.r[a].pret_ok_or_not.resultat_fonction+'</td><td><button onclick=\'afficher_mail('+string+')\' type=\'button\' data-toggle=\'modal\' data-target=\'#myModal2\'class=\'btn btn-warning\'>Détails</button></td><td><div type=\'button\' class=\'btn col-sm-3 btn-success\' onclick=\'obj.update_ok_pret("'+obj.r[a].email+'")\'>OK</div><div type=\'button\' class=\'btn col-sm-3 col-sm-offset-1 btn-danger\'onclick=\'obj.update_ko_pret("'+obj.r[a].email+'")\'>KO</div></td></tr>';
 				compteur++;
 			}
 		}
@@ -70,6 +70,15 @@ var affichage_demande_function_html = function(){
 		document.getElementById('affichage_pret').innerHTML="pas de fiche";
 	}
 }
+
+obj.update_ok_pret = function(mail){
+    obj.post({ac:"update_ok_pret",mail:mail}, obj.callback);
+};
+obj.update_ko_pret = function(mail){
+    obj.post({ac:"update_ko_pret",mail:mail}, obj.callback);
+};
+
+
 
 afficher_mail = function(id){
 	if(id.cinqCform){

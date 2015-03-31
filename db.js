@@ -28,6 +28,30 @@ MongoClient.connect(field_to_connect_db.adress, function(err, db) {
 });
 };
 
+exports.update_resultat_banquier = function(message,mail,res){
+	MongoClient.connect(field_to_connect_db.adress, function(err, db){
+	if(err){
+		res.writeHead(503, {"Content-Type": "application/json" });
+		res.end(JSON.stringify({message: "connexion_error"}));
+		return;
+	}
+	else{
+		res.writeHead(200, {"Content-Type": "application/json" });
+		var collection = db.collection('users'); // on veut acceder à la collection users de la db ProjetEsme				
+				collection.update( {email: mail },{ $set: {"resustat_banquier":message} }, { upsert: false },function(err, docs){
+					if(err) {
+						throw err;
+						res.end(JSON.stringify({message: "error"}));
+						db.close(); // on referme la db
+					}else{						
+						res.end(JSON.stringify({message: "resultat_banquier_sent"}));
+						db.close(); // on referme la db									
+					}
+				});	
+	}
+});
+};	
+
 exports.affichage_demande = function(res){
 MongoClient.connect(field_to_connect_db.adress, function(err, db) {
     if(err) throw err;//si erreur de connections

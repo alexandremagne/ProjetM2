@@ -118,7 +118,14 @@ go_post:
 			}
 		}else if(b.ac == "affichage_demande"){
 			db.affichage_demande(this.resp);
+		}else if(b.ac == "update_ok_pret"){
+			//console.log(b);
+			db.update_resultat_banquier("ok",b.mail,this.resp);
+		}else if(b.ac == "update_ko_pret"){
+			//console.log(b);
+			db.update_resultat_banquier("ko",b.mail,this.resp);
 		}
+
 		else {
 			db.valid_cookie(this.req.headers.cookie, this, "cb_cookie");
 		}
