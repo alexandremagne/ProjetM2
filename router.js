@@ -300,7 +300,7 @@ load_file:
 			} });
 			} else {
 				util.log("INFO - File requested not found : " + _this.path);
-				_this.resp.writeHead(404,{"Content -Type":"text/html"});
+				_this.resp.writeHead(404,{"Content-Type":"text/html"});
 				_this.resp.end(); 
 				//_this.resp.writeHead(200,{"Content -Type":"text/html"});
 				//_this.resp.end('<h1 style="text-align:center">La page n\'existe pas</h1><div><img src="../../images/404/404_not_found.png"></div>');
@@ -311,7 +311,7 @@ load_file:
 file_processing:
 	function () {
 		if (this.filetype == "htm") {
-			this.resp.writeHead(200,{"Content -Type": "text/html"});
+			this.resp.writeHead(200,{"Content-Type": "text/html"});
 		} else if (this.image_file.indexOf(this.filetype) >= 0) {
 			this.resp.writeHead(200,{"Content-Type" : "image/" + this.filetype });
 		} else {
